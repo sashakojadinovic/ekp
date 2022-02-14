@@ -50,3 +50,4 @@ Route::resource('readers', ReaderController::class)->only(['index','show']);
 Route::get('/autocomplete-search',[AutoCompleteController::class, 'searchFor']);
 
 
+
