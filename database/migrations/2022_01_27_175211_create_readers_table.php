@@ -17,6 +17,7 @@ class CreateReadersTable extends Migration
             $table->id();
             $table->string('card_id');
             $table->string('name');
+            $table->string('email');
             $table->string('occupation')->nullable();
             $table->string('address')->nullable();
             $table->string('city')->nullable();
