@@ -13,13 +13,13 @@
                     </div>
                     <div class="row">
                         <div class="my-2 col-md-6 position-relative">
-                            <label class="form-label" for="author-id">Autori: </label>
+                            <label class="form-label" for="author">Autori: </label>
                             <input class="form-control bg-white rounded-pill rounded-pill" type="text" data-model="Author" name="author"
                                 id="author">
                                 <input id="author-array" type="hidden" name="author-array">
                         </div>
                         <div class="my-2 col-md-6 position-relative">
-                            <label class="form-label" for="donator-id">Donatori: </label>
+                            <label class="form-label" for="donator">Donatori: </label>
                             <input class="form-control bg-white rounded-pill rounded-pill" type="text" data-single=true data-model="Donator" name="donator"
                                 id="donator">
                                 <input id="donator-array" type="hidden" name="donator-array">
@@ -27,13 +27,26 @@
                     </div>
                     <div class="row">
                         <div class="my-2 col-md-6 position-relative">
-                            <label class="form-label" for="category-id">Kategorije: </label>
+                            <label class="form-label" for="category">Kategorije: </label>
                             <input class="form-control bg-white rounded-pill rounded-pill" type="text" data-model="Category" name="category"
                                 id="category">
                                 <input id="category-array" type="hidden" name="category-array">
                         </div>
                         <div class="my-2 col-md-6 position-relative">
-                            <label class="form-label" for="publisher-id">Izdavači: </label>
+                            <label class="form-label" for="age">Uzrast: </label>
+                            <input class="form-control bg-white rounded-pill rounded-pill" type="text" name="age"
+                                id="age">
+
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="my-2 col-md-6 position-relative">
+                            <label class="form-label" for="year">Godina izdanja: </label>
+                            <input class="form-control bg-white rounded-pill rounded-pill" type="text"  name="year"
+                                id="year">
+                        </div>
+                        <div class="my-2 col-md-6 position-relative">
+                            <label class="form-label" for="publisher">Izdavači: </label>
                             <input class="form-control bg-white rounded-pill rounded-pill" type="text" data-model="Publisher" name="publisher"
                                 id="publisher">
                                 <input id="publisher-array" type="hidden" name="publisher-array">
