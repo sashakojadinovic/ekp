@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Author;
 use App\Models\Donator;
+use App\Models\Publisher;
+use App\Models\Category;
 
 class AutoCompleteController extends Controller
 {
@@ -23,10 +25,16 @@ class AutoCompleteController extends Controller
         $result = [];
         switch ($request->m) {
             case "Author":
-                $result = Author::where('name', 'LIKE', '%' . $request->q . '%')->get(['id','name']);
+                $result = Author::where('name', 'LIKE', '%' . $request->q . '%')->get(['id', 'name']);
                 break;
             case "Donator":
-                $result = Donator::where('name', 'LIKE', '%' . $request->q . '%')->get(['id','name']);
+                $result = Donator::where('name', 'LIKE', '%' . $request->q . '%')->get(['id', 'name']);
+                break;
+            case "Publisher":
+                $result = Publisher::where('name', 'LIKE', '%' . $request->q . '%')->get(['id', 'name']);
+                break;
+            case "Category":
+                $result = Category::where('name', 'LIKE', '%' . $request->q . '%')->get(['id', 'name']);
                 break;
             default:
                 $result = [];

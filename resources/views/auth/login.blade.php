@@ -60,7 +60,7 @@
 
                             <div class="mb-3 row">
                                 <div class="col-md-6 offset-md-4">
-                                    <button type="submit" class="btn btn-outline-dark">
+                                    <button type="submit" class="btn btn-outline-dark rounded-pill">
                                         Prijavi se
                                     </button>
 

@@ -8,6 +8,7 @@ use App\Http\Controllers\BookController;
 use App\Http\Controllers\PublisherController;
 use App\Http\Controllers\ReaderController;
 use App\Http\Controllers\AutoCompleteController;
+use App\Http\Controllers\TestController;
 
 /*
 |--------------------------------------------------------------------------
@@ -48,6 +49,8 @@ Route::resource('readers', ReaderController::class)->except(['index','show'])->m
 Route::resource('readers', ReaderController::class)->only(['index','show']);
 
 Route::get('/autocomplete-search',[AutoCompleteController::class, 'searchFor']);
+
+Route::get('/test', [TestController::class,'index']);
 
 
 

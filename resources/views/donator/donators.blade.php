@@ -5,7 +5,7 @@
             <h1 class="mt-3 text-center">Donatori</h1>
             <div class="col-md-10">
                 <div class="d-flex justify-content-end">
-                    <a class="btn btn-outline-dark" href="/donators/create"><i class="bi bi-plus-lg"> </i> Dodaj novog
+                    <a class="btn btn-outline-dark rounded-pill" href="/donators/create"><i class="bi bi-plus-lg"> </i> Dodaj novog
                         donatora </a>
 
                 </div>

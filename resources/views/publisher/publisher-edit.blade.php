@@ -10,7 +10,7 @@
                     @method('PUT')
                     <div class="my-2">
                        <label class="form-label" for="publisher-name">Naziv</label>
-                    <input class="form-control bg-white" value="{{$publisher->name}}" type="text" name="name" id="publisher-name">
+                    <input class="form-control bg-white rounded-pill" value="{{$publisher->name}}" type="text" name="name" id="publisher-name">
                     </div class="my-2">
                     <div>
                         <label class="form-label" for="publisher-info">Opis</label>
@@ -19,8 +19,8 @@
                     </div>
 
                     <div class="d-flex justify-content-end">
-                    <a href="/publishers/{{$publisher->id}}" class="btn btn-outline-dark  mt-2"><i class="bi bi-x-circle"> </i> Odustani</a>
-                    <button type="submit" class="btn btn-outline-dark mt-2 mx-1"><i class="bi bi-cloud-arrow-up"> </i> Sačuvaj</button>
+                    <a href="/publishers/{{$publisher->id}}" class="btn btn-outline-dark rounded-pill  mt-2"><i class="bi bi-x-circle"> </i> Odustani</a>
+                    <button type="submit" class="btn btn-outline-dark rounded-pill mt-2 mx-1"><i class="bi bi-cloud-arrow-up"> </i> Sačuvaj</button>
                     </div>
                 </form>
             </div>

@@ -5,7 +5,7 @@
             <h1 class="mt-3 text-center">Izdanja</h1>
             <div class="col-md-10">
                 <div class="d-flex justify-content-end">
-                    <a class="btn btn-outline-dark" href="/books/create"><i class="bi bi-plus-lg"> </i> Dodaj novo
+                    <a class="btn btn-outline-dark rounded-pill" href="/books/create"><i class="bi bi-plus-lg"> </i> Dodaj novo
                         izdanje </a>
 
                 </div>

@@ -17488,5 +17488,14 @@ textarea.form-control-lg {
 
 .form-label {
   margin-top: 0.5rem;
-  margin-bottom: 0.125rem;
+  margin-bottom: 0.25rem;
+  padding-left: 0.25rem;
+}
+
+textarea.form-control {
+  border-radius: 12px;
+}
+
+.autocomplete {
+  z-index: 100;
 }

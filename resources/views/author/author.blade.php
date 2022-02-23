@@ -27,16 +27,16 @@
             <div class="col-md-10">
                 <div class="d-flex justify-content-between">
                     <div>
-                        <a class="btn btn-outline-dark" href="/authors"><i class="bi bi-arrow-90deg-up"> </i>Spisak autora</a>
+                        <a class="btn btn-outline-dark rounded-pill" href="/authors"><i class="bi bi-arrow-90deg-up"> </i>Spisak autora</a>
                     </div>
                     <div>
-                        <a class="btn btn-outline-dark mx-1 d-inline-block" href="/authors/{{ $author->id }}/edit"><i
+                        <a class="btn btn-outline-dark rounded-pill mx-1 d-inline-block" href="/authors/{{ $author->id }}/edit"><i
                                 class="bi bi-pencil-square"> </i> Izmeni </a>
                         <form class="d-inline-block" id="deleteForm" action="/authors/{{ $author->id }}" method="POST">
                             @csrf
                             @method('DELETE')
                             <button id="deleteBtn" data-bs-toggle="modal" data-bs-target="#modalWarning"
-                                class="btn btn-outline-dark"><i class="bi bi-trash2-fill"> </i> Izbriši </button>
+                                class="btn btn-outline-dark rounded-pill"><i class="bi bi-trash2-fill"> </i> Izbriši </button>
 
                         </form>
                     </div>

@@ -36,19 +36,25 @@ class BookController extends Controller
      */
     public function store(Request $request)
     {
-
+            //dd($request);
             $book = new Book;
             $content = $request->validate(
                 [
                     'title' => 'required',
-                    'donator'=>'present',
+                    'author-array'=>'present',
+                    'donator-array'=>'present',
+                    'category-array'=>'present',
+                    'publisher-array'=>'present',
                     'info' => 'present'
                 ]
             );
             $book->title=$content['title'];
             $book->info=$content['info'];
-            if($content['donator']){
-                $book->donator()->associate($content['donator']);
+ /*            if($content['authors']){
+            $book->authors()->attach(explode(",",$content['authors'])); //u attach ide parametar author_id, može i niz
+        } */
+            if($content['donator-array']){
+                $book->donator()->associate($content['donator-array']);
             }
             $book->save();
             return redirect("/books/$book->id");
@@ -110,6 +116,7 @@ class BookController extends Controller
      */
     public function destroy(Book $book)
     {
-        //
+        $book->delete();
+        return redirect ('/books');
     }
 }

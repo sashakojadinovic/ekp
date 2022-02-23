@@ -27,16 +27,16 @@
             <div class="col-md-10">
                 <div class="d-flex justify-content-between">
                     <div>
-                        <a class="btn btn-outline-dark" href="/categories"><i class="bi bi-arrow-90deg-up"> </i>Sve kategorije</a>
+                        <a class="btn btn-outline-dark rounded-pill" href="/categories"><i class="bi bi-arrow-90deg-up"> </i>Sve kategorije</a>
                     </div>
                     <div>
-                        <a class="btn btn-outline-dark mx-1 d-inline-block" href="/categories/{{ $category->id }}/edit"><i
+                        <a class="btn btn-outline-dark rounded-pill mx-1 d-inline-block" href="/categories/{{ $category->id }}/edit"><i
                                 class="bi bi-pencil-square"> </i> Izmeni </a>
                         <form class="d-inline-block" id="deleteForm" action="/categories/{{ $category->id }}" method="POST">
                             @csrf
                             @method('DELETE')
                             <button id="deleteBtn" data-bs-toggle="modal" data-bs-target="#modalWarning"
-                                class="btn btn-outline-dark"><i class="bi bi-trash2-fill"> </i> Izbriši </button>
+                                class="btn btn-outline-dark rounded-pill"><i class="bi bi-trash2-fill"> </i> Izbriši </button>
 
                         </form>
                     </div>

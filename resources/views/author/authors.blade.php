@@ -5,7 +5,7 @@
             <h1 class="mt-3 text-center">Autori</h1>
             <div class="col-md-10">
                 <div class="d-flex justify-content-end">
-                    <a class="btn btn-outline-dark" href="/authors/create"><i class="bi bi-plus-lg"> </i> Dodaj novog
+                    <a class="btn btn-outline-dark rounded-pill" href="/authors/create"><i class="bi bi-plus-lg"> </i> Dodaj novog
                         autora </a>
 
                 </div>
