@@ -57,6 +57,8 @@ class BookController extends Controller
                 $book->donator()->associate($content['donator-array']);
             }
             $book->save();
+            $book->authors()->attach($content['author-array']);
+            
             return redirect("/books/$book->id");
 
 

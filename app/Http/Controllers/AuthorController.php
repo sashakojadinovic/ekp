@@ -55,7 +55,8 @@ class AuthorController extends Controller
      */
     public function show(Author $author)
     {
-        return view('author.author',['author'=>$author]);
+        $authors_books = $author->books()->get();
+        return view('author.author',['author'=>$author,'authors_books'=>$authors_books]);
     }
 
     /**
