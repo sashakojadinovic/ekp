@@ -54,6 +54,32 @@
 
                     <h6>Opis:</h6>
                     <p>{{ $book->info }}</p>
+                    
+                </div>
+                <div class="mt-5">
+                    <h6>Primerci ovog izdanja:</h6>
+                <table class="table table-striped">
+                    <thead>
+                        <th scope="col">ID</th>
+                        <th scope="col">Signatura</th>
+                        <th scope="col">Status</th>
+                    </thead>
+                    <tbody>
+                        @foreach ($book->items()->get() as $item)
+                            <tr>
+                                <td>{{ $item->id }}</td>
+                                <td>{{ $item->signature }}</td>
+                                <td>@if($item->borrowing()->exists())
+                                    <span>Izdato</span>
+                                    @else
+                                    <span>Raspoloživo</span>
+                                    @endif
+
+                                </td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
                 </div>
 
             </div>

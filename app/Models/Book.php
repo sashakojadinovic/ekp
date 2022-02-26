@@ -23,6 +23,11 @@ class Book extends Model
     public function donator()
     {
         return $this->belongsTo(Donator::class);
+    }    
+    public function items(){
+        return $this->hasMany(Item::class);
     }
+
+
 
 }
