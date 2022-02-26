@@ -58,7 +58,9 @@ class BookController extends Controller
             }
             $book->save();
             $book->authors()->attach($content['author-array']);
-            
+            $book->categories()->attach($content['category-array']);
+            $book->publishers()->attach($content['publisher-array']);
+
             return redirect("/books/$book->id");
 
 

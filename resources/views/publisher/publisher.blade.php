@@ -47,6 +47,22 @@
                 <div class="mt-5">
                     <h4>Opis:</h4>
                     <p>{{ $publisher->info }}</p>
+                    <table class="table table-striped">
+                        <thead>
+                            <th scope="col">ID</th>
+                            <th scope="col">Naslov</th>
+                            <th scope="col">Autor</th>
+                        </thead>
+                        <tbody>
+                            @foreach ($publishers_books as $book)
+                                <tr>
+                                    <td>{{ $book->id }}</td>
+                                    <td><a class="btn px-2 py-0" href="/books/{{ $book->id }}">{{ $book->title }}</a></td>
+                                    <td></td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
                 </div>
 
             </div>

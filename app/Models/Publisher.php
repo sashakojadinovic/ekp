@@ -11,4 +11,7 @@ class Publisher extends Model
         'name','info'
     ];
     use HasFactory;
+    public function books(){
+        return $this->belongsToMany(Book::class);
+    }
 }

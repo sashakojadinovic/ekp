@@ -1,11 +1,12 @@
 <?php
 
+use App\Models\Item;
+use App\Models\Reader;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
-use App\Models\Donator;
 
-class CreateBooksTable extends Migration
+class CreateBorrowingsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -14,13 +15,10 @@ class CreateBooksTable extends Migration
      */
     public function up()
     {
-        Schema::create('books', function (Blueprint $table) {
+        Schema::create('borrowings', function (Blueprint $table) {
             $table->id();
-            $table->string('title');
-            //$table->foreignIdFor(Donator::class);
-            $table->string('age');
-            $table->text('description');
-            $table->text('comment');
+            $table->foreignIdFor(Reader::class);
+            $table->foreignIdFor(Item::class);
             $table->timestamps();
         });
     }
@@ -32,6 +30,6 @@ class CreateBooksTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('books');
+        Schema::dropIfExists('borrowings');
     }
 }

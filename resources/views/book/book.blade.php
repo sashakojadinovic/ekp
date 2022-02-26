@@ -9,7 +9,7 @@
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header bg-secondary text-white">
-                            <h5 class="modal-title" id="exampleModalLabel">Upozorenje!</h5>
+                            <h6 class="modal-title" id="exampleModalLabel">Upozorenje!</h6>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
@@ -45,8 +45,14 @@
 
 
                 <div class="mt-5">
-                    <h4>Donacija:{{$book->donator()->first()? $book->donator()->first()->name: ''}}</h4>
-                    <h4>Opis:</h4>
+                    <h6>Autor: <span>{{$book->authors()->first()? $book->authors()->first()->name: ''}}</span> </h6>
+                    <h6>Kategorija: <span>{{$book->categories()->first()? $book->categories()->first()->name: ''}}</span></h6>
+                    <h6>Izdavač: <span>{{$book->publishers()->first()? $book->publishers()->first()->name: ''}}</span></h6>
+                    <h6>Godina izdanja: <span>{{$book->year? $book->year.'.': ''}}</span></h6>
+                    <h6>Uzrast: <span>{{$book->age? $book->age: ''}}</span></h6>
+                    <h6>Donacija: <span>{{$book->donator()->first()? $book->donator()->first()->name: ''}}</span></h6>
+
+                    <h6>Opis:</h6>
                     <p>{{ $book->info }}</p>
                 </div>
 

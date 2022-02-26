@@ -55,7 +55,8 @@ class PublisherController extends Controller
      */
     public function show(Publisher $publisher)
     {
-        return view('publisher.publisher',['publisher'=>$publisher]);
+        $publishers_books = $publisher->books()->get();
+        return view('publisher.publisher',['publisher'=>$publisher,'publishers_books'=>$publishers_books]);
     }
 
     /**

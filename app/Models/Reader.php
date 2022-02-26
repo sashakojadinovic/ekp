@@ -20,4 +20,7 @@ class Reader extends Model
 
     ];
     use HasFactory;
+    public function borrowing(){
+        return $this->hasOne(Borrowing::class);
+    }
 }
