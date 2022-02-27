@@ -11,12 +11,12 @@
                         <div class="my-2 col-md-6">
                             <label class="form-label" for="author-id">Autori: </label>
 
-                            <input class="form-control bg-white rounded-pill rounded-pill" type="text" data-model="Author" name="author"
+                            <input class="form-control bg-white rounded-pill" type="text" data-model="Author" name="author"
                                 id="author-id">
                         </div>
                         <div class="my-2 col-md-6">
                             <label class="form-label" for="donator-id">Donatori: </label>
-                            <input class="form-control bg-white rounded-pill rounded-pill" type="text" data-model="Donator" name="donator"
+                            <input class="form-control bg-white rounded-pill" type="text" data-model="Donator" name="donator"
                                 id="donator-id">
                         </div>
                     </div>

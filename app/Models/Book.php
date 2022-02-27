@@ -20,10 +20,10 @@ class Book extends Model
     public function publishers(){
         return $this->belongsToMany(Publisher::class);
     }
-    public function donator()
+  /*   public function donator()
     {
         return $this->belongsTo(Donator::class);
-    }    
+    }    */
     public function items(){
         return $this->hasMany(Item::class);
     }

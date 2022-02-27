@@ -9,6 +9,7 @@ use App\Http\Controllers\PublisherController;
 use App\Http\Controllers\ReaderController;
 use App\Http\Controllers\AutoCompleteController;
 use App\Http\Controllers\BorrowingController;
+use App\Http\Controllers\ItemController;
 use App\Http\Controllers\TestController;
 
 /*
@@ -46,6 +47,9 @@ Route::resource('donators', DonatorController::class)->only(['index','show']);
 Route::resource('books', BookController::class)->except(['index','show'])->middleware('auth');
 Route::resource('books', BookController::class)->only(['index','show']);
 
+Route::resource('items', ItemController::class)->except(['index','show'])->middleware('auth');
+Route::resource('items', ItemController::class)->only(['index','show']);
+
 Route::resource('borrowings', BorrowingController::class)->except(['index','show'])->middleware('auth');
 Route::resource('borrowings', BorrowingController::class)->only(['index','show']);
 
@@ -54,7 +58,7 @@ Route::resource('readers', ReaderController::class)->only(['index','show']);
 
 Route::get('/autocomplete-search',[AutoCompleteController::class, 'searchFor']);
 
-Route::get('/test', [TestController::class,'index']);
+//Route::get('/test', [TestController::class,'index']);
 
 
 

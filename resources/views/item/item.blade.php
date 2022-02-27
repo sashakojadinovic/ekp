@@ -50,11 +50,11 @@
                     <h6>Izdavač: <span>{{$book->publishers()->first()? $book->publishers()->first()->name: ''}}</span></h6>
                     <h6>Godina izdanja: <span>{{$book->year? $book->year.'.': ''}}</span></h6>
                     <h6>Uzrast: <span>{{$book->age? $book->age: ''}}</span></h6>
-
+                    <h6>Donacija: <span>{{$book->donator()->first()? $book->donator()->first()->name: ''}}</span></h6>
 
                     <h6>Opis:</h6>
                     <p>{{ $book->info }}</p>
-
+                    
                 </div>
                 <div class="mt-5">
                     <h6>Primerci ovog izdanja:</h6>

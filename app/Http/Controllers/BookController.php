@@ -42,7 +42,7 @@ class BookController extends Controller
                 [
                     'title' => 'required',
                     'author-array'=>'present',
-                    'donator-array'=>'present',
+                    //'donator-array'=>'present',
                     'category-array'=>'present',
                     'publisher-array'=>'present',
                     'info' => 'present'
@@ -53,15 +53,16 @@ class BookController extends Controller
  /*            if($content['authors']){
             $book->authors()->attach(explode(",",$content['authors'])); //u attach ide parametar author_id, može i niz
         } */
-            if($content['donator-array']){
+/*             if($content['donator-array']){
                 $book->donator()->associate($content['donator-array']);
-            }
+            } */
             $book->save();
             $book->authors()->attach($content['author-array']);
             $book->categories()->attach($content['category-array']);
             $book->publishers()->attach($content['publisher-array']);
 
-            return redirect("/books/$book->id");
+            //return redirect("/books/$book->id");
+            return redirect('/items/create',[$book]);
 
 
     }
@@ -120,6 +121,10 @@ class BookController extends Controller
      */
     public function destroy(Book $book)
     {
+        $book->authors()->detach();
+        $book->categories()->detach();
+        $book->publishers()->detach();
+        $book->items()->delete();
         $book->delete();
         return redirect ('/books');
     }

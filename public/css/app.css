@@ -17451,6 +17451,17 @@ textarea.form-control-lg {
   content: "\f6ff";
 }
 
+.alert {
+  padding: 0.2rem;
+  border: none;
+}
+.alert ul {
+  margin-bottom: 0;
+}
+.alert ul li {
+  list-style-type: none;
+}
+
 .navbar {
   padding: 0;
 }

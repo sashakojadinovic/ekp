@@ -8,6 +8,18 @@
 @import '~bootstrap/scss/bootstrap';
 @import '~bootstrap-icons/font/bootstrap-icons';
 
+//Bootstrap customization
+.alert{
+    padding:.2rem;
+    border:none;
+    ul{
+        margin-bottom:0;
+        li{
+            list-style-type: none;
+        }
+    }
+}
+
 // Customization
 .navbar{
     padding:0;

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Item;
+use App\Models\Book;
 use Illuminate\Http\Request;
 
 class ItemController extends Controller
@@ -25,6 +26,7 @@ class ItemController extends Controller
     public function create()
     {
         //
+        return view('item.item-create');
     }
 
     /**
@@ -35,7 +37,22 @@ class ItemController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $item = new Item;
+        $content = $request->validate([
+            'signature' => 'required',
+            'donator_id'=>'present',
+            'available' =>'present',
+            'book_id'=>'required | integer'
+        ]);
+        $item->signature = $content['signature'];
+        $item->available = $content['available'];
+        $item->donator()->associate($content['donator_id']);
+        $item->book()->associate($content['book_id']);
+        $item->save();
+        $book = Book::find($content['book_id']);
+        dd($book);
+        return view('item.item-create', ['book'=>$book]);
+
     }
 
     /**
