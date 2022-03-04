@@ -27,14 +27,15 @@
                     <div class="my-2">
                         <div class="row">
                             <div class="my-2 col-md-6">
-                                <label for="signature">Signatura:</label>
+                                <label class="form-label" for="signature">Signatura:</label>
                                 <input class="form-control bg-white rounded-pill" type="text" name="signature"
                                     id="signature">
                             </div>
-                            <div class="my-2 col-md-6">
-                                <label for="donator">Donator:</label>
-                                <input class="form-control bg-white rounded-pill" type="text" name="donator_id"
-                                    id="donator">
+                            <div class="my-2 col-md-6 position-relative">
+                            <label class="form-label" for="donator">Donatori: </label>
+                            <input class="form-control bg-white rounded-pill" type="text" data-single=true data-model="Donator" name="donator"
+                                id="donator">
+                                <input id="donator-array" type="hidden" name="donator-array" value="1">
                             </div>
                         </div>
                         <div class="row">
@@ -58,5 +59,12 @@
             </div>
         </div>
     </div>
+    <script src="{{ URL::asset('js/autocomplete.js') }}"></script>
+    <script>
 
+        document.addEventListener('DOMContentLoaded', function() {
+        document.getElementById('donator').addEventListener('input', (e) => getData(e.target, e.target.dataset.model));
+        });
+
+    </script>
 @endsection

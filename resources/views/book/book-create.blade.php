@@ -70,7 +70,7 @@
                         <textarea class="form-control bg-white" name="info" id="book-info" cols="30" rows="5"></textarea>
                     </div>
                     <div class="d-flex justify-content-end">
-                        <input type="hidden" name="donators-list" id="donators-list">
+                        <!-- <input type="hidden" name="donators-list" id="donators-list"> -->
                         <a href="/books" class="btn btn-outline-dark rounded-pill  mt-2"><i class="bi bi-x-circle"> </i> Odustani</a>
                         <button type="submit" class="btn btn-outline-dark rounded-pill mt-2 mx-1"><i class="bi bi-cloud-arrow-up"> </i>
                             Sačuvaj izdanje i dodaj primerke</button>
@@ -83,7 +83,7 @@
     <script src="{{ URL::asset('js/autocomplete.js') }}"></script>
     <script>
 document.addEventListener('DOMContentLoaded', function() {
-            document.getElementById('donator').addEventListener('input', (e) => getData(e.target, e.target.dataset.model));
+            //document.getElementById('donator').addEventListener('input', (e) => getData(e.target, e.target.dataset.model));
             document.getElementById('author').addEventListener('input', (e) => getData(e.target, e.target.dataset.model));
             document.getElementById('category').addEventListener('input', (e) => getData(e.target, e.target.dataset.model));
             document.getElementById('publisher').addEventListener('input', (e) => getData(e.target, e.target.dataset.model));
