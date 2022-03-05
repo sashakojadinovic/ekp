@@ -61,8 +61,8 @@ class BookController extends Controller
             $book->categories()->attach($content['category-array']);
             $book->publishers()->attach($content['publisher-array']);
 
-            //return redirect("/books/$book->id");
-            return view('item.item-create',['book'=>$book]);
+            return redirect()->route('items.create',['id'=>$book->id]);
+            //return view('item.item-create',['book'=>$book]);
 
 
     }

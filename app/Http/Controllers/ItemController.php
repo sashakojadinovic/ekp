@@ -23,10 +23,11 @@ class ItemController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
         //
-        return view('item.item-create');
+        $book = Book::find($request->id);
+        return view('item.item-create',['book'=>$book]);
     }
 
     /**
@@ -40,17 +41,17 @@ class ItemController extends Controller
         $item = new Item;
         $content = $request->validate([
             'signature' => 'required',
-            'donator_id'=>'present',
+            'donator_array'=>'present',
             'available' =>'present',
             'book_id'=>'required | integer'
         ]);
         $item->signature = $content['signature'];
         $item->available = $content['available'];
-        $item->donator()->associate($content['donator_id']);
+        $item->donator()->associate($content['donator_array']);
         $item->book()->associate($content['book_id']);
         $item->save();
         $book = Book::find($content['book_id']);
-        dd($book);
+        //dd($book);
         return view('item.item-create', ['book'=>$book]);
 
     }
