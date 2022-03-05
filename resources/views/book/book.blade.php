@@ -47,7 +47,8 @@
 
                 <div class="mt-5">
                     <h6>Autor: <span>{{ $book->authors()->first() ? $book->authors()->first()->name : '' }}</span> </h6>
-                    <h6>Kategorija: <span>{{ $book->categories()->first() ? $book->categories()->first()->name : '' }}</span>
+                    <h6>Kategorija:
+                        <span>{{ $book->categories()->first() ? $book->categories()->first()->name : '' }}</span>
                     </h6>
                     <h6>Izdavač: <span>{{ $book->publishers()->first() ? $book->publishers()->first()->name : '' }}</span>
                     </h6>
@@ -60,7 +61,12 @@
 
                 </div>
                 <div class="mt-5">
-                    <h6>Primerci ovog izdanja:</h6>
+                    <div class="d-flex justify-content-between">
+                        <h6>Primerci ovog izdanja:</h6>
+                        <a class="btn btn-outline-dark rounded-pill" href="/items/create?id={{$book->id}}"><i class="bi bi-plus-lg"> </i>
+                            Dodaj primerak naslova </a>
+
+                    </div>
                     <table class="table table-striped">
                         <thead>
                             <th scope="col">ID</th>
@@ -82,13 +88,14 @@
 
                                     </td>
                                     <td>
-                                        @if($item->borrowing()->exists())
-                                        <a class="btn btn-info rounded-pill btn-sm " href="#">Vrati</a></td>
-                                        @else
-                                        <a class="btn btn-warning rounded-pill btn-sm " href="#">Izdaj</a></td>
-                                        @endif
+                                        @if ($item->borrowing()->exists())
+                                            <a class="btn btn-info rounded-pill btn-sm " href="#">Vrati</a>
+                                    </td>
+                                @else
+                                    <a class="btn btn-warning rounded-pill btn-sm " href="/borrowings/create/?id={{$item->id}}">Izdaj</a></td>
+                            @endif
 
-                                </tr>
+                            </tr>
                             @endforeach
                         </tbody>
                     </table>

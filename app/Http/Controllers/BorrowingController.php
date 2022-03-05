@@ -23,10 +23,10 @@ class BorrowingController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
         //
-        return view('borrowing.borrowing-create');
+        return view('borrowing.borrowing-create',['id'=>$request->id]);
     }
 
     /**

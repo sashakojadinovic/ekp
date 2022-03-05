@@ -17,7 +17,7 @@
                         <div class="modal-footer">
                             <button type="button" data-bs-toggle="modal" data-bs-target="#modalWarning"
                                 class="btn btn-secondary" data-bs-dismiss="modal">Odustani</button>
-                            <button id="confirmBtn" type="button" class="btn btn-dark">Razduži</button>
+                            <button id="confirmBtn" data-borrowing="" onclick="removeBorrowing(JSON.parse(this.dataset.borrowing))" type="button" class="btn btn-dark">Razduži</button>
                         </div>
                     </div>
                 </div>
@@ -25,8 +25,9 @@
             <h1 class="mt-3 text-center">Lista iznajmljivanja knjiga</h1>
             <div class="col-md-10">
                 <div class="d-flex justify-content-end">
-
-
+                    <a class="btn btn-outline-dark rounded-pill" href="/borrowings/create"><i
+                            class="bi bi-plus-lg"> </i>
+                        Izdaj knjigu </a>
                 </div>
                 <table class="table table-striped">
                     <thead>
@@ -40,15 +41,42 @@
                         @foreach ($borrowings as $borrowing)
                             <tr>
                                 <td>{{ $borrowing->id }}</td>
-                                <td><a class="btn px-2 py-0" href="/books/{{ $borrowing->item()->first()->book()->first()->id }}">{{ $borrowing->item()->first()->book()->first()->title }}</a></td>
+                                <td><a class="btn px-2 py-0"
+                                        href="/books/{{ $borrowing->item()->first()->book()->first()->id }}">{{ $borrowing->item()->first()->book()->first()->title }}</a>
+                                </td>
                                 <td>{{ $borrowing->item()->first()->signature }}</td>
-                                <td><a class="btn px-2 py-0" href="/readers/{{ $borrowing->reader()->first()->id }}">{{ $borrowing->reader()->first()->name }}</a></td>
-                                <td><a class="btn btn-danger rounded-pill btn-sm " href="#">Razduži</a></td>
+                                <td><a class="btn px-2 py-0"
+                                        href="/readers/{{ $borrowing->reader()->first()->id }}">{{ $borrowing->reader()->first()->name }}</a>
+                                </td>
+                                <td><a data-bs-toggle="modal" data-bs-target="#modalWarning"
+                                        {{-- onclick="removeBorrowing(event,{{ $borrowing->id }})" --}}
+                                        onclick='showModal({id:{{$borrowing->id}}, signature:"{{$borrowing->item()->first()->signature}}"})'
+                                        class="btn btn-danger rounded-pill btn-sm " href="#">Razduži
+                                    </a>
+
+                                </td>
                             </tr>
                         @endforeach
                     </tbody>
                 </table>
+                <form id="deleteForm" action="/borrowings" method="POST">
+                    @csrf
+                    @method('DELETE')
+                </form>
             </div>
         </div>
     </div>
+    <script>
+        function showModal(borrowing){
+            const confirmBtn = document.getElementById('confirmBtn');
+            confirmBtn.dataset.borrowing=JSON.stringify(borrowing);
+
+        }
+        function removeBorrowing(borrowing) {
+            const deleteForm = document.getElementById('deleteForm');
+            deleteForm.setAttribute(`action`, `/borrowings/${borrowing.id}`);
+            deleteForm.submit();
+
+        }
+    </script>
 @endsection
