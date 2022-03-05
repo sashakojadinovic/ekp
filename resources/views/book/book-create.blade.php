@@ -25,7 +25,7 @@
                     <div class="row">
                         <div class="my-2 col-md-12 position-relative">
                             <label class="form-label" for="author">Autori: </label>
-                            <input class="form-control bg-white rounded-pill" type="text" data-model="Author" name="author"
+                            <input placeholder="Pronađi..." class="form-control bg-white rounded-pill" type="text" data-model="Author" name="author"
                                 id="author">
                                 {{-- Izbriši value posle testiranja --}}
                                 <input id="author-array" type="hidden" name="author-array" value="1">
@@ -40,7 +40,7 @@
                     <div class="row">
                         <div class="my-2 col-md-6 position-relative">
                             <label class="form-label" for="category">Kategorije: </label>
-                            <input class="form-control bg-white rounded-pill" type="text" data-model="Category" name="category"
+                            <input placeholder="Pronađi..."  class="form-control bg-white rounded-pill" type="text" data-model="Category" name="category"
                                 id="category">
                                 <input id="category-array" type="hidden" name="category-array" value="1">
                         </div>
@@ -59,7 +59,7 @@
                         </div>
                         <div class="my-2 col-md-6 position-relative">
                             <label class="form-label" for="publisher">Izdavači: </label>
-                            <input class="form-control bg-white rounded-pill" type="text" data-model="Publisher" name="publisher"
+                            <input placeholder="Pronađi..." class="form-control bg-white rounded-pill" type="text" data-model="Publisher" name="publisher"
                                 id="publisher">
                                 <input id="publisher-array" type="hidden" name="publisher-array">
                         </div>

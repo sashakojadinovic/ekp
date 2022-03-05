@@ -11,13 +11,15 @@ function showList(elm,data){
         const listItem = document.createElement('li');
         listItem.className="list-group-item list-group-item-action"
         listItem.dataset.id=element.id;
+        const value = Object.keys(element)[1];
         listItem.addEventListener('click',e=>{
             //e.stopPropagation();
             elm.value="";
             listContainer.remove();
-            createBadge(element.name,element.id,elm);
+            console.log(element[value])
+            createBadge(element[value],element.id,elm);
         });
-        listItem.innerHTML = element.name;
+        listItem.innerHTML = element[value];
         listContainer.appendChild(listItem);
         elm.parentNode.insertBefore(listContainer,elm.nextSibling);
         //console.log(element.name)
@@ -37,24 +39,32 @@ function createBadge(name, id, elm) {
        hiddens[elm.id]= hiddens[elm.id].filter(e=>e!==id);
        document.getElementById(elm.id+'-array').value=hiddens[elm.id];
     })
-    console.log(document.getElementById(elm.id+'-array'));
+    //console.log(document.getElementById(elm.id+'-array'));
     hiddens[elm.id].push(id);
     document.getElementById(elm.id+'-array').value=hiddens[elm.id];
     elm.parentNode.insertBefore(elSpan,elm);
 
 }
-function getData(elm, model) {
+function getData(elm, model, field) {
+    const f = field || 'name';
     if(elm.value.length<3){
         if(document.querySelector('.autocomplete')){
             document.querySelector('.autocomplete').remove();
         }
         return;
+
     }
+
     axios.get('/autocomplete-search', {
             params: {
                 m: model,
+                f: f,
                 q: elm.value
             }
         })
-        .then(res =>showList(elm,res.data) );
+        .then(res =>{
+            console.log(res.data);
+            showList(elm,res.data);
+
+        });
 }

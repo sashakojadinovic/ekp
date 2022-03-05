@@ -2,7 +2,7 @@
 @section('content')
     <div class="container">
         <div class="row justify-content-center">
-            <h1 class="mt-3 text-center">Izdanja</h1>
+            <h1 class="mt-3 text-center">Naslovi</h1>
             <div class="col-md-10">
                 <div class="d-flex justify-content-end">
                     <a class="btn btn-outline-dark rounded-pill" href="/books/create"><i class="bi bi-plus-lg"> </i> Dodaj novo
@@ -22,9 +22,9 @@
                             <tr>
                                 <td>{{ $book->id }}</td>
                                 <td><a class="btn px-2 py-0" href="/books/{{ $book->id }}">{{ $book->title }}</a></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
+                                <td>{{$book->authors()->first()->name}}</td>
+                                <td>{{$book->publishers()->first()->name}}</td>
+                                <td>{{$book->items()->count()}}</td>
                             </tr>
                         @endforeach
                     </tbody>

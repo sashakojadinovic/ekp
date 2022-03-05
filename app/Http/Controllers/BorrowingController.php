@@ -26,6 +26,7 @@ class BorrowingController extends Controller
     public function create()
     {
         //
+        return view('borrowing.borrowing-create');
     }
 
     /**
@@ -81,6 +82,7 @@ class BorrowingController extends Controller
      */
     public function destroy(Borrowing $borrowing)
     {
-        //
+        $borrowing->delete();
+        return redirect('/borrowings');
     }
 }
