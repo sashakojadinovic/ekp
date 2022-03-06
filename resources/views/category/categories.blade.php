@@ -20,7 +20,7 @@
                             <tr>
                                 <td>{{ $category->id }}</td>
                                 <td><a class="btn px-2 py-0" href="/categories/{{ $category->id }}">{{ $category->name }}</a></td>
-                                <td></td>
+                                <td>{{$category->books()->count()}}</td>
                             </tr>
                         @endforeach
                     </tbody>

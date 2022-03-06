@@ -58,7 +58,11 @@
                                 <tr>
                                     <td>{{ $book->id }}</td>
                                     <td><a class="btn px-2 py-0" href="/books/{{ $book->id }}">{{ $book->title }}</a></td>
-                                    <td></td>
+                                    <td>
+                                        @foreach ($book->authors()->get() as $author )
+                                            <a class="btn px-2 py-0" href="/authors/{{$author->id}}">{{$author->name}}</a>
+                                        @endforeach
+                                    </td>
                                 </tr>
                             @endforeach
                         </tbody>

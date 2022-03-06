@@ -20,7 +20,7 @@
                             <tr>
                                 <td>{{ $publisher->id }}</td>
                                 <td><a class="btn px-2 py-0" href="/publishers/{{ $publisher->id }}">{{ $publisher->name }}</a></td>
-                                <td></td>
+                                <td>{{$publisher->books()->count()}}</td>
                             </tr>
                         @endforeach
                     </tbody>
