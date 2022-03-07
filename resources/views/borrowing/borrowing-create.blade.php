@@ -2,7 +2,7 @@
 @section('content')
     <div class="container">
         <div class="row justify-content-center">
-            <div class="col-md-10">
+            <div class="col-md-12">
                 <h1 class="mt-3 text-center">Izdaj primerak knjige </h1>
 
                 <form action="/borrowings" method="POST">

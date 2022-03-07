@@ -23,7 +23,7 @@
                 </div>
             </div>
             <h1 class="mt-3 text-center">Lista iznajmljivanja knjiga</h1>
-            <div class="col-md-10">
+            <div class="col-md-12">
                 <div class="d-flex justify-content-end">
                     <a class="btn btn-outline-dark rounded-pill" href="/borrowings/create"><i
                             class="bi bi-plus-lg"> </i>

@@ -5,7 +5,7 @@
             <p>{{ $errors->first() }}</p>
         @endif
         <div class="row justify-content-center">
-            <div class="col-md-10">
+            <div class="col-md-12">
                 <h1 class="mt-3 text-center">Napravi novog izdavača</h1>
 
                 <form action="/publishers" method="POST">

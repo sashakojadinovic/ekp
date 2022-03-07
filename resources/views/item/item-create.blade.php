@@ -13,7 +13,7 @@
 
 
         <div class="row justify-content-center">
-            <div class="col-md-10">
+            <div class="col-md-12">
                 <h1 class="mt-3 text-center">Dodaj primerak izdanja "{{ $book->title }}" </h1>
                 <div id="saved-items">
                     {{-- {{dd($book->items()->get())}} --}}

@@ -3,7 +3,7 @@
     <div class="container">
         <div class="row justify-content-center">
             <h1 class="mt-3 text-center">Izdavači</h1>
-            <div class="col-md-10">
+            <div class="col-md-12">
                 <div class="d-flex justify-content-end">
                     <a class="btn btn-outline-dark rounded-pill" href="/publishers/create"><i class="bi bi-plus-lg"> </i> Dodaj novog
                         izdavača </a>

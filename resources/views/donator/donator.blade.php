@@ -24,7 +24,7 @@
                 </div>
             </div>
             <h1 class="mt-3 text-center">{{ $donator->name }}</h1>
-            <div class="col-md-10">
+            <div class="col-md-12">
                 <div class="d-flex justify-content-between">
                     <div>
                         <a class="btn btn-outline-dark rounded-pill" href="/donators"><i class="bi bi-arrow-90deg-up"> </i>Lista donatora</a>
