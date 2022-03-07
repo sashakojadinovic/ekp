@@ -81,7 +81,7 @@
                                     <td>{{ $item->signature }}</td>
                                     <td>
                                         @if ($item->borrowing()->exists())
-                                            <span>Izdato</span>
+                                            <span class="text-danger">Izdato</span>
                                         @else
                                             <span>Raspoloživo</span>
                                         @endif
@@ -89,10 +89,10 @@
                                     </td>
                                     <td>
                                         @if ($item->borrowing()->exists())
-                                            <a class="btn btn-info rounded-pill btn-sm " href="#">Vrati</a>
+                                            <a class="btn btn-danger rounded-pill btn-sm " href="#">Vrati</a>
                                     </td>
                                 @else
-                                    <a class="btn btn-warning rounded-pill btn-sm " href="/borrowings/create/?id={{$item->id}}">Izdaj</a></td>
+                                    <a class="btn btn-dark rounded-pill btn-sm " href="/borrowings/create/?id={{$item->id}}">Izdaj</a></td>
                             @endif
 
                             </tr>

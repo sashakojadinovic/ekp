@@ -44,7 +44,7 @@ class BorrowingController extends Controller
         $borrowing = new Borrowing;
         $content = $request->validate([
             'item_id'=>'required',
-            'reader_card'=>'required'
+            'reader_card'=>'required|integer'
         ]);
         $reader = Reader::where('card_id','=', $content['reader_card']);
         $borrowing->reader_id = $reader->first()->id;
