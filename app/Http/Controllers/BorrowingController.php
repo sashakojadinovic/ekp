@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Borrowing;
 use App\Models\Item;
+use App\Models\Reader;
 use Illuminate\Http\Request;
 
 class BorrowingController extends Controller
@@ -40,7 +41,17 @@ class BorrowingController extends Controller
     public function store(Request $request)
     {
         //
-        dd($request);
+        $borrowing = new Borrowing;
+        $content = $request->validate([
+            'item_id'=>'required',
+            'reader_card'=>'required'
+        ]);
+        $reader = Reader::where('card_id','=', $content['reader_card']);
+        $borrowing->reader_id = $reader->first()->id;
+        $borrowing->item_id=$content['item_id'];
+        $borrowing->save();
+        return redirect('/borrowings');
+
     }
 
     /**

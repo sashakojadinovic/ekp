@@ -17,20 +17,20 @@
                                     <div class="p-2">
                                         <h4 class="mt-2"> {{ $item->book()->first()->title }}<i class="bi bi-arrow-bar-right float-end fs-1"></i></h4>
                                         <h5>Signatura: {{ $item->signature }} </h5>
+                                        <input id="item-id" type="hidden" name="item_id" value="{{$item->id}}">
                                     </div>
                                 @else
                                     <label class="form-label" for="item-signature">Signatura</label>
                                     <input data-model="Item" class="form-control bg-white rounded-pill" type="text"
                                         name="signature" id="signature">
                                 @endisset
-
-                                <input id="item-array" type="hidden" name="item-array">
+                                <input id="reader-id" type="hidden" name="reader_id">
                             </div>
                             <div class="my-2 col-md-6">
                                 <i class="bi bi-people fs-4"></i>
                                 <label class="form-label" for="reader-id">Broj članske karte</label>
-                                <input class="form-control bg-white rounded-pill" type="text" name="reader_id"
-                                    id="reader-id">
+                                <input class="form-control bg-white rounded-pill" type="text" name="reader_card"
+                                    id="reader-card">
                             </div>
 
                         </div>
