@@ -11,12 +11,23 @@
 
                         <div class="row">
                             <div class="my-2 col-md-6 position-relative">
-                                <label class="form-label" for="item-signature">Signatura</label>
-                                <input data-model="Item" class="form-control bg-white rounded-pill" type="text"
-                                    name="signature" id="signature">
+                                @isset($id)
+                                <i class="bi bi-book fs-4"></i>
+                                    <p class="d-inline-block mt-2 mb-1">Naslov i signatura</p>
+                                    <div class="p-2">
+                                        <h4 class="mt-2"> {{ $item->book()->first()->title }}<i class="bi bi-arrow-bar-right float-end fs-1"></i></h4>
+                                        <h5>Signatura: {{ $item->signature }} </h5>
+                                    </div>
+                                @else
+                                    <label class="form-label" for="item-signature">Signatura</label>
+                                    <input data-model="Item" class="form-control bg-white rounded-pill" type="text"
+                                        name="signature" id="signature">
+                                @endisset
+
                                 <input id="item-array" type="hidden" name="item-array">
                             </div>
                             <div class="my-2 col-md-6">
+                                <i class="bi bi-people fs-4"></i>
                                 <label class="form-label" for="reader-id">Broj članske karte</label>
                                 <input class="form-control bg-white rounded-pill" type="text" name="reader_id"
                                     id="reader-id">
@@ -38,16 +49,14 @@
             </div>
         </div>
     </div>
-    @isset($id)
-        <script>
-            document.getElementById('signature').value = {{ $id }}
-        </script>
-    @endisset
     <script src="{{ URL::asset('js/autocomplete.js') }}"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            document.getElementById('signature').addEventListener('input', e => getData(e.target, e.target.dataset
+            if( document.getElementById('signature')){
+                document.getElementById('signature').addEventListener('input', e => getData(e.target, e.target.dataset
                 .model, 'signature'));
+            }
+
         });
     </script>
 @endsection

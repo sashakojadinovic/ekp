@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Borrowing;
+use App\Models\Item;
 use Illuminate\Http\Request;
 
 class BorrowingController extends Controller
@@ -26,7 +27,8 @@ class BorrowingController extends Controller
     public function create(Request $request)
     {
         //
-        return view('borrowing.borrowing-create',['id'=>$request->id]);
+        $item = Item::find($request->id);
+        return view('borrowing.borrowing-create',['id'=>$request->id, 'item'=>$item]);
     }
 
     /**
