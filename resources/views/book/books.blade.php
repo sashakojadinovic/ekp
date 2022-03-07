@@ -5,7 +5,8 @@
             <h1 class="mt-3 text-center">Naslovi</h1>
             <div class="col-md-10">
                 <div class="d-flex justify-content-end">
-                    <a class="btn btn-outline-dark rounded-pill" href="/books/create"><i class="bi bi-plus-lg"> </i> Dodaj novo
+                    <a class="btn btn-outline-dark rounded-pill" href="/books/create"><i class="bi bi-plus-lg"> </i> Dodaj
+                        novo
                         izdanje </a>
 
                 </div>
@@ -22,9 +23,16 @@
                             <tr>
                                 <td>{{ $book->id }}</td>
                                 <td><a class="btn px-2 py-0" href="/books/{{ $book->id }}">{{ $book->title }}</a></td>
-                                <td>{{$book->authors()->first()->name}}</td>
-                                <td>{{$book->publishers()->first()->name}}</td>
-                                <td>{{$book->items()->count()}}</td>
+                                <td>
+                                    @foreach ($book->authors()->get() as $author)
+                                        <a class="btn px-2 py-0" href="/authors/{{ $author->id }}">{{ $author->name }} </a>
+                                    @endforeach
+                                <td>
+                                    @foreach ($book->publishers()->get() as $publisher)
+                                        <a class="btn px-2 py-0" href="/publishers/{{ $publisher->id }}">{{ $publisher->name }} </a>
+                                    @endforeach
+                                </td>
+                                <td>{{ $book->items()->count() }}</td>
                             </tr>
                         @endforeach
                     </tbody>
