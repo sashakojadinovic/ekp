@@ -12,9 +12,17 @@ class BookController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $books = Book::all();
+        //$books = Book::all();
+        if($request->filled('title')){
+            $books = Book::where('title','LIKE','%'.$request->title.'%')->get();
+        }
+        else{
+            $books = Book::paginate(15);
+        }
+
+        //$books->appends(['sort'=>'title']);
         return view('book.books',['books'=>$books]);
     }
 

@@ -1,6 +1,15 @@
 @extends('layouts.app')
 @section('content')
     <div class="container">
+        @if ($errors->any())
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li class="text-center">{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
         <div class="row justify-content-center">
             <div class="col-md-12">
                 <h1 class="mt-3 text-center">Izdaj primerak knjige </h1>
@@ -12,12 +21,13 @@
                         <div class="row">
                             <div class="my-2 col-md-6 position-relative">
                                 @isset($id)
-                                <i class="bi bi-book fs-4"></i>
+                                    <i class="bi bi-book fs-4"></i>
                                     <p class="d-inline-block mt-2 mb-1">Naslov i signatura</p>
                                     <div class="p-2">
-                                        <h4 class="mt-2"> {{ $item->book()->first()->title }}<i class="bi bi-arrow-bar-right float-end fs-2"></i></h4>
+                                        <h4 class="mt-2"> {{ $item->book()->first()->title }}<i
+                                                class="bi bi-arrow-bar-right float-end fs-2"></i></h4>
                                         <h5>Signatura: {{ $item->signature }} </h5>
-                                        <input id="item-id" type="hidden" name="item_id" value="{{$item->id}}">
+                                        <input id="item-id" type="hidden" name="item_id" value="{{ $item->id }}">
                                     </div>
                                 @else
                                     <label class="form-label" for="item-signature">Signatura</label>
@@ -37,7 +47,8 @@
                     </div>
 
                     <div class="d-flex justify-content-end">
-                        <a href={{ url()->previous() }} class="btn btn-outline-dark rounded-pill  mt-2"><i class="bi bi-x-circle">
+                        <a href={{ url()->previous() }} class="btn btn-outline-dark rounded-pill  mt-2"><i
+                                class="bi bi-x-circle">
                             </i>
                             Odustani</a>
                         <button type="submit" class="btn btn-outline-dark rounded-pill mt-2 mx-1"><i
@@ -52,9 +63,10 @@
     <script src="{{ URL::asset('js/autocomplete.js') }}"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            if( document.getElementById('signature')){
-                document.getElementById('signature').addEventListener('input', e => getData(e.target, e.target.dataset
-                .model, 'signature'));
+            if (document.getElementById('signature')) {
+                document.getElementById('signature').addEventListener('input', e => getData(e.target, e.target
+                    .dataset
+                    .model, 'signature'));
             }
 
         });

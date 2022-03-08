@@ -47,6 +47,9 @@ class BorrowingController extends Controller
             'reader_card'=>'required|integer'
         ]);
         $reader = Reader::where('card_id','=', $content['reader_card']);
+        if(!$reader->first()){
+            return back()->withErrors('Nije pronađen čitalac sa datim brojem članske karte');
+        }
         $borrowing->reader_id = $reader->first()->id;
         $borrowing->item_id=$content['item_id'];
         $borrowing->save();
