@@ -44,18 +44,23 @@ class BookController extends Controller
      */
     public function store(Request $request)
     {
-            //dd($request);
+            //$path = $request->file('image')->storePublicly('images');
+            //dd($path);
             $book = new Book;
             $content = $request->validate(
                 [
                     'title' => 'required',
                     'author-array'=>'present',
-                    //'donator-array'=>'present',
+                    //'image'=>'image|mimes:jpeg,png,jpg,gif|max:2048',
                     'category-array'=>'present',
                     'publisher-array'=>'present',
                     'info' => 'present'
                 ]
             );
+            $imgName = time().'.'.$request->file('image')->extension();
+
+            $request->file('image')->move(public_path('images'),$imgName);
+            $book->img_url='/images/'.$imgName;
             $book->title=$content['title'];
             $book->info=$content['info'];
  /*            if($content['authors']){

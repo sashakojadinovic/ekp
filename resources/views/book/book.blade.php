@@ -60,6 +60,7 @@
                     <p>{{ $book->info }}</p>
 
                 </div>
+                <img width="200" src={{asset($book->img_url)}} alt="">
                 <div class="mt-5">
                     <div class="d-flex justify-content-between">
                         <h6>Primerci ovog izdanja:</h6>
