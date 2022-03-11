@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Book;
 use Illuminate\Http\Request;
+use Intervention\Image\Facades\Image;
 
 class BookController extends Controller
 {
@@ -15,15 +16,14 @@ class BookController extends Controller
     public function index(Request $request)
     {
         //$books = Book::all();
-        if($request->filled('title')){
-            $books = Book::where('title','LIKE','%'.$request->title.'%')->get();
-        }
-        else{
+        if ($request->filled('title')) {
+            $books = Book::where('title', 'LIKE', '%' . $request->title . '%')->get();
+        } else {
             $books = Book::paginate(15);
         }
 
         //$books->appends(['sort'=>'title']);
-        return view('book.books',['books'=>$books]);
+        return view('book.books', ['books' => $books]);
     }
 
     /**
@@ -44,38 +44,37 @@ class BookController extends Controller
      */
     public function store(Request $request)
     {
-            //$path = $request->file('image')->storePublicly('images');
-            //dd($path);
-            $book = new Book;
-            $content = $request->validate(
-                [
-                    'title' => 'required',
-                    'author-array'=>'present',
-                    //'image'=>'image|mimes:jpeg,png,jpg,gif|max:2048',
-                    'category-array'=>'present',
-                    'publisher-array'=>'present',
-                    'info' => 'present'
-                ]
-            );
-            $imgName = time().'.'.$request->file('image')->extension();
+        //$path = $request->file('image')->storePublicly('images');
+        //dd($path);
+        $book = new Book;
+        $content = $request->validate(
+            [
+                'title' => 'required',
+                'author-array' => 'present',
+                //'image'=>'image|mimes:jpeg,png,jpg,gif|max:2048',
+                'category-array' => 'present',
+                'publisher-array' => 'present',
+                'info' => 'present'
+            ]
+        );
+        if ($request->file('image')) {
+            $imgName = time() . '.' . $request->file('image')->extension();
+            $img = Image::make($request->file('image')->path());
+            $img->resize(200, 300, function ($constraint) {
+                $constraint->aspectRatio();
+            })->save('images' . '/' . $imgName);
+            $book->img_url = '/images/' . $imgName;
+        }
 
-            $request->file('image')->move(public_path('images'),$imgName);
-            $book->img_url='/images/'.$imgName;
-            $book->title=$content['title'];
-            $book->info=$content['info'];
- /*            if($content['authors']){
-            $book->authors()->attach(explode(",",$content['authors'])); //u attach ide parametar author_id, može i niz
-        } */
-/*             if($content['donator-array']){
-                $book->donator()->associate($content['donator-array']);
-            } */
-            $book->save();
-            $book->authors()->attach($content['author-array']);
-            $book->categories()->attach($content['category-array']);
-            $book->publishers()->attach($content['publisher-array']);
+        $book->title = $content['title'];
+        $book->info = $content['info'];
+        $book->save();
+        $book->authors()->attach($content['author-array']);
+        $book->categories()->attach($content['category-array']);
+        $book->publishers()->attach($content['publisher-array']);
 
-            return redirect()->route('items.create',['id'=>$book->id]);
-            //return view('item.item-create',['book'=>$book]);
+        return redirect()->route('items.create', ['id' => $book->id]);
+        //return view('item.item-create',['book'=>$book]);
 
 
     }
@@ -88,7 +87,7 @@ class BookController extends Controller
      */
     public function show(Book $book)
     {
-        return view('book.book',['book'=>$book]);
+        return view('book.book', ['book' => $book]);
     }
 
     /**
@@ -99,7 +98,7 @@ class BookController extends Controller
      */
     public function edit(Book $book)
     {
-        return view('book.book-edit',['book'=>$book]);
+        return view('book.book-edit', ['book' => $book]);
     }
 
     /**
@@ -114,14 +113,14 @@ class BookController extends Controller
         $content = $request->validate(
             [
                 'title' => 'required',
-                'donator'=>'present',
+                'author-array' => 'present',
+                //'image'=>'image|mimes:jpeg,png,jpg,gif|max:2048',
+                'category-array' => 'present',
+                'publisher-array' => 'present',
                 'info' => 'present'
             ]
         );
-        $book->update(['title'=>$content['title'],'info'=>$content['info']]);
-        if($content['donator']){
-            $book->donator()->associate($content['donator']);
-        }
+        $book->update(['title' => $content['title'], 'info' => $content['info']]);
         $book->save();
         return redirect("/books/$book->id");
     }
@@ -139,6 +138,6 @@ class BookController extends Controller
         $book->publishers()->detach();
         $book->items()->delete();
         $book->delete();
-        return redirect ('/books');
+        return redirect('/books');
     }
 }
