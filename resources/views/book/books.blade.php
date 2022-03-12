@@ -32,6 +32,7 @@
             <table class="table table-striped">
                 <thead>
                     <th scope="col">ID</th>
+                    <th scope="col">#</th>
                     <th scope="col">Naslov</th>
                     <th scope="col">Autor</th>
                     <th scope="col">Izdavač</th>
@@ -41,6 +42,17 @@
                     @foreach ($books as $book)
                         <tr>
                             <td>{{ $book->id }}</td>
+                            <td>
+                                @if (!$book->img_url)
+                                <a href="/books/{{ $book->id }}"><img height="75" src="/images/default.png" alt=""></a>
+                                @endif
+
+                                <a href="/books/{{ $book->id }}"><img height="75" src="{{ $book->img_url }}"
+                                        alt=""></a>
+
+                            </td>
+
+
                             <td><a class="btn px-2 py-0" href="/books/{{ $book->id }}">{{ $book->title }}</a>
                             </td>
                             <td>
@@ -51,7 +63,8 @@
                             <td>
                                 @foreach ($book->publishers()->get() as $publisher)
                                     <a class="btn px-2 py-0"
-                                        href="/publishers/{{ $publisher->id }}">{{ $publisher->name }} </a>
+                                        href="/publishers/{{ $publisher->id }}">{{ $publisher->name }}
+                                    </a>
                                 @endforeach
                             </td>
                             <td>{{ $book->items()->count() }}</td>

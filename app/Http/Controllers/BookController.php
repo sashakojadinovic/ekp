@@ -44,8 +44,7 @@ class BookController extends Controller
      */
     public function store(Request $request)
     {
-        //$path = $request->file('image')->storePublicly('images');
-        //dd($path);
+        //dd($request);
         $book = new Book;
         $content = $request->validate(
             [
@@ -53,6 +52,8 @@ class BookController extends Controller
                 'author-array' => 'present',
                 //'image'=>'image|mimes:jpeg,png,jpg,gif|max:2048',
                 'category-array' => 'present',
+                'year'=>'present',
+                'age'=>'present',
                 'publisher-array' => 'present',
                 'info' => 'present'
             ]
@@ -67,6 +68,8 @@ class BookController extends Controller
         }
 
         $book->title = $content['title'];
+        $book->year = $content['year'];
+        $book->age = $content['age'];
         $book->info = $content['info'];
         $book->save();
         $book->authors()->attach($content['author-array']);

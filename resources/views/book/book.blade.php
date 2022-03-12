@@ -22,6 +22,7 @@
                     </div>
                 </div>
             </div>
+
             <h1 class="mt-3 text-center">{{ $book->title }}</h1>
             <div class="col-md-12">
                 <div class="d-flex justify-content-between">
@@ -43,28 +44,37 @@
                     </div>
 
                 </div>
+                <div class="row">
+                    <div class="col-md-2 mt-5">
+                        @if (!$book->img_url)
+                           <img width="100%" src="/images/default.png" alt="">
+                        @endif
+                        <img width="100%" src={{ asset($book->img_url) }} alt="">
+                    </div>
+                    <div class="col-md-10 mt-5">
+                        <h6 class="fw-bold">Autor: <span class="fw-normal">{{ $book->authors()->first() ? $book->authors()->first()->name : '' }}</span>
+                        </h6>
+                        <h6 class="fw-bold">Kategorija:
+                            <span class="fw-normal">{{ $book->categories()->first() ? $book->categories()->first()->name : '' }}</span>
+                        </h6>
+                        <h6 class="fw-bold">Izdavač:
+                            <span class="fw-normal">{{ $book->publishers()->first() ? $book->publishers()->first()->name : '' }}</span>
+                        </h6>
+                        <h6 class="fw-bold">Godina izdanja: <span class="fw-normal">{{ $book->year ? $book->year . '.' : '' }}</span></h6>
+                        <h6 class="fw-bold">Uzrast: <span class="fw-normal">{{ $book->age ? $book->age : '' }}</span></h6>
 
 
-                <div class="mt-5">
-                    <h6>Autor: <span>{{ $book->authors()->first() ? $book->authors()->first()->name : '' }}</span> </h6>
-                    <h6>Kategorija:
-                        <span>{{ $book->categories()->first() ? $book->categories()->first()->name : '' }}</span>
-                    </h6>
-                    <h6>Izdavač: <span>{{ $book->publishers()->first() ? $book->publishers()->first()->name : '' }}</span>
-                    </h6>
-                    <h6>Godina izdanja: <span>{{ $book->year ? $book->year . '.' : '' }}</span></h6>
-                    <h6>Uzrast: <span>{{ $book->age ? $book->age : '' }}</span></h6>
-
-
-                    <h6>Opis:</h6>
-                    <p>{{ $book->info }}</p>
-
+                        <h6 class="fw-bold">Opis:</h6>
+                        <p>{{ $book->info }}</p>
+                    </div>
                 </div>
-                <img width="200" src={{asset($book->img_url)}} alt="">
+
+
                 <div class="mt-5">
                     <div class="d-flex justify-content-between">
                         <h6>Primerci ovog izdanja:</h6>
-                        <a class="btn btn-outline-dark rounded-pill" href="/items/create?id={{$book->id}}"><i class="bi bi-plus-lg"> </i>
+                        <a class="btn btn-outline-dark rounded-pill" href="/items/create?id={{ $book->id }}"><i
+                                class="bi bi-plus-lg"> </i>
                             Dodaj primerak naslova </a>
 
                     </div>
@@ -93,7 +103,8 @@
                                             <a class="btn btn-danger rounded-pill btn-sm " href="#">Vrati</a>
                                     </td>
                                 @else
-                                    <a class="btn btn-dark rounded-pill btn-sm " href="/borrowings/create/?id={{$item->id}}">Izdaj</a></td>
+                                    <a class="btn btn-dark rounded-pill btn-sm "
+                                        href="/borrowings/create/?id={{ $item->id }}">Izdaj</a></td>
                             @endif
 
                             </tr>
