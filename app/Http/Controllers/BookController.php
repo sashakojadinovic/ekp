@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Book;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 use Intervention\Image\Facades\Image;
 
@@ -15,9 +16,16 @@ class BookController extends Controller
      */
     public function index(Request $request)
     {
-        //$books = Book::all();
         if ($request->filled('title')) {
             $books = Book::where('title', 'LIKE', '%' . $request->title . '%')->get();
+        } else if ($request->filled('author')) {
+            $books = Book::whereHas('authors', function (Builder $query) use($request) {
+                $query->where('name', 'LIKE', '%' . $request->author . '%');
+            })->get();
+        } else if ($request->filled('publisher')) {
+            $books = Book::whereHas('publishers', function (Builder $query) use($request) {
+                $query->where('name', 'LIKE', '%' . $request->publisher . '%');
+            })->get();
         } else {
             $books = Book::paginate(15);
         }
@@ -52,8 +60,8 @@ class BookController extends Controller
                 'author-array' => 'present',
                 //'image'=>'image|mimes:jpeg,png,jpg,gif|max:2048',
                 'category-array' => 'present',
-                'year'=>'present',
-                'age'=>'present',
+                'year' => 'present',
+                'age' => 'present',
                 'publisher-array' => 'present',
                 'info' => 'present'
             ]
