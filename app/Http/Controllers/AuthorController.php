@@ -95,6 +95,7 @@ class AuthorController extends Controller
      */
     public function destroy(Author $author)
     {
+        $author->books()->detach();
         $author->delete();
         return redirect("/authors");
     }

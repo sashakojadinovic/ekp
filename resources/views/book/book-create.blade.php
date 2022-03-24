@@ -29,13 +29,19 @@
                             <label>
                                 Dodaj sliku
                             </label>
-                            <input type="file" class="form-control rounded-pill"  name="image">
+                            <input type="file" class="form-control rounded-pill" name="image">
                             <label class="form-label" for="author">Autori: </label>
-                            <input placeholder="Pronađi..." class="form-control bg-white rounded-pill" type="text"
-                                data-model="Author" name="author" id="author">
+                            <div class="position-relative">
+                                <input placeholder="Pronađi..." class="form-control bg-white rounded-pill" type="text"
+                                    data-model="Author" name="author" id="author">
+                                <button class="btn position-absolute top-0 end-0 rounded-pill" type="button">
+                                    <i  class="bi bi-plus-lg"></i></button>
+                            </div>
+
+
                             <input id="author-array" type="hidden" name="author-array">
                         </div>
-                        </div>
+                    </div>
                     <div class="row">
                         <div class="my-2 col-md-6 position-relative">
                             <label class="form-label" for="category">Kategorije: </label>

@@ -80,7 +80,7 @@ class BookController extends Controller
         $book->age = $content['age'];
         $book->info = $content['info'];
         $book->save();
-        $book->authors()->attach($content['author-array']);
+        $book->authors()->attach(explode(",",$content['author-array']));
         $book->categories()->attach($content['category-array']);
         $book->publishers()->attach($content['publisher-array']);
 

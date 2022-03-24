@@ -52,7 +52,15 @@
                         <img width="100%" src={{ asset($book->img_url) }} alt="">
                     </div>
                     <div class="col-md-10 mt-5">
-                        <h6 class="fw-bold">Autor: <span class="fw-normal">{{ $book->authors()->first() ? $book->authors()->first()->name : '' }}</span>
+                        <h6 class="fw-bold">Autor: <span class="fw-normal">
+                            @if ($book->authors()->first())
+                                @foreach ($book->authors()->get() as $author )
+                                    {{$author->name}}
+                                @endforeach
+                            @endif
+
+                            {{-- {{ $book->authors()->first() ? $book->authors()->first()->name : '' }} --}}
+                        </span>
                         </h6>
                         <h6 class="fw-bold">Kategorija:
                             <span class="fw-normal">{{ $book->categories()->first() ? $book->categories()->first()->name : '' }}</span>
@@ -100,7 +108,14 @@
                                     </td>
                                     <td>
                                         @if ($item->borrowing()->exists())
-                                            <a class="btn btn-danger rounded-pill btn-sm " href="#">Vrati</a>
+                                        <form class="d-inline-block" id="deleteForm" action="#" method="POST">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button id="returnBook" data-bs-toggle="modal" data-bs-target="#modalWarning"
+                                                class="btn btn-sm btn-danger rounded-pill"> Vrati
+                                            </button>
+
+                                        </form>
                                     </td>
                                 @else
                                     <a class="btn btn-dark rounded-pill btn-sm "
