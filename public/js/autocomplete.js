@@ -16,22 +16,23 @@ function showList(elm,data){
             //e.stopPropagation();
             elm.value="";
             listContainer.remove();
-            console.log(element[value])
+            //console.log(element[value])
             createBadge(element[value],element.id,elm);
         });
         listItem.innerHTML = element[value];
         listContainer.appendChild(listItem);
-        elm.parentNode.insertBefore(listContainer,elm.nextSibling);
+        elm.parentNode.insertBefore(listContainer,elm);
         //console.log(element.name)
     });
 
 }
 function createBadge(name, id, elm) {
+    //console.log(elm);
     if(!hiddens[elm.id]){
         hiddens[elm.id]=[];
     }
     const elSpan = document.createElement('span');
-    elSpan.className = "badge rounded-pill bg-secondary fs-6 fw-normal mx-1 mb-1";
+    elSpan.className = "badge rounded-pill bg-secondary fs-6 fw-normal";
     elSpan.innerHTML = name + " x";
     elSpan.setAttribute('id', 'donator' + id);
     elSpan.addEventListener('click', function(e) {

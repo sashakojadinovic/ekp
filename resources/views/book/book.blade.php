@@ -90,6 +90,7 @@
                         <thead>
                             <th scope="col">ID</th>
                             <th scope="col">Signatura</th>
+                            <th>Donator</th>
                             <th scope="col">Status</th>
                             <th scope="col">Akcija</th>
                         </thead>
@@ -98,6 +99,7 @@
                                 <tr>
                                     <td>{{ $item->id }}</td>
                                     <td>{{ $item->signature }}</td>
+                                    <td>{{ $item->donator()->first()->name}}</td>
                                     <td>
                                         @if ($item->borrowing()->exists())
                                             <span class="text-danger">Izdato</span>
@@ -132,7 +134,7 @@
         </div>
     </div>
     <script>
-        const warning = document.getElementById('modalWarning');
+        //const warning = document.getElementById('modalWarning');
         const form = document.getElementById('deleteForm');
         const delBtn = document.getElementById('deleteBtn');
         const confBtn = document.getElementById('confirmBtn');

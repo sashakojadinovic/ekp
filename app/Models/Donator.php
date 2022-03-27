@@ -11,8 +11,8 @@ class Donator extends Model
         'name', 'info'
     ];
     use HasFactory;
-    public function books()
+    public function items()
     {
-        return $this->hasMany(Book::class);
+        return $this->hasMany(Item::class);
     }
 }

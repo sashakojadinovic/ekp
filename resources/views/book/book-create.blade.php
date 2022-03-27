@@ -18,42 +18,54 @@
 
                 <form action="/books" method="POST" enctype="multipart/form-data">
                     @csrf
-                    <div class="my-2">
-                        <label class="form-label" for="book-title">Naslov</label>
-                        <input class="form-control bg-white rounded-pill" type="text" name="title" id="book-title">
-                    </div>
                     <div class="row">
+                        <div class="my-2">
+                            <label class="form-label" for="book-title">Naslov</label>
+                            <input class="form-control bg-white rounded-pill" type="text" name="title" id="book-title">
+                        </div>
+                    </div>
 
-                        <div class="my-2 col-md-12 position-relative">
-
-                            <label>
+                    <div class="row">
+                        <div class="col-md-6 my-2">
+                            <label class="form-label">
                                 Dodaj sliku
                             </label>
                             <input type="file" class="form-control rounded-pill" name="image">
+                        </div>
+                        <div class="my-2 col-md-6 position-relative">
+
                             <label class="form-label" for="author">Autori: </label>
-                            <div class="position-relative">
-                                <input placeholder="Pronađi..." class="form-control bg-white rounded-pill" type="text"
-                                    data-model="Author" name="author" id="author">
-                                <button class="btn position-absolute top-0 end-0 rounded-pill" type="button">
-                                    <i  class="bi bi-plus-lg"></i></button>
+                            <div class="tag-container position-relative form-control bg-white rounded-pill">
+                                <input placeholder="Pronađi..." type="text" data-model="Author" name="author" id="author">
+                                <button class="btn position-absolute top-0 end-0 rounded-pill adhoc" type="button">
+                                    <i class="bi bi-capslock text-secondary"></i>
+
                             </div>
-
-
                             <input id="author-array" type="hidden" name="author-array">
                         </div>
                     </div>
                     <div class="row">
                         <div class="my-2 col-md-6 position-relative">
                             <label class="form-label" for="category">Kategorije: </label>
-                            <input placeholder="Pronađi..." class="form-control bg-white rounded-pill" type="text"
-                                data-model="Category" name="category" id="category">
+                            <div class="tag-container position-relative form-control bg-white rounded-pill">
+                                <input placeholder="Pronađi..." type="text" data-model="Category" name="category"
+                                    id="category">
+                                <button class="btn position-absolute top-0 end-0 rounded-pill adhoc" type="button">
+                                    <i class="bi bi-capslock text-secondary"></i>
+                            </div>
                             <input id="category-array" type="hidden" name="category-array" value="1">
                         </div>
                         <div class="my-2 col-md-6 position-relative">
-                            <label class="form-label" for="age">Uzrast: </label>
-                            <input class="form-control bg-white rounded-pill" type="text" name="age" id="age">
-
+                            <label class="form-label" for="publisher">Izdavači: </label>
+                            <div class="tag-container position-relative form-control bg-white rounded-pill">
+                                <input placeholder="Pronađi..." type="text"
+                                data-model="Publisher" name="publisher" id="publisher">
+                                <button class="btn position-absolute top-0 end-0 rounded-pill adhoc" type="button">
+                                    <i class="bi bi-capslock text-secondary"></i>
+                            </div>
+                            <input id="publisher-array" type="hidden" name="publisher-array">
                         </div>
+
                     </div>
                     <div class="row">
                         <div class="my-2 col-md-6 position-relative">
@@ -61,11 +73,11 @@
                             <input class="form-control bg-white rounded-pill" type="text" name="year" id="year">
                         </div>
                         <div class="my-2 col-md-6 position-relative">
-                            <label class="form-label" for="publisher">Izdavači: </label>
-                            <input placeholder="Pronađi..." class="form-control bg-white rounded-pill" type="text"
-                                data-model="Publisher" name="publisher" id="publisher">
-                            <input id="publisher-array" type="hidden" name="publisher-array">
+                            <label class="form-label" for="age">Uzrast: </label>
+                            <input class="form-control bg-white rounded-pill" type="text" name="age" id="age">
+
                         </div>
+
                     </div>
 
                     <div class="my-2">
@@ -95,6 +107,23 @@
                 .model));
             document.getElementById('publisher').addEventListener('input', (e) => getData(e.target, e.target.dataset
                 .model));
+            document.querySelector('.adhoc').addEventListener('click', e => adHoc(e))
+
+            function adHoc(e) {
+                console.log(e.currentTarget)
+                const inputValue = e.currentTarget.previousElementSibling.value;
+                const model = e.currentTarget.previousElementSibling.dataset.model;
+                if (inputValue.length < 2 || inputValue === "") {
+                    return;
+                }
+                axios.post('/api/adhoc', {
+                        model: model,
+                        data: inputValue
+
+                    })
+                    .then(res => console.log(res.data));
+            }
+
         });
     </script>
 @endsection
