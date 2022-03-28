@@ -37,7 +37,7 @@
                             <label class="form-label" for="author">Autori: </label>
                             <div class="tag-container position-relative form-control bg-white rounded-pill">
                                 <input placeholder="Pronađi..." type="text" data-model="Author" name="author" id="author">
-                                <button class="btn position-absolute top-0 end-0 rounded-pill adhoc" type="button">
+                                <button class="btn position-absolute top-0 end-0 rounded-pill adhoc" type="button" data-bs-toggle="tooltip" data-bs-placement="top" title="Upiši novog autora">
                                     <i class="bi bi-capslock text-secondary"></i>
 
                             </div>
@@ -50,7 +50,7 @@
                             <div class="tag-container position-relative form-control bg-white rounded-pill">
                                 <input placeholder="Pronađi..." type="text" data-model="Category" name="category"
                                     id="category">
-                                <button class="btn position-absolute top-0 end-0 rounded-pill adhoc" type="button">
+                                <button class="btn position-absolute top-0 end-0 rounded-pill adhoc" type="button" data-bs-toggle="tooltip" data-bs-placement="top" title="Upiši novu kategoriju">
                                     <i class="bi bi-capslock text-secondary"></i>
                             </div>
                             <input id="category-array" type="hidden" name="category-array" value="1">
@@ -58,9 +58,9 @@
                         <div class="my-2 col-md-6 position-relative">
                             <label class="form-label" for="publisher">Izdavači: </label>
                             <div class="tag-container position-relative form-control bg-white rounded-pill">
-                                <input placeholder="Pronađi..." type="text"
-                                data-model="Publisher" name="publisher" id="publisher">
-                                <button class="btn position-absolute top-0 end-0 rounded-pill adhoc" type="button">
+                                <input placeholder="Pronađi..." type="text" data-model="Publisher" name="publisher"
+                                    id="publisher">
+                                <button class="btn position-absolute top-0 end-0 rounded-pill adhoc" type="button" data-bs-toggle="tooltip" data-bs-placement="top" title="Upiši novog izdavača">
                                     <i class="bi bi-capslock text-secondary"></i>
                             </div>
                             <input id="publisher-array" type="hidden" name="publisher-array">
@@ -107,7 +107,9 @@
                 .model));
             document.getElementById('publisher').addEventListener('input', (e) => getData(e.target, e.target.dataset
                 .model));
-            document.querySelector('.adhoc').addEventListener('click', e => adHoc(e))
+            document.querySelectorAll('.adhoc').forEach(btn => {
+                btn.addEventListener('click', e => adHoc(e));
+            });
 
             function adHoc(e) {
                 console.log(e.currentTarget)
@@ -121,7 +123,12 @@
                         data: inputValue
 
                     })
-                    .then(res => console.log(res.data));
+                    .then(res => {
+                        console.log(res.data);
+                        createBadge(res.data.name, res.data.id, document.getElementById(model.toLowerCase()));
+
+                    });
+                e.currentTarget.previousElementSibling.value = "";
             }
 
         });

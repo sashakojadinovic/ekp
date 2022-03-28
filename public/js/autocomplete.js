@@ -26,8 +26,8 @@ function showList(elm,data){
     });
 
 }
-function createBadge(name, id, elm) {
-    //console.log(elm);
+function createBadge(name, id, elm) {  //name - name in DB, id - ID in DB, elm - target element (author, category or publisher)
+    console.log(elm.id);
     if(!hiddens[elm.id]){
         hiddens[elm.id]=[];
     }
@@ -64,7 +64,7 @@ function getData(elm, model, field) {
             }
         })
         .then(res =>{
-            console.log(res.data);
+            //console.log(res.data);
             showList(elm,res.data);
 
         });

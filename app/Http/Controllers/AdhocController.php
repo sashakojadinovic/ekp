@@ -3,26 +3,42 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use stdClass;
+
 //use App\Models\Author;
 
 class AdhocController extends Controller
 {
     //
-    public function store(Request $request){
+    public function store(Request $request)
+    {
         //dd($request->m);
-        $model = 'App'.'\\'.'Models'.'\\'.$request->model;
-        $res = $model::where('name','=',$request->data)->first() ;
-        if($res===null){
-            $author = new \App\Models\Author;
-            $author->name=$request->data;
-            $author->save();
-
-            return $author;
+        //$model = (object) null;
+        switch ($request->model) {
+            case 'Author':
+                $res = \App\Models\Author::where('name', '=', $request->data)->first();
+                if ($res === null) {
+                    $model = new \App\Models\Author;
+                    $model->name = $request->data;
+                    $model->save();
+                    return $model;
+                } else {
+                    return $res->first()->name;
+                }
+                break;
+            case 'Category':
+                $res = \App\Models\Category::where('name', '=', $request->data)->first();
+                if ($res === null) {
+                    $model = new \App\Models\Category;
+                    $model->name = $request->data;
+                    $model->save();
+                    return $model;
+                } else {
+                    return $res->first()->name;
+                }
+                break;
+            default:
+                return 1;
         }
-        else{
-            return $res->first()->name;
-        }
-
-
     }
 }
