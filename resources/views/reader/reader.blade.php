@@ -63,7 +63,7 @@
                         @foreach ($borrowings as $borrowing)
                             <tr>
                                 <td>{{ $borrowing->id }}</td>
-                                <td>{{$borrowing->book_title}}</td>
+                                <td><a class="btn px-2 py-0" href="/books/{{$borrowing->book->id}}">{{$borrowing->book->title}}</a></td>
                                 <td>{{$borrowing->signature}}</td>
                                 <td>{{ $borrowing->date }}</td>
 

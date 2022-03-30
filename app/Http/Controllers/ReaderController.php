@@ -75,9 +75,9 @@ class ReaderController extends Controller
         $borrowing_list = [];
         $borrowings = $reader->borrowing()->get();
         foreach($borrowings as $b){
-            $book = $b->item()->first()->book()->first()->title;
+            $book = $b->item()->first()->book()->first();
             $signature = $b->item()->first()->signature;
-            array_push($borrowing_list,(object)['id'=>$b->id,'book_title'=>$book,'signature'=>$signature, 'date'=>date_format($b->created_at,"d.m.Y. H:i")]);
+            array_push($borrowing_list,(object)['id'=>$b->id,'book'=>$book,'signature'=>$signature, 'date'=>date_format($b->created_at,"d.m.Y. H:i")]);
         }
         return view('reader.reader',['reader'=>$reader,'borrowings'=>$borrowing_list]);
     }
