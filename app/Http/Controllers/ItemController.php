@@ -29,7 +29,7 @@ class ItemController extends Controller
         $book = Book::find($request->id);
         $max_item = Item::max('signature');
         //$category_short = substr($book->categories()->first()->name,0,2);
-        dd(strtoupper(substr($book->categories()->first()->name,0,2)));
+        //dd(strtoupper(substr($book->categories()->first()->name,0,2)));
         return view('item.item-create',['book'=>$book]);
     }
 

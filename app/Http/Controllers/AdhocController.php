@@ -34,7 +34,7 @@ class AdhocController extends Controller
                     $model->save();
                     return $model;
                 } else {
-                    return $res->first()->name;
+                    return $res;
                 }
                 break;
             default:
