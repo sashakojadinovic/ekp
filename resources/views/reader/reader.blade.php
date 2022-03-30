@@ -1,6 +1,5 @@
 @extends('layouts.app')
 @section('content')
-
     <div class="container">
         <div class="row justify-content-center">
             <!-- Modal -->
@@ -27,24 +26,23 @@
             <div class="col-md-12">
                 <div class="d-flex justify-content-between">
                     <div>
-                        <a class="btn btn-outline-dark rounded-pill" href="/readers"><i class="bi bi-arrow-90deg-up"> </i>Spisak čitalaca</a>
+                        <a class="btn btn-outline-dark rounded-pill" href="/readers"><i class="bi bi-arrow-90deg-up">
+                            </i>Spisak čitalaca</a>
                     </div>
                     <div>
-                        <a class="btn btn-outline-dark rounded-pill mx-1 d-inline-block" href="/readers/{{ $reader->id }}/edit"><i
-                                class="bi bi-pencil-square"> </i> Izmeni </a>
+                        <a class="btn btn-outline-dark rounded-pill mx-1 d-inline-block"
+                            href="/readers/{{ $reader->id }}/edit"><i class="bi bi-pencil-square"> </i> Izmeni </a>
                         <form class="d-inline-block" id="deleteForm" action="/readers/{{ $reader->id }}" method="POST">
                             @csrf
                             @method('DELETE')
                             <button id="deleteBtn" data-bs-toggle="modal" data-bs-target="#modalWarning"
-                                class="btn btn-outline-dark rounded-pill"><i class="bi bi-trash2-fill"> </i> Izbriši </button>
+                                class="btn btn-outline-dark rounded-pill"><i class="bi bi-trash2-fill"> </i> Izbriši
+                            </button>
 
                         </form>
                     </div>
-
                 </div>
-
-
-                <div id="reader"  class="mt-5">
+                <div id="reader" class="mt-5">
                     <p>Broj članske karte: <span>{{ $reader->card_id }}</span> </p>
                     <p>Ime i prezime: <span>{{ $reader->name }}</span> </p>
                     <p>E-mail: <span>{{ $reader->email }}</span> </p>
@@ -53,6 +51,26 @@
                     <p>Broj telefona: <span>{{ $reader->phone_number }}</span> </p>
                     <p>Komentar: <span>{{ $reader->comment }}</span></p>
                 </div>
+                <table class="table table-striped">
+                    <thead>
+                        <th scope="col">ID</th>
+                        <th scope="col">Naziv</th>
+                        <th scope="col">Signatura</th>
+                        <th scope="col">Vreme izdavanja</th>
+                    </thead>
+                    <tbody>
+
+                        @foreach ($borrowings as $borrowing)
+                            <tr>
+                                <td>{{ $borrowing->id }}</td>
+                                <td>{{$borrowing->book_title}}</td>
+                                <td>{{$borrowing->signature}}</td>
+                                <td>{{ $borrowing->date }}</td>
+
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
 
             </div>
         </div>

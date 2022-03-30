@@ -72,7 +72,14 @@ class ReaderController extends Controller
      */
     public function show(Reader $reader)
     {
-        return view('reader.reader',['reader'=>$reader]);
+        $borrowing_list = [];
+        $borrowings = $reader->borrowing()->get();
+        foreach($borrowings as $b){
+            $book = $b->item()->first()->book()->first()->title;
+            $signature = $b->item()->first()->signature;
+            array_push($borrowing_list,(object)['id'=>$b->id,'book_title'=>$book,'signature'=>$signature, 'date'=>$b->created_at]);
+        }
+        return view('reader.reader',['reader'=>$reader,'borrowings'=>$borrowing_list]);
     }
 
     /**
