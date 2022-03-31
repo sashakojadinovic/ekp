@@ -121,18 +121,31 @@ class BookController extends Controller
      */
     public function update(Request $request, Book $book)
     {
+        //dd($request);
         $content = $request->validate(
             [
                 'title' => 'required',
                 'author-array' => 'present',
                 //'image'=>'image|mimes:jpeg,png,jpg,gif|max:2048',
                 'category-array' => 'present',
+                'year' => 'present',
+                'age' => 'present',
                 'publisher-array' => 'present',
+
+
                 'info' => 'present'
             ]
         );
-        $book->update(['title' => $content['title'], 'info' => $content['info']]);
+        $book->update(['title' => $content['title'], 'year'=>$content['year'],'age'=>$content['age'], 'info' => $content['info']]);
+        $book->authors()->detach();
+        $book->authors()->attach(explode(",",$content['author-array']));
+        $book->categories()->detach();
+        $book->categories()->attach(explode(",",$content['category-array']));
+        $book->publishers()->detach();
+        $book->publishers()->attach(explode(",",$content['publisher-array']));
         $book->save();
+
+
         return redirect("/books/$book->id");
     }
 

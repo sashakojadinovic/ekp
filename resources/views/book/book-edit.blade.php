@@ -16,7 +16,7 @@
             <div class="col-md-12">
                 <h1 class="mt-3 text-center">Izmeni izdanje "{{$book->title}}"</h1>
 
-                <form action="/books" method="POST" enctype="multipart/form-data">
+                <form action="/books/{{$book->id}}" method="POST" enctype="multipart/form-data">
                     @csrf
                     @method('PUT')
                     <div class="row">

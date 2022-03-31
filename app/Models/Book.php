@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Book extends Model
 {
     protected $fillable = [
-        'title', 'donator_id', 'info'
+        'title', 'year', 'age', 'info'
     ];
     use HasFactory;
     public function authors(){
