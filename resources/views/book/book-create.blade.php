@@ -27,15 +27,18 @@
 
                     <div class="row">
                         <div class="col-md-6 my-2">
+                            <img id="img-preview" src="" alt="">
                             <label class="form-label">
                                 Dodaj sliku
                             </label>
-                            <input type="file" class="form-control rounded-pill" name="image">
+                            {{-- <img width="60" id="img-preview" src="/images/default.png" alt=""> --}}
+
+                            <input id="img-input" type="file" class="form-control rounded-pill" name="image">
                         </div>
                         <div class="my-2 col-md-6 position-relative">
 
                             <label class="form-label" for="author">Autori: </label>
-                            <div class="tag-container position-relative form-control bg-white rounded-pill">
+                            <div class="tag-container position-relative form-control bg-white rounded-pill  ps-2">
                                 <input placeholder="Pronađi..." type="text" data-model="Author" name="author" id="author">
                                 <button class="btn position-absolute top-0 end-0 rounded-pill adhoc" type="button" data-bs-toggle="tooltip" data-bs-placement="top" title="Upiši novog autora">
                                     <i class="bi bi-capslock text-secondary"></i>
@@ -47,7 +50,7 @@
                     <div class="row">
                         <div class="my-2 col-md-6 position-relative">
                             <label class="form-label" for="category">Kategorije: </label>
-                            <div class="tag-container position-relative form-control bg-white rounded-pill">
+                            <div class="tag-container position-relative form-control bg-white rounded-pill  ps-2">
                                 <input placeholder="Pronađi..." type="text" data-model="Category" name="category"
                                     id="category">
                                 <button class="btn position-absolute top-0 end-0 rounded-pill adhoc" type="button" data-bs-toggle="tooltip" data-bs-placement="top" title="Upiši novu kategoriju">
@@ -57,7 +60,7 @@
                         </div>
                         <div class="my-2 col-md-6 position-relative">
                             <label class="form-label" for="publisher">Izdavači: </label>
-                            <div class="tag-container position-relative form-control bg-white rounded-pill">
+                            <div class="tag-container position-relative form-control bg-white rounded-pill  ps-2">
                                 <input placeholder="Pronađi..." type="text" data-model="Publisher" name="publisher"
                                     id="publisher">
                                 <button class="btn position-absolute top-0 end-0 rounded-pill adhoc" type="button" data-bs-toggle="tooltip" data-bs-placement="top" title="Upiši novog izdavača">
@@ -109,6 +112,15 @@
                 .model));
             document.querySelectorAll('.adhoc').forEach(btn => {
                 btn.addEventListener('click', e => adHoc(e));
+            });
+            const imgPreview = document.getElementById('img-preview');
+            const imgInput = document.getElementById('img-input');
+            imgInput.addEventListener('change',e=>{
+                const [file] = imgInput.files;
+                if(file){
+                    console.log(URL.createObjectURL(e.target.files[0]));
+                    imgPreview.src=URL.createObjectURL(e.target.files[0]);
+                }
             });
 
             function adHoc(e) {

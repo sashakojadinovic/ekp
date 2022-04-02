@@ -37,6 +37,17 @@ class AdhocController extends Controller
                     return $res;
                 }
                 break;
+                case 'Publisher':
+                    $res = \App\Models\Publisher::where('name', '=', $request->data)->first();
+                    if ($res === null) {
+                        $model = new \App\Models\Publisher;
+                        $model->name = $request->data;
+                        $model->save();
+                        return $model;
+                    } else {
+                        return $res;
+                    }
+                    break;
             default:
                 return 1;
         }

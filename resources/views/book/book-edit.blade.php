@@ -14,31 +14,39 @@
 
         <div class="row justify-content-center">
             <div class="col-md-12">
-                <h1 class="mt-3 text-center">Izmeni izdanje "{{$book->title}}"</h1>
+                <h1 class="mt-3 text-center">Izmeni izdanje "{{ $book->title }}"</h1>
 
-                <form action="/books/{{$book->id}}" method="POST" enctype="multipart/form-data">
+                <form action="/books/{{ $book->id }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     @method('PUT')
                     <div class="row">
                         <div class="my-2">
                             <label class="form-label" for="book-title">Naslov</label>
-                            <input value="{{$book->title}}" class="form-control bg-white rounded-pill" type="text" name="title" id="book-title">
+                            <input value="{{ $book->title }}" class="form-control bg-white rounded-pill" type="text"
+                                name="title" id="book-title">
                         </div>
                     </div>
 
                     <div class="row">
                         <div class="col-md-6 my-2">
+                            <div class="img-container">
+                                <img width="196" id="img-preview" src="/{{ $book->img_url }}" alt="">
+                                <button id="delete-img" class="btn btn-secondary align-top position-relative"
+                                    style="right:38px">X</button>
+                            </div>
+
                             <label class="form-label">
                                 Dodaj sliku
                             </label>
-                            <input type="file" class="form-control rounded-pill" name="image">
+                            <input id="img-input" type="file" class="form-control rounded-pill" name="image">
                         </div>
                         <div class="my-2 col-md-6 position-relative">
 
                             <label class="form-label" for="author">Autori: </label>
-                            <div class="tag-container position-relative form-control bg-white rounded-pill">
+                            <div class="tag-container position-relative form-control bg-white rounded-pill  ps-2">
                                 <input placeholder="Pronađi..." type="text" data-model="Author" name="author" id="author">
-                                <button class="btn position-absolute top-0 end-0 rounded-pill adhoc" type="button" data-bs-toggle="tooltip" data-bs-placement="top" title="Upiši novog autora">
+                                <button class="btn position-absolute top-0 end-0 rounded-pill adhoc" type="button"
+                                    data-bs-toggle="tooltip" data-bs-placement="top" title="Upiši novog autora">
                                     <i class="bi bi-capslock text-secondary"></i>
 
                             </div>
@@ -48,20 +56,22 @@
                     <div class="row">
                         <div class="my-2 col-md-6 position-relative">
                             <label class="form-label" for="category">Kategorije: </label>
-                            <div class="tag-container position-relative form-control bg-white rounded-pill">
+                            <div class="tag-container position-relative form-control bg-white rounded-pill  ps-2">
                                 <input placeholder="Pronađi..." type="text" data-model="Category" name="category"
                                     id="category">
-                                <button class="btn position-absolute top-0 end-0 rounded-pill adhoc" type="button" data-bs-toggle="tooltip" data-bs-placement="top" title="Upiši novu kategoriju">
+                                <button class="btn position-absolute top-0 end-0 rounded-pill adhoc" type="button"
+                                    data-bs-toggle="tooltip" data-bs-placement="top" title="Upiši novu kategoriju">
                                     <i class="bi bi-capslock text-secondary"></i>
                             </div>
                             <input id="category-array" type="hidden" name="category-array" value="1">
                         </div>
                         <div class="my-2 col-md-6 position-relative">
                             <label class="form-label" for="publisher">Izdavači: </label>
-                            <div class="tag-container position-relative form-control bg-white rounded-pill">
+                            <div class="tag-container position-relative form-control bg-white rounded-pill  ps-2">
                                 <input placeholder="Pronađi..." type="text" data-model="Publisher" name="publisher"
                                     id="publisher">
-                                <button class="btn position-absolute top-0 end-0 rounded-pill adhoc" type="button" data-bs-toggle="tooltip" data-bs-placement="top" title="Upiši novog izdavača">
+                                <button class="btn position-absolute top-0 end-0 rounded-pill adhoc" type="button"
+                                    data-bs-toggle="tooltip" data-bs-placement="top" title="Upiši novog izdavača">
                                     <i class="bi bi-capslock text-secondary"></i>
                             </div>
                             <input id="publisher-array" type="hidden" name="publisher-array">
@@ -71,11 +81,13 @@
                     <div class="row">
                         <div class="my-2 col-md-6 position-relative">
                             <label class="form-label" for="year">Godina izdavanja: </label>
-                            <input value="{{$book->year}}" class="form-control bg-white rounded-pill" type="text" name="year" id="year">
+                            <input value="{{ $book->year }}" class="form-control bg-white rounded-pill" type="text"
+                                name="year" id="year">
                         </div>
                         <div class="my-2 col-md-6 position-relative">
                             <label class="form-label" for="age">Uzrast: </label>
-                            <input  value="{{$book->age}}" class="form-control bg-white rounded-pill" type="text" name="age" id="age">
+                            <input value="{{ $book->age }}" class="form-control bg-white rounded-pill" type="text"
+                                name="age" id="age">
 
                         </div>
 
@@ -83,7 +95,7 @@
 
                     <div class="my-2">
                         <label class="form-label" for="book-info">Opis</label>
-                        <textarea class="form-control bg-white" name="info" id="book-info" cols="30" rows="5">{{$book->info}}</textarea>
+                        <textarea class="form-control bg-white" name="info" id="book-info" cols="30" rows="5">{{ $book->info }}</textarea>
                     </div>
                     <div class="d-flex justify-content-end">
                         <!-- <input type="hidden" name="donators-list" id="donators-list"> -->
@@ -101,17 +113,17 @@
     <script src="{{ URL::asset('js/autocomplete.js') }}"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            @foreach ($book->authors()->get() as $author )
-                //console.log("{{$author->name}}");
-                createBadge("{{$author->name}}","{{$author->id}}",document.getElementById('author'));
+            @foreach ($book->authors()->get() as $author)
+                //console.log("{{ $author->name }}");
+                createBadge("{{ $author->name }}","{{ $author->id }}",document.getElementById('author'));
             @endforeach
-            @foreach ($book->categories()->get() as $category )
-                //console.log("{{$author->name}}");
-                createBadge("{{$category->name}}","{{$category->id}}",document.getElementById('category'));
+            @foreach ($book->categories()->get() as $category)
+                //console.log("{{ $author->name }}");
+                createBadge("{{ $category->name }}","{{ $category->id }}",document.getElementById('category'));
             @endforeach
-            @foreach ($book->publishers()->get() as $publisher )
-                //console.log("{{$publisher->name}}");
-                createBadge("{{$publisher->name}}","{{$publisher->id}}",document.getElementById('publisher'));
+            @foreach ($book->publishers()->get() as $publisher)
+                //console.log("{{ $publisher->name }}");
+                createBadge("{{ $publisher->name }}","{{ $publisher->id }}",document.getElementById('publisher'));
             @endforeach
             document.getElementById('author').addEventListener('input', (e) => getData(e.target, e.target.dataset
                 .model));
@@ -122,9 +134,32 @@
             document.querySelectorAll('.adhoc').forEach(btn => {
                 btn.addEventListener('click', e => adHoc(e));
             });
+            const imgPreview = document.getElementById('img-preview');
+            const imgInput = document.getElementById('img-input');
+            document.getElementById('delete-img').addEventListener('click', e => {
+                e.preventDefault();
+                imgInput.value = null;
+                imgPreview.src = "";
+                document.getElementById('delete-img').classList.add("d-none");
+
+            })
+
+            imgInput.addEventListener('change', e => {
+                //document.getElementById('delete-btn').style.display=block;
+                if (e.target.files[0]) {
+                    document.getElementById('delete-img').classList.remove("d-none");
+                }
+
+                const [file] = imgInput.files;
+                if (file) {
+                    console.log(URL.createObjectURL(e.target.files[0]));
+                    imgPreview.src = URL.createObjectURL(e.target.files[0]);
+
+                }
+            });
 
             function adHoc(e) {
-                console.log(e.currentTarget)
+                //console.log(e.currentTarget)
                 const inputValue = e.currentTarget.previousElementSibling.value;
                 const model = e.currentTarget.previousElementSibling.dataset.model;
                 if (inputValue.length < 2 || inputValue === "") {
@@ -136,7 +171,7 @@
 
                     })
                     .then(res => {
-                        console.log(res.data);
+                        //console.log(res.data);
                         createBadge(res.data.name, res.data.id, document.getElementById(model.toLowerCase()));
 
                     });

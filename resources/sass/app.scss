@@ -70,10 +70,9 @@ textarea.form-control{
     z-index:100;
 }
 .tag-container {
-
     input[type=text]{
         border:none;
-        :focus-visible{
+        &:focus-visible{
         outline:none;
     }
 
