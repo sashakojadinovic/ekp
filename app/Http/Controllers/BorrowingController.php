@@ -99,7 +99,8 @@ class BorrowingController extends Controller
      */
     public function destroy(Borrowing $borrowing)
     {
+        //dd($borrowing);
         $borrowing->delete();
-        return redirect('/borrowings');
+        return redirect()->back();
     }
 }

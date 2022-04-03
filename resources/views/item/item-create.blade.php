@@ -35,7 +35,7 @@
                             <label class="form-label" for="donator">Donatori: </label>
                             <input class="form-control bg-white rounded-pill" type="text" data-single=true data-model="Donator" name="donator"
                                 id="donator">
-                                <input id="donator-array" type="hidden" name="donator_array" value="1">
+                                <input id="donator-array" type="hidden" name="donator_array" value="">
                             </div>
                         </div>
                         <div class="row">

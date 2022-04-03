@@ -3,7 +3,7 @@
     <div class="container">
         <div class="row justify-content-center">
             <!-- Modal -->
-            <div class="modal fade" id="modalWarning" tabindex="-1" aria-labelledby="exampleModalLabel"
+            <div class="modal fade" id="deleteModalWarning" tabindex="-1" aria-labelledby="exampleModalLabel"
                 aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content">
@@ -15,9 +15,31 @@
                             <p>Da li ste sigurni da želite da izbrišete izdanje?</p>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" data-bs-toggle="modal" data-bs-target="#modalWarning"
+                            <button type="button" data-bs-toggle="modal" data-bs-target="#deleteModalWarning"
                                 class="btn btn-secondary" data-bs-dismiss="modal">Odustani</button>
-                            <button id="confirmBtn" type="button" class="btn btn-dark">Izbriši</button>
+                            <button id="confirmBtn" type="button" class="btn btn-danger">Izbriši</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Modal 2 -->
+            <div class="modal fade" id="returnModalWarning" tabindex="-1" aria-labelledby="exampleModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header bg-secondary text-white">
+                            <h6 class="modal-title" id="exampleModalLabel">Upozorenje!</h6>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <p>Da li ste sigurni da želite da vratite primerak izdanja?</p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" data-bs-toggle="modal" data-bs-target="#returnModalWarning"
+                                class="btn btn-secondary" data-bs-dismiss="modal">Odustani</button>
+                            <button id="confirmBtn2" type="button" class="btn btn-danger">Vrati</button>
                         </div>
                     </div>
                 </div>
@@ -36,7 +58,7 @@
                         <form class="d-inline-block" id="deleteForm" action="/books/{{ $book->id }}" method="POST">
                             @csrf
                             @method('DELETE')
-                            <button id="deleteBtn" data-bs-toggle="modal" data-bs-target="#modalWarning"
+                            <button id="deleteBtn" data-bs-toggle="modal" data-bs-target="#deleteModalWarning"
                                 class="btn btn-outline-dark rounded-pill"><i class="bi bi-trash2-fill"> </i> Izbriši
                             </button>
 
@@ -47,29 +69,33 @@
                 <div class="row">
                     <div class="col-md-2 mt-5">
                         @if (!$book->img_url)
-                           <img width="100%" src="/images/default.png" alt="">
+                            <img width="100%" src="/images/default.png" alt="">
                         @endif
                         <img width="100%" src={{ asset($book->img_url) }} alt="">
                     </div>
                     <div class="col-md-10 mt-5">
                         <h6 class="fw-bold">Autor: <span class="fw-normal">
-                            @if ($book->authors()->first())
-                                @foreach ($book->authors()->get() as $author )
-                                    {{$author->name}}
-                                @endforeach
-                            @endif
+                                @if ($book->authors()->first())
+                                    @foreach ($book->authors()->get() as $author)
+                                        {{ $author->name }}
+                                    @endforeach
+                                @endif
 
-                            {{-- {{ $book->authors()->first() ? $book->authors()->first()->name : '' }} --}}
-                        </span>
+                                {{-- {{ $book->authors()->first() ? $book->authors()->first()->name : '' }} --}}
+                            </span>
                         </h6>
                         <h6 class="fw-bold">Kategorija:
-                            <span class="fw-normal">{{ $book->categories()->first() ? $book->categories()->first()->name : '' }}</span>
+                            <span
+                                class="fw-normal">{{ $book->categories()->first() ? $book->categories()->first()->name : '' }}</span>
                         </h6>
                         <h6 class="fw-bold">Izdavač:
-                            <span class="fw-normal">{{ $book->publishers()->first() ? $book->publishers()->first()->name : '' }}</span>
+                            <span
+                                class="fw-normal">{{ $book->publishers()->first() ? $book->publishers()->first()->name : '' }}</span>
                         </h6>
-                        <h6 class="fw-bold">Godina izdanja: <span class="fw-normal">{{ $book->year ? $book->year . '.' : '' }}</span></h6>
-                        <h6 class="fw-bold">Uzrast: <span class="fw-normal">{{ $book->age ? $book->age : '' }}</span></h6>
+                        <h6 class="fw-bold">Godina izdanja: <span
+                                class="fw-normal">{{ $book->year ? $book->year . '.' : '' }}</span></h6>
+                        <h6 class="fw-bold">Uzrast: <span
+                                class="fw-normal">{{ $book->age ? $book->age : '' }}</span></h6>
 
 
                         <h6 class="fw-bold">Opis:</h6>
@@ -99,7 +125,7 @@
                                 <tr>
                                     <td>{{ $item->id }}</td>
                                     <td>{{ $item->signature }}</td>
-                                    <td>{{ $item->donator()->first()->name}}</td>
+                                    <td>{{ $item->donator()->first()->name }}</td>
                                     <td>
                                         @if ($item->borrowing()->exists())
                                             <span class="text-danger">Izdato</span>
@@ -110,14 +136,16 @@
                                     </td>
                                     <td>
                                         @if ($item->borrowing()->exists())
-                                        <form class="d-inline-block" id="deleteForm" action="#" method="POST">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button id="returnBook" data-bs-toggle="modal" data-bs-target="#modalWarning"
-                                                class="btn btn-sm btn-danger rounded-pill"> Vrati
-                                            </button>
+                                            <form class="d-inline-block" id="returnForm"
+                                                action="/borrowings/{{ $item->borrowing()->first()->id }}" method="POST">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button id="returnBook" data-bs-toggle="modal"
+                                                    data-bs-target="#returnModalWarning"
+                                                    class="btn btn-sm btn-danger rounded-pill"> Vrati
+                                                </button>
 
-                                        </form>
+                                            </form>
                                     </td>
                                 @else
                                     <a class="btn btn-dark rounded-pill btn-sm "
@@ -135,10 +163,17 @@
     </div>
     <script>
         //const warning = document.getElementById('modalWarning');
-        const form = document.getElementById('deleteForm');
+        const deleteForm = document.getElementById('deleteForm');
         const delBtn = document.getElementById('deleteBtn');
         const confBtn = document.getElementById('confirmBtn');
         delBtn.addEventListener('click', e => e.preventDefault());
-        confBtn.addEventListener('click', e => form.submit());
+        confBtn.addEventListener('click', e => deleteForm.submit());
+        if (document.getElementById('returnBook')) {
+            const returnBtn = document.getElementById('returnBook');
+            const returnForm = document.getElementById('returnForm');
+            const confBtn2 = document.getElementById('confirmBtn2');
+            returnBtn.addEventListener('click', e => e.preventDefault());
+            confBtn2.addEventListener('click', e => returnForm.submit());
+        }
     </script>
 @endsection
