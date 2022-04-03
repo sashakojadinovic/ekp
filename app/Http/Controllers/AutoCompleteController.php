@@ -26,19 +26,19 @@ class AutoCompleteController extends Controller
         $result = [];
         switch ($request->m) {
             case "Author":
-                $result = Author::where($request->f, 'LIKE', '%' . $request->q . '%')->get(['id', $request->f]);
+                $result = Author::where($request->f, 'LIKE', '%' . $request->q . '%')->take(10)->get(['id', $request->f]);
                 break;
             case "Donator":
-                $result = Donator::where($request->f, 'LIKE', '%' . $request->q . '%')->get(['id', $request->f]);
+                $result = Donator::where($request->f, 'LIKE', '%' . $request->q . '%')->take(10)->get(['id', $request->f]);
                 break;
             case "Publisher":
-                $result = Publisher::where($request->f, 'LIKE', '%' . $request->q . '%')->get(['id', $request->f]);
+                $result = Publisher::where($request->f, 'LIKE', '%' . $request->q . '%')->take(10)->get(['id', $request->f]);
                 break;
             case "Category":
-                $result = Category::where($request->f, 'LIKE', '%' . $request->q . '%')->get(['id', $request->f]);
+                $result = Category::where($request->f, 'LIKE', '%' . $request->q . '%')->take(10)->get(['id', $request->f]);
                 break;
             case "Item":
-                $result = Item::where($request->f, 'LIKE', '%' . $request->q . '%')->get(['id', $request->f]);
+                $result = Item::where($request->f, 'LIKE', '%' . $request->q . '%')->take(10)->get(['id', $request->f]);
                 break;
             default:
                 $result = [];
