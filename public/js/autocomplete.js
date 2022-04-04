@@ -48,7 +48,7 @@ function createBadge(name, id, elm) {  //name - name in DB, id - ID in DB, elm -
 }
 function getData(elm, model, field) {
     const f = field || 'name';
-    if(elm.value.length<3){
+    if(elm.value.length<2){
         if(document.querySelector('.autocomplete')){
             document.querySelector('.autocomplete').remove();
         }
