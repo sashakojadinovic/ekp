@@ -107,7 +107,7 @@
                 <div class="mt-5">
                     <div class="d-flex justify-content-between">
                         <h6>Primerci ovog izdanja:</h6>
-                        <a class="btn btn-outline-dark rounded-pill" href="/items/create?id={{ $book->id }}"><i
+                        <a class="btn btn-outline-dark rounded-pill" href="/items/create?id={{ $book->id }}&cat={{$book->categories()->first()->id}}"><i
                                 class="bi bi-plus-lg"> </i>
                             Dodaj primerak naslova </a>
 

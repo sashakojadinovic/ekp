@@ -13,6 +13,7 @@
                     <thead>
                         <th scope="col">ID</th>
                         <th scope="col">Naziv</th>
+                        <th scope="col">Prefiks</th>
                         <th scope="col">Broj izdanja u bazi</th>
                     </thead>
                     <tbody>
@@ -20,6 +21,7 @@
                             <tr>
                                 <td>{{ $category->id }}</td>
                                 <td><a class="btn px-2 py-0" href="/categories/{{ $category->id }}">{{ $category->name }}</a></td>
+                                <td>{{ $category->prefix }}</td>
                                 <td>{{$category->books()->count()}}</td>
                             </tr>
                         @endforeach

@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Category extends Model
 {
     protected $fillable = [
-        'name', 'info'
+        'name','prefix', 'info'
     ];
     use HasFactory;
     public function books(){

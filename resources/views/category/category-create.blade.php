@@ -10,7 +10,11 @@
                     <div class="my-2">
                         <label class="form-label" for="category-name">Naziv kategorije</label>
                         <input class="form-control bg-white rounded-pill" type="text" name="name" id="category-name">
-                    </div class="my-2">
+                    </div>
+                    <div class="my-2">
+                        <label class="form-label" for="category-prefix">Prefiks u signaturi</label>
+                        <input class="form-control bg-white rounded-pill" type="text" name="prefix" id="category-prefix">
+                    </div>
                     <div>
                         <label class="form-label" for="category-info">Opis</label>
                         <textarea class="form-control bg-white" name="info" id="category-info" cols="30"

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Item;
 use App\Models\Book;
+use App\Models\Category;
 use Illuminate\Http\Request;
 
 class ItemController extends Controller
@@ -26,11 +27,14 @@ class ItemController extends Controller
     public function create(Request $request)
     {
         //
+        //dd($request->id);
         $book = Book::find($request->id);
-        $max_item = Item::max('signature');
-        //$category_short = substr($book->categories()->first()->name,0,2);
-        //dd(strtoupper(substr($book->categories()->first()->name,0,2)));
-        return view('item.item-create',['book'=>$book]);
+        $category = Category::find($request->cat);
+        $num_of_items_in_cat = 0;
+        foreach ($category->books()->get() as $b) {
+            $num_of_items_in_cat += count($b->items()->get());
+        }
+        return view('item.item-create', ['book' => $book, 'signature' => $category->prefix . ($num_of_items_in_cat+1)]);
     }
 
     /**
@@ -44,9 +48,9 @@ class ItemController extends Controller
         $item = new Item;
         $content = $request->validate([
             'signature' => 'required',
-            'donator_array'=>'present',
-            'available' =>'present',
-            'book_id'=>'required | integer'
+            'donator_array' => 'present',
+            'available' => 'present',
+            'book_id' => 'required | integer'
         ]);
         $item->signature = $content['signature'];
         $item->available = $content['available'];
@@ -55,8 +59,10 @@ class ItemController extends Controller
         $item->save();
         $book = Book::find($content['book_id']);
         //dd($book);
-        return view('item.item-create', ['book'=>$book]);
-
+        /* $next_num_of_books_in_cat = count(Category::find($book->categories()->first())->books()->get())+1;
+        $category_short = strtoupper(substr(Category::find($book->categories()->first()->id)->name,0,2)); */
+        //return view('item.item-create', ['book'=>$book,'signature'=>$category_short.$next_num_of_books_in_cat]);
+        return view('item.item-create', ['book' => $book]);
     }
 
     /**

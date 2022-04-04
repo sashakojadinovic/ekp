@@ -45,6 +45,7 @@
 
 
                 <div class="mt-5">
+                    <h4>Prefix: {{$category->prefix}}</h4>
                     <h4>Opis:</h4>
                     <p>{{ $category->info }}</p>
                     <table class="table table-striped">
