@@ -125,7 +125,7 @@
                                 <tr>
                                     <td>{{ $item->id }}</td>
                                     <td>{{ $item->signature }}</td>
-                                    <td>{{ $item->donator()->first()->name }}</td>
+                                    <td>{{ $item->donator()->first()->name??'' }}</td>
                                     <td>
                                         @if ($item->borrowing()->exists())
                                             <span class="text-danger">Izdato</span>

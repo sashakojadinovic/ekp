@@ -32,7 +32,7 @@
                                     id="signature">
                             </div>
                             <div class="my-2 col-md-6 position-relative">
-                            <label class="form-label" for="donator">Donatori: </label>
+                            <label class="form-label" for="donator">Donator: </label>
                             <input class="form-control bg-white rounded-pill" type="text" data-single=true data-model="Donator" name="donator"
                                 id="donator">
                                 <input id="donator-array" type="hidden" name="donator_array" value="">

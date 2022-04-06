@@ -30,11 +30,11 @@ class ItemController extends Controller
         //dd($request->id);
         $book = Book::find($request->id);
         $category = Category::find($request->cat);
-        $num_of_items_in_cat = 0;
+/*         $num_of_items_in_cat = 0;
         foreach ($category->books()->get() as $b) {
             $num_of_items_in_cat += count($b->items()->get());
-        }
-        return view('item.item-create', ['book' => $book, 'signature' => $category->prefix . ($num_of_items_in_cat+1)]);
+        } */
+        return view('item.item-create', ['book' => $book, 'signature' => $category->prefix . ($category->counter+1)]);
     }
 
     /**
@@ -57,12 +57,15 @@ class ItemController extends Controller
         $item->donator()->associate($content['donator_array']);
         $item->book()->associate($content['book_id']);
         $item->save();
+        $category = $item->book()->first()->categories()->first();
+        $category->counter= $category->counter+1;
+        $category->save();
         $book = Book::find($content['book_id']);
         //dd($book);
         /* $next_num_of_books_in_cat = count(Category::find($book->categories()->first())->books()->get())+1;
         $category_short = strtoupper(substr(Category::find($book->categories()->first()->id)->name,0,2)); */
         //return view('item.item-create', ['book'=>$book,'signature'=>$category_short.$next_num_of_books_in_cat]);
-        return view('item.item-create', ['book' => $book]);
+        return view('item.item-create', ['book' => $book,'signature' => $category->prefix . ($category->counter+1)]);
     }
 
     /**
