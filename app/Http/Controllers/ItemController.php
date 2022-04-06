@@ -29,7 +29,9 @@ class ItemController extends Controller
         //
         //dd($request->id);
         $book = Book::find($request->id);
-        $category = Category::find($request->cat);
+        //$category = Category::find($request->cat);
+        $category = $book->categories()->first();
+
 /*         $num_of_items_in_cat = 0;
         foreach ($category->books()->get() as $b) {
             $num_of_items_in_cat += count($b->items()->get());
