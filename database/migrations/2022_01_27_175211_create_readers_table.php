@@ -15,8 +15,9 @@ class CreateReadersTable extends Migration
     {
         Schema::create('readers', function (Blueprint $table) {
             $table->id();
-            $table->string('card_id');
+            $table->integer('card_id')->unique();
             $table->string('name');
+            $table->tinyInteger('gender');
             $table->string('email');
             $table->string('occupation')->nullable();
             $table->string('address')->nullable();

@@ -38,9 +38,10 @@ class ReaderController extends Controller
     {
         $reader = new Reader;
         $content = $request->validate([
-            'card_id'=>'required',
+            'card_id'=>'present',
             'name'=>'required',
-            'email'=>'email',
+            'gender'=>'present',
+            'email'=>'present',
             'occupation'=>'present',
             'address'=>'present',
             'city'=>'present',
@@ -50,9 +51,19 @@ class ReaderController extends Controller
 
 
         ]);
-        $reader->card_id=$content['card_id'];
+        //Ovo može bolje i elegantnije, ali sad nemam vremena da se bavim time
+        if($content['card_id']){
+            if(!Reader::where('card_id','=',$content['card_id'])->first()){
+                $reader->card_id=$content['card_id'];
+            }
+            else{
+                return back()->withErrors(['msg'=>'Članska karta sa tim brojem već postoji']);
+                //$content['card_id']=null;
+            }
+
+        }
         $reader->name=$content['name'];
-        $reader->name=$content['name'];
+        $reader->gender=$content['gender'];
         $reader->email=$content['email'];
         $reader->occupation=$content['occupation'];
         $reader->address=$content['address'];
@@ -61,6 +72,11 @@ class ReaderController extends Controller
         $reader->phone_number=$content['phone_number'];
         $reader->comment=$content['comment'];
         $reader->save();
+        //Ovde može biti problema ako se automatski dodeli broj koji je ranije unet manuelno
+        if(!$content['card_id']){
+            $reader->card_id=$reader->id;
+            $reader->save();
+        }
         return redirect("/readers/$reader->id");
     }
 
@@ -105,6 +121,7 @@ class ReaderController extends Controller
         $content = $request->validate([
             'card_id'=>'required',
             'name'=>'required',
+            'gender'=>'required',
             'email'=>'email',
             'occupation'=>'present',
             'address'=>'present',
@@ -117,6 +134,7 @@ class ReaderController extends Controller
         ]);
         $reader->update([
             'card_id'=>$content['card_id'],
+            'gender'=>$content['gender'],
             'name'=>$content['name'],
             'email'=>$content['email'],
             'occupation'=>$content['occupation'],

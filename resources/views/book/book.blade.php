@@ -107,7 +107,8 @@
                 <div class="mt-5">
                     <div class="d-flex justify-content-between">
                         <h6>Primerci ovog izdanja:</h6>
-                        <a class="btn btn-outline-dark rounded-pill" href="/items/create?id={{ $book->id }}&cat={{$book->categories()->first()->id}}"><i
+                        <a class="btn btn-outline-dark rounded-pill"
+                            href="/items/create?id={{ $book->id }}&cat={{ $book->categories()->first()->id }}"><i
                                 class="bi bi-plus-lg"> </i>
                             Dodaj primerak naslova </a>
 
@@ -125,10 +126,13 @@
                                 <tr>
                                     <td>{{ $item->id }}</td>
                                     <td>{{ $item->signature }}</td>
-                                    <td>{{ $item->donator()->first()->name??'' }}</td>
+                                    <td>{{ $item->donator()->first()->name ?? '' }}</td>
                                     <td>
                                         @if ($item->borrowing()->exists())
-                                            <span class="text-danger">Izdato</span>
+                                            <p class="mb-0 text-danger">Izdato <i class="bi bi-arrow-right"></i>
+                                                <a class="text-danger text-decoration-none" href="/readers/{{ $item->borrowing()->first()->reader()->first()->id }}">
+                                                    {{ $item->borrowing()->first()->reader()->first()->name }}</a>
+                                            </p>
                                         @else
                                             <span>Raspoloživo</span>
                                         @endif

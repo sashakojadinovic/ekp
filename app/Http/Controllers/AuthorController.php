@@ -39,9 +39,11 @@ class AuthorController extends Controller
         $author = new Author;
         $content = $request->validate([
             'name'=>'required',
+            'gender'=>'present',
             'info'=>'present'
         ]);
         $author->name =$content['name'];
+        $author->gender=$content['gender'];
         $author->info =$content['info'];
         $author->save();
         return redirect("/authors/$author->id");
@@ -81,9 +83,10 @@ class AuthorController extends Controller
     {
         $content = $request->validate([
             'name'=>'required',
+            'gender'=>'present',
             'info'=>'present'
         ]);
-        $author->update(['name'=>$content['name'],'info'=>$content['info']]);
+        $author->update(['name'=>$content['name'],'gender'=>$content['gender'],'info'=>$content['info']]);
         return redirect("/authors/$author->id");
     }
 

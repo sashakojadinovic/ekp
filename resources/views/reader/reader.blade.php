@@ -57,6 +57,7 @@
                         <th scope="col">Naziv</th>
                         <th scope="col">Signatura</th>
                         <th scope="col">Vreme izdavanja</th>
+                        <th scope="col">Akcija</th>
                     </thead>
                     <tbody>
 
@@ -66,6 +67,7 @@
                                 <td><a class="btn px-2 py-0" href="/books/{{$borrowing->book->id}}">{{$borrowing->book->title}}</a></td>
                                 <td>{{$borrowing->signature}}</td>
                                 <td>{{ $borrowing->date }}</td>
+                                <td><button class="btn btn-sm btn-danger rounded-pill">Vrati</button></td>
 
                             </tr>
                         @endforeach

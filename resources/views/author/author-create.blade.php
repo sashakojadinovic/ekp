@@ -10,7 +10,15 @@
                     <div class="my-2">
                         <label class="form-label" for="author-name">Ime autora</label>
                         <input class="form-control bg-white rounded-pill" type="text" name="name" id="author-name">
-                    </div class="my-2">
+                    </div>
+                    <div class="my-2">
+                        <label class="form-label" for="author-gender">Pol</label>
+                        <select class="form-select bg-white rounded-pill" name="gender" id="author-gender">
+                            <option value="-1" selected>Odaberite pol</option>
+                            <option value="0">Ženski</option>
+                            <option value="1">Muški</option>
+                        </select>
+                    </div>
                     <div>
                         <label class="form-label" for="author-info">Opis</label>
                         <textarea class="form-control bg-white" name="info" id="author-info" cols="30"

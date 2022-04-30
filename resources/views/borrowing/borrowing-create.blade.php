@@ -41,6 +41,9 @@
                                 <label class="form-label mb-3" for="reader-id">Broj članske karte</label>
                                 <input class="form-control bg-white rounded-pill" type="text" name="reader_card"
                                     id="reader-card">
+                                <label class="form-label mb-3" for="reader-id">ili ime i prezime</label>
+                                <input class="form-control bg-white rounded-pill" type="text" name="reader_name"
+                                    id="reader-name">
                             </div>
 
                         </div>

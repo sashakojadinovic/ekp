@@ -10,6 +10,7 @@ class Reader extends Model
     protected $fillable =[
         'card_id',
             'name',
+            'gender',
             'email',
             'occupation',
             'address',
