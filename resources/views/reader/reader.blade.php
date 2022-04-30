@@ -73,7 +73,18 @@
                                 <td><a class="btn px-2 py-0" href="/books/{{$borrowing->book->id}}">{{$borrowing->book->title}}</a></td>
                                 <td>{{$borrowing->signature}}</td>
                                 <td>{{ $borrowing->date }}</td>
-                                <td><button class="btn btn-sm btn-danger rounded-pill">Vrati</button></td>
+                                <td>
+                                    <form class="d-inline-block" id="returnForm"
+                                                action="/borrowings/{{ $borrowing->id }}" method="POST">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button id="returnBook" data-bs-toggle="modal"
+                                                    data-bs-target="#returnModalWarning"
+                                                    class="btn btn-sm btn-danger rounded-pill"> Vrati
+                                                </button>
+
+                                            </form>
+                                </td>
 
                             </tr>
                         @endforeach

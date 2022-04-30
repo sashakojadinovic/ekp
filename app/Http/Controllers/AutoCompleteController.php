@@ -8,6 +8,7 @@ use App\Models\Donator;
 use App\Models\Publisher;
 use App\Models\Category;
 use App\Models\Item;
+use App\Models\Reader;
 
 class AutoCompleteController extends Controller
 {
@@ -39,6 +40,9 @@ class AutoCompleteController extends Controller
                 break;
             case "Item":
                 $result = Item::where($request->f, 'LIKE', '%' . $request->q . '%')->take(10)->get(['id', $request->f]);
+                break;
+            case "Reader":
+                $result = Reader::where($request->f, 'LIKE', '%' . $request->q . '%')->take(10)->get(['id', $request->f]);
                 break;
             default:
                 $result = [];

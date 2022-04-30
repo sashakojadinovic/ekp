@@ -48,7 +48,7 @@
                                             id="author">
                                         <button class="btn position-absolute top-0 end-0 rounded-pill adhoc" type="button"
                                             data-bs-toggle="tooltip" data-bs-placement="top" title="Upiši novog autora">
-                                            <i class="bi bi-capslock text-secondary"></i>
+                                            <i class="bi bi-capslock text-secondary"></i></button>
 
                                     </div>
                                     <input id="author-array" type="hidden" name="author-array">
@@ -62,7 +62,7 @@
                                             id="publisher">
                                         <button class="btn position-absolute top-0 end-0 rounded-pill adhoc" type="button"
                                             data-bs-toggle="tooltip" data-bs-placement="top" title="Upiši novog izdavača">
-                                            <i class="bi bi-capslock text-secondary"></i>
+                                            <i class="bi bi-capslock text-secondary"></i></button>
                                     </div>
                                     <input id="publisher-array" type="hidden" name="publisher-array">
                                 </div>
@@ -75,7 +75,7 @@
                                             id="category">
                                         <button class="btn position-absolute top-0 end-0 rounded-pill adhoc" type="button"
                                             data-bs-toggle="tooltip" data-bs-placement="top" title="Upiši novu kategoriju">
-                                            <i class="bi bi-capslock text-secondary"></i>
+                                            <i class="bi bi-capslock text-secondary"></i></button>
                                     </div>
                                     <input id="category-array" type="hidden" name="category-array" value="1">
                                 </div>

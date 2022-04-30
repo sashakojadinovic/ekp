@@ -41,19 +41,30 @@ class BorrowingController extends Controller
     public function store(Request $request)
     {
         //
+        //dd($request);
+        if(!$request->reader_array && !$request->reader_card){
+            return back()->withErrors(['empty_fields'=>'Morate uneti ili broj članske karte ili pronaći korisnika po imenu']);
+        }
         $borrowing = new Borrowing;
         $content = $request->validate([
             'item_id'=>'required',
-            'reader_card'=>'required|integer'
+            'reader_card'=>'present',
+            'reader_array'=>'present'
         ]);
-        $reader = Reader::where('card_id','=', $content['reader_card']);
+        if($content['reader_card']){
+            $reader = Reader::where('card_id','=', $content['reader_card']);
+        }
+        else{
+            $reader = Reader::where('id','=', $content['reader_array']);
+        }
+
         if(!$reader->first()){
             return back()->withErrors('Nije pronađen čitalac sa datim brojem članske karte');
         }
         $borrowing->reader_id = $reader->first()->id;
         $borrowing->item_id=$content['item_id'];
         $borrowing->save();
-        return redirect('/borrowings');
+        return redirect("/readers/$borrowing->reader_id");
 
     }
 
