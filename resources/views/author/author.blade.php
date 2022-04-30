@@ -42,9 +42,12 @@
                     </div>
 
                 </div>
-
-
                 <div class="mt-5">
+                    @if ($author->gender===0)
+                        <p>Pol: <span>ženski</span> </p>
+                    @elseif (($author->gender===1))
+                    <p>Pol: <span>muški</span> </p>
+                    @endif
                     <h4>Opis:</h4>
                     <p>{{ $author->info }}</p>
                     <table class="table table-striped">

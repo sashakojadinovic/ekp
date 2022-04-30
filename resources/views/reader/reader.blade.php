@@ -45,6 +45,12 @@
                 <div id="reader" class="mt-5">
                     <p>Broj članske karte: <span>{{ $reader->card_id }}</span> </p>
                     <p>Ime i prezime: <span>{{ $reader->name }}</span> </p>
+                    @if ($reader->gender===0)
+                        <p>Pol: <span>ženski</span> </p>
+                    @elseif (($reader->gender===1))
+                    <p>Pol: <span>muški</span> </p>
+                    @endif
+
                     <p>E-mail: <span>{{ $reader->email }}</span> </p>
                     <p>Zanimanje: <span>{{ $reader->occupation }}</span> </p>
                     <p>Adresa: <span>{{ $reader->address }}, {{ $reader->city }} {{ $reader->city_code }}</span> </p>
