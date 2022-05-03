@@ -61,7 +61,7 @@ Route::get('/autocomplete-search',[AutoCompleteController::class, 'searchFor']);
 
 
 
-//Route::get('/test', [TestController::class,'index']);
+Route::resource('tests', TestController::class);
 
 
 

@@ -20,7 +20,7 @@ class CreateItemsTable extends Migration
             $table->foreignIdFor(Book::class);
             $table->string('signature');
             $table->foreignIdFor(Donator::class)->nullable(); //check if this can be nullable
-            $table->boolean('available');
+            $table->boolean('available')->default(1);
             $table->timestamps();
         });
     }

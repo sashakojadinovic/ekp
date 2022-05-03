@@ -167,7 +167,7 @@ class BookController extends Controller
      */
     public function destroy(Book $book)
     {
-        if($book->img_url){
+        if($book->img_url && $book->img_url!=="images/default.png"){
             unlink($book->img_url);
         }
         $book->authors()->detach();

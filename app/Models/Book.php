@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Book extends Model
 {
     protected $fillable = [
-        'title', 'year', 'age', 'info'
+        'title','img_url', 'year', 'age', 'info'
     ];
     use HasFactory;
     public function authors(){
@@ -20,10 +20,6 @@ class Book extends Model
     public function publishers(){
         return $this->belongsToMany(Publisher::class);
     }
-  /*   public function donator()
-    {
-        return $this->belongsTo(Donator::class);
-    }    */
     public function items(){
         return $this->hasMany(Item::class);
     }

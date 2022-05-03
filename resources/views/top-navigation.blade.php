@@ -19,6 +19,7 @@
                 <li class="nav-item"><a class="nav-link" href="/books"><i class="bi bi-book"></i>Naslovi</a></li>
                 <li class="nav-item"><a class="nav-link" href="/borrowings"><i class="bi bi-arrow-left-right"></i>Iznajmljivanja</a></li>
                 <li class="nav-item"><a class="nav-link" href="/readers"><i class="bi bi-people"></i>Čitaoci</a></li>
+                <li class="nav-item"><a class="nav-link" href="/tests/create"><i class="bi bi-cloud-upload"></i>Uvezi</a></li>
 
 
 

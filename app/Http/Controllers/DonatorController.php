@@ -106,7 +106,7 @@ class DonatorController extends Controller
             $item->donator_id=0;
             $item->save();
         }
-        //$donator->delete();
+        $donator->delete();
         return redirect("/donators");
     }
 }

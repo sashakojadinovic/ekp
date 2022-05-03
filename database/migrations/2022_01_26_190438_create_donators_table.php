@@ -18,7 +18,6 @@ class CreateDonatorsTable extends Migration
             $table->id();
             $table->string('name');
             $table->text('info')->nullable();
-            //$table->foreignIdFor(Book::class);
             $table->timestamps();
         });
     }

@@ -47,10 +47,6 @@
                                     <div class="tag-container position-relative form-control bg-white rounded-pill  ps-2">
                                         <input placeholder="Pronađi..." type="text" data-model="Reader" name="reader_name"
                                             id="reader">
-                                        <button class="btn position-absolute top-0 end-0 rounded-pill adhoc" type="button"
-                                            data-bs-toggle="tooltip" data-bs-placement="top" title="Upiši novog autora">
-                                            <i class="bi bi-capslock text-secondary"></i>
-                                        </button>
 
                                     </div>
                                     <input id="reader-array" type="hidden" name="reader_array">
