@@ -14,7 +14,8 @@ class ReaderController extends Controller
      */
     public function index()
     {
-        $readers = Reader::all();
+        //$readers = Reader::all();
+        $readers = Reader::simplePaginate(100);
         return view('reader.readers',['readers'=>$readers]);
     }
 
@@ -121,8 +122,8 @@ class ReaderController extends Controller
         $content = $request->validate([
             'card_id'=>'required',
             'name'=>'required',
-            'gender'=>'required',
-            'email'=>'email',
+            'gender'=>'present',
+            'email'=>'present',
             'occupation'=>'present',
             'address'=>'present',
             'city'=>'present',

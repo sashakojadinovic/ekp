@@ -110,7 +110,7 @@
                         Odustani</a>
                     <button type="submit" class="btn btn-outline-dark rounded-pill mt-2 mx-1"><i
                             class="bi bi-cloud-arrow-up"> </i>
-                        Sačuvaj izdanje i dodaj primerke</button>
+                        Sačuvaj izmene</button>
                 </div>
             </div>
 

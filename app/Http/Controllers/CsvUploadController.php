@@ -10,59 +10,38 @@ use App\Models\Publisher;
 use App\Models\Reader;
 use Illuminate\Http\Request;
 
-class TestController extends Controller
+class CsvUploadController extends Controller
 {
     //
     public function index()
     {
-        return view('test.test');
+        return view('csvupload.csvupload');
     }
-    public function create()
+    private function saveReaders($readers)
     {
-        return view('test.test-create');
-    }
-    public function store(Request $request)
-    {
-        $readers = [];
-        $file = fopen($request->file('csv'), 'r');
-        while (($data = fgetcsv($file, 1000, ",")) !== false) {
-            $readers[] = $data;
-        }
-        fclose($file);
-
+        //dd($readers);
         foreach ($readers as $r) {
-
+            if(Reader::where('card_id','=',$r[0])->first()){
+                continue;
+            }
             $reader = new Reader;
             $reader->card_id = $r[0];
-            $reader->name = $r[2]." ".$r[1];
-            $reader->address= $r[3];
-            $reader->phone_number= $r[4];
-            if($r[5]==="ž"){
+            $reader->name = $r[2] . " " . $r[1];
+            $reader->address = $r[3];
+            $reader->phone_number = $r[4];
+            if ($r[5] === "ž") {
                 $reader->gender = 0;
-            }
-            else if($r[5]==="m"){
+            } else if ($r[5] === "m") {
                 $reader->gender = 1;
-            }
-            else{
+            } else {
                 $reader->gender = -1;
             }
             $reader->save();
-
-
-
         }
-
-        return redirect('readers');
     }
-/*     public function store(Request $request)
+    private function saveBooks($books)
     {
-        $books = [];
-        $file = fopen($request->file('csv'), 'r');
-        while (($data = fgetcsv($file, 1000, ",")) !== false) {
-            $books[] = $data;
-        }
-        fclose($file);
-
+        //dd($books);
         foreach ($books as $b) {
 
             $book = new Book;
@@ -107,10 +86,22 @@ class TestController extends Controller
             }
             $item->save();
         }
-
-        return redirect('books');
-    } */
-
-
+    }
+    public function uploadCsv(Request $request)
+    {
+        $csvarray = [];
+        $file = fopen($request->file('csv'), 'r');
+        while (($data = fgetcsv($file, 1000, ",")) !== false) {
+            $csvarray[] = $data;
+        }
+        fclose($file);
+        if ($request->category === "Author") {
+            $this->saveReaders($csvarray);
+            return redirect('/readers');
+        } else if ($request->category === "Book") {
+            $this->saveBooks($csvarray);
+            return redirect('/books');
+        }
+    }
 
 }

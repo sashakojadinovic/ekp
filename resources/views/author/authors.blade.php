@@ -11,14 +11,12 @@
                 </div>
                 <table class="table table-striped">
                     <thead>
-                        <th scope="col">ID</th>
                         <th scope="col">Ime i prezime</th>
                         <th scope="col">Broj izdanja u bazi</th>
                     </thead>
                     <tbody>
                         @foreach ($authors as $author)
                             <tr>
-                                <td>{{ $author->id }}</td>
                                 <td><a class="btn px-2 py-0" href="/authors/{{ $author->id }}">{{ $author->name }}</a></td>
                                 <td>{{$author->books()->count()}}</td>
                             </tr>
