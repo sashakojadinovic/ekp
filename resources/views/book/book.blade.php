@@ -89,8 +89,10 @@
                                 class="fw-normal">{{ $book->categories()->first() ? $book->categories()->first()->name : '' }}</span>
                         </h6>
                         <h6 class="fw-bold">Izdavač:
-                            <span
-                                class="fw-normal">{{ $book->publishers()->first() ? $book->publishers()->first()->name : '' }}</span>
+                            @foreach ($book->publishers()->get() as $publisher)
+                                    <a class="py-0 fw-normal text-decoration-none"
+                                        href="/publishers/{{ $publisher->id }}">{{ $loop->first? $publisher->name:", ".$publisher->name }}</a>
+                            @endforeach
                         </h6>
                         <h6 class="fw-bold">Godina izdanja: <span
                                 class="fw-normal">{{ $book->year ? $book->year . '.' : '' }}</span></h6>

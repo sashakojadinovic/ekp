@@ -47,6 +47,23 @@
                 <div class="mt-5">
                     <h4>Opis:</h4>
                     <p>{{ $donator->info }}</p>
+                    <table class="table table-striped">
+                        <thead>
+                            <th scope="col">Signatura</th>
+                            <th scope="col">Naslov</th>
+
+                        </thead>
+                        <tbody>
+
+                            @foreach ($donator->items()->get() as $item)
+                                <tr>
+                                    <td>{{ $item->signature }}</td>
+                                    <td><a class="btn px-2 py-0 " href="/books/{{$item->book()->first()->id}}">{{$item->book()->first()->title}}</a> </td>
+
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
                 </div>
 
             </div>

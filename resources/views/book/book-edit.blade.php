@@ -123,15 +123,12 @@
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             @foreach ($book->authors()->get() as $author)
-                //console.log("{{ $author->name }}");
                 createBadge("{{ $author->name }}","{{ $author->id }}",document.getElementById('author'));
             @endforeach
             @foreach ($book->categories()->get() as $category)
-                //console.log("{{ $author->name }}");
                 createBadge("{{ $category->name }}","{{ $category->id }}",document.getElementById('category'));
             @endforeach
             @foreach ($book->publishers()->get() as $publisher)
-                //console.log("{{ $publisher->name }}");
                 createBadge("{{ $publisher->name }}","{{ $publisher->id }}",document.getElementById('publisher'));
             @endforeach
             document.getElementById('author').addEventListener('input', (e) => getData(e.target, e.target.dataset

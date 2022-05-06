@@ -99,6 +99,9 @@ class CategoryController extends Controller
      */
     public function destroy(Category $category)
     {
+        if($category->books()->first()){
+            return back()->withErrors(['notempty'=>'Kategorija ne može biti izbrisana dok postoje izdanja u toj kategoriji']);
+        }
         $category->delete();
         return redirect('/categories');
     }

@@ -13,7 +13,7 @@
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
-                            <p>Da li ste sigurni da želite da izbrišete izdavača?</p>
+                            <p>Da li ste sigurni da želite da izbrišete izdavača? Izdanja kojima je dodeljen ovaj izdavač ostaće u bazi.</p>
                         </div>
                         <div class="modal-footer">
                             <button type="button" data-bs-toggle="modal" data-bs-target="#modalWarning"

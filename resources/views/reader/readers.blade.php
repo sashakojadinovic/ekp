@@ -20,7 +20,7 @@
                             <tr>
                                 <td>{{ $reader->card_id }}</td>
                                 <td><a class="btn px-2 py-0" href="/readers/{{ $reader->id }}">{{ $reader->name }}</a></td>
-                                <td>{{ count($reader->borrowing()->get())>0?count($reader->borrowing()->get()):'nema' }}</td>
+                                <td><a class="text-decoration-none " href="/readers/{{$reader->id}}">{{ count($reader->borrowing()->get())>0?count($reader->borrowing()->get()):'nema' }}</a></td>
 
                             </tr>
                         @endforeach

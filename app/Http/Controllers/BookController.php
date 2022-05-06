@@ -74,7 +74,7 @@ class BookController extends Controller
                 'title' => 'required',
                 'author-array' => 'present',
                 'image'=>'image|mimes:jpeg,png,jpg,gif|max:2048',
-                'category-array' => 'present',
+                'category-array' => 'required',
                 'year' => 'present',
                 'age' => 'present',
                 'publisher-array' => 'present',
@@ -145,7 +145,11 @@ class BookController extends Controller
                 'info' => 'present'
             ]
         );
-        $this->saveImage($request->file('image'),$book, true);
+        //dd($request);
+        if($request->file('image')){
+            $this->saveImage($request->file('image'),$book, true);
+        }
+
         $book->update(['title' => $content['title'], 'year'=>$content['year'],'age'=>$content['age'], 'info' => $content['info']]);
         $book->authors()->detach();
         $book->authors()->attach(explode(",",$content['author-array']));

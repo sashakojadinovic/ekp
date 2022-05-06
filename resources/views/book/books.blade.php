@@ -54,6 +54,7 @@
             </div>
             <table class="table table-striped">
                 <thead>
+                    <th scope="col">ID</th>
                     <th scope="col">#</th>
                     <th scope="col">Naslov</th>
                     <th scope="col">Autor</th>
@@ -63,6 +64,7 @@
                 <tbody>
                     @foreach ($books as $book)
                         <tr>
+                            <td>{{$book->id}}</td>
                             <td class="text-center">
                                 @if (!$book->img_url)
                                     <a href="/books/{{ $book->id }}"><img height="60" src="/images/default.png"
