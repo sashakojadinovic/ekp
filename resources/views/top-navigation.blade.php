@@ -1,4 +1,4 @@
-    <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+    <nav class="navbar navbar-expand-xl navbar-light bg-white shadow-sm">
     <div class="container-fluid">
         <a class="navbar-brand" href="{{ url('/') }}">
             {{ config('app.name', 'EKP') }}
@@ -19,11 +19,10 @@
                 <li class="nav-item"><a class="nav-link" href="/books"><i class="bi bi-book"></i>Naslovi</a></li>
                 <li class="nav-item"><a class="nav-link" href="/borrowings"><i class="bi bi-arrow-left-right"></i>Iznajmljivanja</a></li>
                 <li class="nav-item"><a class="nav-link" href="/readers"><i class="bi bi-people"></i>Čitaoci</a></li>
-                <li class="nav-item"><a class="nav-link" href="/csvupload"><i class="bi bi-cloud-upload"></i>Uvezi</a></li>
-
-
-
-
+                <li class="nav-item"><a class="nav-link" href="/events"><i class="bi bi-newspaper"></i>Vesti</a></li>
+                <li class="nav-item"><a class="nav-link" href="/donors"><i class="bi bi-bank"></i>Donatori/partneri</a></li>
+                <li class="nav-item"><a class="nav-link" href="/projects"><i class="bi bi-box"></i>Kategorije za vesti</a></li>
+                <li class="nav-item"><a class="nav-link" href="/blogs"><i class="bi bi-chat-square-quote"></i>Blogovi</a></li>
 
 
 
