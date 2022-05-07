@@ -1,0 +1,246 @@
+
+
+body {
+    font-family: 'Abhaya Libre', serif;
+    /*background-color: #cdc0aa;*/
+    /*color: rgb(35, 47, 40);*/
+    overflow-x: hidden;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+.picture{
+    /*max-height: 300px;*/
+    max-height: 200px;
+    max-width: 200px;
+    min-height: 200px;
+    min-width: 200px;
+    object-fit: cover;
+
+}
+
+.galleryOne{
+    max-height: 600px;
+    object-fit: cover;
+    display: block;
+    margin: auto;
+}
+.fixed{
+    max-height: 500px;
+    max-width: 600px;
+    min-height: 500px;
+    min-width: 600px;
+    object-fit: cover;
+}
+.scroll {
+    transition-duration: 1s, 1s;
+    box-shadow: rgba(0, 0, 0, 0.45) 0px 25px 20px -20px;
+    background-color: white;
+    z-index: 1;
+}
+
+
+/* .modal {
+    z-index: 100 !important;
+} */
+
+header {
+    box-shadow: rgba(0, 0, 0, 0.45) 0px 25px 20px -20px;
+
+    position: sticky;
+    top: 0px;
+}
+
+a,
+.page-link {
+    /*color: #848382;*/
+    color:black;
+    text-decoration: none;
+    font-size: larger;
+    font-weight: 600;
+}
+
+a:hover {
+    /*color: #848382;*/
+    font-weight: bold;
+}
+footer .text-center a:hover {
+    font-weight: bold;
+}
+
+li {
+    list-style-type: none;
+}
+
+.active {
+    /*color: rgba(132, 131, 130, 1);*/
+    font-weight: bold;
+}
+
+.navigacija i:hover,
+.logo:hover {
+    transform: scale(1.2);
+}
+
+#donatori a img {
+    opacity: 0.85;
+    filter: grayscale(60%);
+}
+
+#donatori a img:hover {
+    transform: scale(1.1);
+    opacity: 1;
+    filter: grayscale(0%);
+}
+
+@media only screen and (max-width: 995px) {
+    #donatori a img {
+        opacity: 1;
+        filter: grayscale(0%);
+    }
+}
+
+#prikazi{
+    display: none;
+}
+.slika:hover,
+.picture:hover{
+    transform: scale(1.02);
+}
+#carouselExampleControls{
+   position: fixed;
+    right:0;
+    left: 0;
+    top:5%;
+    width: 70%;
+    height: 70%;
+    z-index: 10000;
+    /*background-size: cover;*/
+ }
+
+.overlay{
+    position: fixed;
+    top: auto;
+    right: auto;
+    width: 100%;
+    height: 100%;
+    z-index: 9999;
+    opacity: 0.4;
+    background-color: black;
+    display: none;
+}
+#vesti .card:hover {
+    /* border: hsl(145, 15%, 16%); */
+    /*transform: scale(1.001);*/
+    border-bottom: 0.3rem solid rgba(132, 131, 130, 1);
+    ;
+}
+
+#slajder {
+    height: 35rem;
+    width: 100%;
+}
+
+/*#pocetna {*/
+/*    !*background: repeating-linear-gradient(#cdc0aa, #cdc0aa 40.9%, #b18e75 41.1%, #b18e75 100%);*!*/
+/*}*/
+
+#preporuke {
+    height: 80%;
+}
+
+h1 {
+    font-weight: bold;
+    font-size: 3rem;
+}
+
+#projekti {
+    width: 100%;
+    height: 40rem;
+}
+
+.glavnaSlika {
+
+    max-height: 400px;
+    width: auto;
+    object-fit: cover;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.slika{
+    min-height: 180px;
+    max-height: 180px;
+    max-width:250px;
+    min-width:250px;
+    object-fit: cover;
+
+}
+/* .fontBela {
+    color: #fdf4e9;
+} */
+
+#brojevi {
+    width: 100%;
+    height: 100%;
+    background-image: url("/images/pozadina-brojevi.png");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+    background-size: cover;
+
+}
+
+/*.braon {*/
+/*    !*background-color: #b18e75;*!*/
+/*}*/
+
+.senkaDole {
+    /*box-shadow: 2rem 2rem 0 0 #b18e75;*/
+}
+
+.senka {
+    /*box-shadow: -1rem -1rem 0 0 #b18e75;*/
+}
+
+.close {
+    font-size: 2rem !important;
+}
+
+hr {
+    width: 80%;
+    z-index: -100;
+}
+
+.btn-site{
+    background-color:rgba(132, 131, 130, 1);
+    color:white;
+}
+footer {
+    height: 100%;
+    width: 100%;
+/*background-color: rgba(132, 131, 130, 1)*/
+}
+
+.animacija {
+    /*background-color: #b18e75;*/
+    opacity: 0.3;
+    position: absolute;
+}
+
+.wave {
+    background-size: cover;
+    width: 100%;
+    height: 100%;
+    min-height: 700px;
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' version='1.1' xmlns:xlink='http://www.w3.org/1999/xlink' xmlns:svgjs='http://svgjs.com/svgjs' width='1440' height='700' preserveAspectRatio='none' viewBox='0 0 1440 700'%3e%3cg mask='url(%26quot%3b%23SvgjsMask1007%26quot%3b)' fill='none'%3e%3cpath d='M 0%2c18 C 96%2c37.8 288%2c107.2 480%2c117 C 672%2c126.8 768%2c67.2 960%2c67 C 1152%2c66.8 1344%2c106.2 1440%2c116L1440 700L0 700z' fill='%23c2cc67'%3e%3c/path%3e%3cpath d='M 0%2c277 C 57.6%2c272.8 172.8%2c257 288%2c256 C 403.2%2c255 460.8%2c284.2 576%2c272 C 691.2%2c259.8 748.8%2c188 864%2c195 C 979.2%2c202 1036.8%2c310.4 1152%2c307 C 1267.2%2c303.6 1382.4%2c203.8 1440%2c178L1440 700L0 700z' fill='rgba(255%2c 255%2c 255%2c 1)'%3e%3c/path%3e%3cpath d='M 0%2c412 C 288%2c433.6 1152%2c498.4 1440%2c520L1440 700L0 700z' fill='rgba(255%2c 255%2c 255%2c 1)'%3e%3c/path%3e%3cpath d='M 0%2c559 C 41.2%2c573.8 123.6%2c638 206%2c633 C 288.4%2c628 329.6%2c525.6 412%2c534 C 494.4%2c542.4 535.6%2c664 618%2c675 C 700.4%2c686 741.6%2c598.4 824%2c589 C 906.4%2c579.6 947.6%2c625 1030%2c628 C 1112.4%2c631 1154%2c591.6 1236%2c604 C 1318%2c616.4 1399.2%2c672.8 1440%2c690L1440 700L0 700z' fill='rgba(132%2c 131%2c 130%2c 1)'%3e%3c/path%3e%3c/g%3e%3cdefs%3e%3cmask id='SvgjsMask1007'%3e%3crect width='1440' height='700' fill='white'%3e%3c/rect%3e%3c/mask%3e%3c/defs%3e%3c/svg%3e");
+    /*background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' version='1.1' xmlns:xlink='http://www.w3.org/1999/xlink' xmlns:svgjs='http://svgjs.com/svgjs' width='1440' height='350' preserveAspectRatio='none' viewBox='0 0 1440 560'%3e%3cg mask='url(%26quot%3b%23SvgjsMask1032%26quot%3b)' fill='none'%3e%3crect width='1440' height='560' x='0' y='0' fill='rgba(205%2c 192%2c 170%2c 1)'%3e%3c/rect%3e%3cpath d='M 0%2c41 C 96%2c78 288%2c219.6 480%2c226 C 672%2c232.4 768%2c76.8 960%2c73 C 1152%2c69.2 1344%2c180.2 1440%2c207L1440 560L0 560z' fill='rgba(252%2c 252%2c 252%2c 1)'%3e%3c/path%3e%3cpath d='M 0%2c476 C 57.6%2c454 172.8%2c368.2 288%2c366 C 403.2%2c363.8 460.8%2c462.4 576%2c465 C 691.2%2c467.6 748.8%2c374 864%2c379 C 979.2%2c384 1036.8%2c506.2 1152%2c490 C 1267.2%2c473.8 1382.4%2c336.4 1440%2c298L1440 560L0 560z' fill='rgba(177%2c 142%2c 117%2c 1)'%3e%3c/path%3e%3c/g%3e%3cdefs%3e%3cmask id='SvgjsMask1032'%3e%3crect width='1440' height='560' fill='white'%3e%3c/rect%3e%3c/mask%3e%3c/defs%3e%3c/svg%3e");*/
+}
+
+.card-header {
+    border-bottom: none !important;
+    background-color: rgba(0, 0, 0, 0);
+}
+
