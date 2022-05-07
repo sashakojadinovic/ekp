@@ -74,10 +74,9 @@ Route::resource('borrowings', BorrowingController::class)->middleware('auth');
 Route::resource('readers', ReaderController::class)->middleware('auth');
 //Route::resource('readers', ReaderController::class)->only(['index','show']);
 
-<<<<<<< HEAD
+
 Route::resource('locations', LocationController::class)->middleware('auth');
 
-=======
 Route::resource('projects', \App\Http\Controllers\ProjectController::class)->middleware('auth');
 //Route::resource('projects', \App\Http\Controllers\ProjectController::class);
 
@@ -104,7 +103,7 @@ Route::get('/photos/{id}',[\App\Http\Controllers\EventController::class, 'photos
 
 Route::get('/main/{id}',[\App\Http\Controllers\EventController::class, 'main'])->name("main")->middleware('auth');
 //Route::get('/main/{id}',[\App\Http\Controllers\EventController::class, 'main'])->name("main");
->>>>>>> 7326ae3565f1e1bfaf0d66bfa3d04e9e75761b92
+
 
 Route::get('/autocomplete-search',[AutoCompleteController::class, 'searchFor']);
 

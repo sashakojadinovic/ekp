@@ -7,8 +7,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class Location extends Model
 {
+    protected $fillable=[
+        'name','info'
+    ];
     use HasFactory;
     public function Items(){
-        $this->hasMany(Item::class);
+       return $this->hasMany(Item::class);
     }
 }

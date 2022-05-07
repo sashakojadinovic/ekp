@@ -57,7 +57,7 @@ class LocationController extends Controller
      */
     public function show(Location $location)
     {
-        //
+        return view('location.location',['location'=>$location]);
     }
 
     /**
@@ -68,7 +68,7 @@ class LocationController extends Controller
      */
     public function edit(Location $location)
     {
-        //
+        return view('location.location-edit',['location'=>$location]);
     }
 
     /**
@@ -80,7 +80,15 @@ class LocationController extends Controller
      */
     public function update(Request $request, Location $location)
     {
-        //
+        $content = $request->validate([
+            'name'=>'required',
+            'info'=>'present'
+        ]);
+        $location->update([
+            'name'=>$content['name'],
+            'info'=>$content['info']
+        ]);
+        return redirect("/locations/$location->id");
     }
 
     /**
