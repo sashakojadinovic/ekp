@@ -8,7 +8,7 @@
                 aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content">
-                        <div class="modal-header bg-secondary text-white">
+                        <div class="modal-header bg-danger  text-white">
                             <h5 class="modal-title" id="exampleModalLabel">Upozorenje!</h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
@@ -17,8 +17,8 @@
                         </div>
                         <div class="modal-footer">
                             <button type="button" data-bs-toggle="modal" data-bs-target="#modalWarning"
-                                class="btn btn-secondary" data-bs-dismiss="modal">Odustani</button>
-                            <button id="confirmBtn" type="button" class="btn btn-dark">Izbriši</button>
+                                class="btn btn-secondary rounded-pill" data-bs-dismiss="modal">Odustani</button>
+                            <button id="confirmBtn" type="button" class="btn btn-danger rounded-pill">Izbriši</button>
                         </div>
                     </div>
                 </div>
@@ -27,16 +27,16 @@
             <div class="col-md-12">
                 <div class="d-flex justify-content-between">
                     <div>
-                        <a class="btn btn-outline-dark rounded-pill" href="/publishers"><i class="bi bi-arrow-90deg-up"> </i>Svi izdavači</a>
+                        <a class="btn btn-dark rounded-pill" href="/publishers"><i class="bi bi-arrow-90deg-up"> </i>Svi izdavači</a>
                     </div>
                     <div>
-                        <a class="btn btn-outline-dark rounded-pill mx-1 d-inline-block" href="/publishers/{{ $publisher->id }}/edit"><i
+                        <a class="btn btn-success rounded-pill mx-1 d-inline-block" href="/publishers/{{ $publisher->id }}/edit"><i
                                 class="bi bi-pencil-square"> </i> Izmeni </a>
                         <form class="d-inline-block" id="deleteForm" action="/publishers/{{ $publisher->id }}" method="POST">
                             @csrf
                             @method('DELETE')
                             <button id="deleteBtn" data-bs-toggle="modal" data-bs-target="#modalWarning"
-                                class="btn btn-outline-dark rounded-pill"><i class="bi bi-trash2-fill"> </i> Izbriši </button>
+                                class="btn btn-danger rounded-pill"><i class="bi bi-trash2-fill"> </i> Izbriši </button>
 
                         </form>
                     </div>

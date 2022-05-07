@@ -56,7 +56,7 @@ function createBadge(name, id, elm) {  //name - name in DB, id - ID in DB, elm -
         hiddens[elm.id] = [];
     }
     const elSpan = document.createElement('span');
-    elSpan.className = "badge rounded-pill bg-secondary fs-6 fw-normal";
+    elSpan.className = "badge rounded-pill bg-dark fs-6 fw-normal";
     elSpan.innerHTML = name + " x";
     elSpan.setAttribute('id', 'donator' + id);
     elSpan.addEventListener('click', function (e) {

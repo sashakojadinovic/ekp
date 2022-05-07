@@ -28,9 +28,9 @@
 
 
                     <div class="d-flex justify-content-end">
-                        <a href="/authors" class="btn btn-outline-dark rounded-pill  mt-2"><i
+                        <a href="/authors" class="btn btn-secondary rounded-pill  mt-2"><i
                                 class="bi bi-x-circle"> </i> Odustani</a>
-                        <button type="submit" class="btn btn-outline-dark rounded-pill mt-2 mx-1"><i class="bi bi-cloud-arrow-up"> </i>
+                        <button type="submit" class="btn btn-danger rounded-pill mt-2 mx-1"><i class="bi bi-cloud-arrow-up"> </i>
                             Sačuvaj</button>
                     </div>
                 </form>

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Item;
 use App\Models\Book;
 use App\Models\Category;
+use App\Models\Location;
 use Illuminate\Http\Request;
 
 class ItemController extends Controller
@@ -31,12 +32,12 @@ class ItemController extends Controller
         $book = Book::find($request->id);
         //$category = Category::find($request->cat);
         $category = $book->categories()->first();
-
+        $locations = Location::all();
 /*         $num_of_items_in_cat = 0;
         foreach ($category->books()->get() as $b) {
             $num_of_items_in_cat += count($b->items()->get());
         } */
-        return view('item.item-create', ['book' => $book, 'signature' => $category->prefix . ($category->counter+1)]);
+        return view('item.item-create', ['book' => $book, 'signature' => $category->prefix . ($category->counter+1),'locations'=>$locations]);
     }
 
     /**

@@ -79,3 +79,13 @@ textarea.form-control{
     }
 }
 
+.form-switch .form-check-input{
+    width:2.5em;
+    height:1.5em;
+    margin-left:-1em;
+}
+.form-check-input:checked {
+    background-color:$gray-900;
+    border-color: $gray-900;
+}
+

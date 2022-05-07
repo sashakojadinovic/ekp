@@ -103,9 +103,9 @@
                         </div>
                         <div class="d-flex justify-content-end">
                             <!-- <input type="hidden" name="donators-list" id="donators-list"> -->
-                            <a href="/books" class="btn btn-outline-dark rounded-pill  mt-2"><i class="bi bi-x-circle"> </i>
+                            <a href="/books" class="btn btn-secondary rounded-pill  mt-2"><i class="bi bi-x-circle"> </i>
                                 Odustani</a>
-                            <button type="submit" class="btn btn-outline-dark rounded-pill mt-2 mx-1"><i
+                            <button type="submit" class="btn btn-danger rounded-pill mt-2 mx-1"><i
                                     class="bi bi-cloud-arrow-up"> </i>
                                 Sačuvaj izdanje i dodaj primerke</button>
                         </div>

@@ -7,8 +7,8 @@
                 aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content">
-                        <div class="modal-header bg-secondary text-white">
-                            <h6 class="modal-title" id="exampleModalLabel">Upozorenje!</h6>
+                        <div class="modal-header bg-danger  text-white">
+                            <h4 class="modal-title" id="exampleModalLabel">Upozorenje!</h4>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
@@ -28,7 +28,7 @@
                 aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content">
-                        <div class="modal-header bg-secondary text-white">
+                        <div class="modal-header bg-danger  text-white">
                             <h6 class="modal-title" id="exampleModalLabel">Upozorenje!</h6>
                             <button type="button" class="btn-close" data-bs-dismiss="modal"
                                 aria-label="Close"></button>
@@ -38,8 +38,8 @@
                         </div>
                         <div class="modal-footer">
                             <button type="button" data-bs-toggle="modal" data-bs-target="#returnModalWarning"
-                                class="btn btn-secondary" data-bs-dismiss="modal">Odustani</button>
-                            <button id="confirmBtn2" type="button" class="btn btn-danger">Vrati</button>
+                                class="btn btn-secondary rounded-pill" data-bs-dismiss="modal">Odustani</button>
+                            <button id="confirmBtn2" type="button" class="btn btn-danger rounded-pill">Vrati</button>
                         </div>
                     </div>
                 </div>
@@ -49,17 +49,17 @@
             <div class="col-md-12">
                 <div class="d-flex justify-content-between">
                     <div>
-                        <a class="btn btn-outline-dark rounded-pill" href="/books"><i class="bi bi-arrow-90deg-up"> </i>Sva
+                        <a class="btn btn-dark rounded-pill" href="/books"><i class="bi bi-arrow-90deg-up"> </i>Sva
                             izdanja</a>
                     </div>
                     <div>
-                        <a class="btn btn-outline-dark rounded-pill mx-1 d-inline-block"
+                        <a class="btn btn-success rounded-pill mx-1 d-inline-block"
                             href="/books/{{ $book->id }}/edit"><i class="bi bi-pencil-square"> </i> Izmeni </a>
                         <form class="d-inline-block" id="deleteForm" action="/books/{{ $book->id }}" method="POST">
                             @csrf
                             @method('DELETE')
                             <button id="deleteBtn" data-bs-toggle="modal" data-bs-target="#deleteModalWarning"
-                                class="btn btn-outline-dark rounded-pill"><i class="bi bi-trash2-fill"> </i> Izbriši
+                                class="btn btn-danger rounded-pill"><i class="bi bi-trash2-fill"> </i> Izbriši
                             </button>
 
                         </form>
@@ -109,7 +109,7 @@
                 <div class="mt-5">
                     <div class="d-flex justify-content-between">
                         <h6>Primerci ovog izdanja:</h6>
-                        <a class="btn btn-outline-dark rounded-pill"
+                        <a class="btn btn-dark rounded-pill"
                             href="/items/create?id={{ $book->id }}&cat={{ $book->categories()->first()->id }}"><i
                                 class="bi bi-plus-lg"> </i>
                             Dodaj primerak naslova </a>
