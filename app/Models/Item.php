@@ -17,4 +17,7 @@ class Item extends Model
     public function borrowing(){
         return $this->hasOne(Borrowing::class);
     }
+    public function location(){
+        return $this->belongsTo(Location::class);
+    }
 }

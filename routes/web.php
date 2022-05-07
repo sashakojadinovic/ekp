@@ -11,7 +11,7 @@ use App\Http\Controllers\AutoCompleteController;
 use App\Http\Controllers\BorrowingController;
 use App\Http\Controllers\CsvUploadController;
 use App\Http\Controllers\ItemController;
-
+use App\Http\Controllers\LocationController;
 
 /*
 |--------------------------------------------------------------------------
@@ -56,6 +56,9 @@ Route::resource('borrowings', BorrowingController::class)->middleware('auth');
 
 Route::resource('readers', ReaderController::class)->middleware('auth');
 //Route::resource('readers', ReaderController::class)->only(['index','show']);
+
+Route::resource('locations', LocationController::class)->middleware('auth');
+
 
 Route::get('/autocomplete-search',[AutoCompleteController::class, 'searchFor']);
 
