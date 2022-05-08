@@ -16,12 +16,12 @@
         prostoru izveden ne samo planirani progam dramskih radionica, nego i završna prezentacija
         na „Sceni ispod duda“ i dva pozorišna gostovanja na „Sceni ispod koša“. Više od 200 ljudi
         posetilo je ove događaje.</h5>
-    <img class="img-fluid rounded col-lg-5 col-12 " src="{{asset("images/pozadina-brojevi.jpeg")}}" />
+    <img class="img-fluid rounded col-lg-5 col-12 " alt="prostor" src="{{asset("images/prostor.jpg")}}" />
 
 </div>
 
             <div class="d-flex flex-lg-row flex-column-reverse justify-content-around align-items-center mt-5">
-                <img class="img-fluid rounded col-lg-5 col-12  " src="{{asset("images/pozadina-brojevi.jpeg")}}" />
+                <img class="img-fluid rounded col-lg-5 col-12  " alt="prostor 2" src="{{asset("images/podrum.jpg")}}" />
 
                 <h5 class="col-lg-6 col-12 text-lg-end">- 2020. godine adaptiran je stari vinski podrum u ovom domaćinstvu, i u tom prostoru
 otvorena je Čitaonica „Ekatarina Petrović“, koja i sada radi, naročito u letnjim mesecima, i
@@ -48,13 +48,13 @@ koristi za manje izložbe i, takođe, za držanje knjiga. Nažalost, loše stanj
                     Ipak, svi ovi napori nisu urodili sistemskim rešenjem problema zapuštenosti ovog zdanja, za
                     koje je neophodno aktivno uključivanje opštinskih vlasti, u čijem nadleštvu se nalazi ova
                     javna svojina.</h5>
-                <img class="img-fluid rounded  col-lg-5 col-12" src="{{asset("images/pozadina-brojevi.jpeg")}}" />
+                <img class="img-fluid rounded  col-lg-5 col-12" alt="prostor 3" src="{{asset("images/domkulture.jpg")}}" />
 
             </div>
 
 
             <div class="d-flex flex-lg-row flex-column-reverse justify-content-around align-items-center mt-5">
-                <img class="img-fluid rounded  col-lg-5 col-12" src="{{asset("images/pozadina-brojevi.jpeg")}}" />
+                <img class="img-fluid rounded  col-lg-5 col-12" alt="prostor baba Gina" src="{{asset("images/pozadina-brojevi.jpeg")}}" />
             <h5  class="col-lg-6 col-12 text-lg-end">- U međuvremenu, još jedan prostor u privatnom vlasništvu otvorio je svoja vrata za
                 aktivnosti SKCM-a: reč je o poslastičarnici Kod baba Gine, u kojoj se povemeno održavaju
                 biblioterapijske sesije i dečje radionice.</h5></div>

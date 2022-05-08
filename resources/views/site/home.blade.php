@@ -3,7 +3,7 @@
 @section("content")
     <section id="pocetna" class="h-auto w-auto p-5">
         <div id="" class="container-fluid d-flex p-3 justify-content-around flex-column flex-xl-row">
-            <img class="img-fluid glavnaSlika m-auto" src="{{asset("images/posters/"."glavna".$event->coverImg)}}" />
+            <img class="img-fluid glavnaSlika m-auto" alt="glavna slika" src="{{asset("images/posters/"."glavna".$event->coverImg)}}" />
             <div class="d-flex flex-column justify-content-center ms-5 mt-5 mt-xl-0 align-items-xl-start align-items-center">
 {{--                <h1 class="display-5">Bitan događaj koji sledi</h1>--}}
 {{--                <strong class="text-left">Naziv knjige: </strong>--}}
@@ -28,8 +28,8 @@
             <div class="d-flex flex-column align-items-center text-center justify-content-center">
                 <p class="fw-bold text-decoration-underline">Članstvo biblioteke</p>
                 <div class="d-flex">
-                    <img class="img-fluid" src="https://img.icons8.com/external-itim2101-lineal-itim2101/64/000000/external-reader-life-style-avatar-itim2101-lineal-itim2101-1.png" />
-                    <img class="img-fluid" src="https://img.icons8.com/external-itim2101-lineal-itim2101/64/000000/external-reader-life-style-avatar-itim2101-lineal-itim2101.png" />
+                    <img class="img-fluid" alt="reader" src="https://img.icons8.com/external-itim2101-lineal-itim2101/64/000000/external-reader-life-style-avatar-itim2101-lineal-itim2101-1.png" />
+                    <img class="img-fluid" alt="reader 2" src="https://img.icons8.com/external-itim2101-lineal-itim2101/64/000000/external-reader-life-style-avatar-itim2101-lineal-itim2101.png" />
 
                     <!-- <img src="https://img.icons8.com/external-itim2101-lineal-color-itim2101/64/000000/external-reader-life-style-avatar-itim2101-lineal-color-itim2101.png" />
                         <img src="https://img.icons8.com/external-itim2101-lineal-color-itim2101/64/000000/external-reader-life-style-avatar-itim2101-lineal-color-itim2101-1.png" /> -->
@@ -40,18 +40,18 @@
 
             <div class="d-flex flex-column align-items-center text-center justify-content-center">
                 <p class="fw-bold text-decoration-underline"> Knjižni fond</p>
-                <img class="img-fluid" src="https://img.icons8.com/external-prettycons-solid-prettycons/64/000000/external-books-education-prettycons-solid-prettycons-2.png" />
+                <img class="img-fluid" alt="knjige" src="https://img.icons8.com/external-prettycons-solid-prettycons/64/000000/external-books-education-prettycons-solid-prettycons-2.png" />
                 <h3 class="fw-bold knjige"></h3>
             </div>
             <div class=" d-flex flex-column align-items-center text-center justify-content-center">
                 <p class="fw-bold text-decoration-underline">Održanih dešavanja</p>
-                <img class="img-fluid" src="https://img.icons8.com/external-icongeek26-glyph-icongeek26/64/000000/external-events-donation-and-charity-icongeek26-glyph-icongeek26.png" />
+                <img class="img-fluid" alt="events" src="https://img.icons8.com/external-icongeek26-glyph-icongeek26/64/000000/external-events-donation-and-charity-icongeek26-glyph-icongeek26.png" />
                 <h3 class="fw-bold desavanja"></h3>
 
             </div>
             <div class=" d-flex flex-column align-items-center text-center justify-content-center">
                 <p class="fw-bold text-decoration-underline">Članstvo dečjeg kluba</p>
-                <img class="img-fluid" src="https://img.icons8.com/ios-filled/64/000000/children.png" />
+                <img class="img-fluid" alt="deca" src="https://img.icons8.com/ios-filled/64/000000/children.png" />
                 <h3 class="fw-bold deca"></h3>
 
             </div>
