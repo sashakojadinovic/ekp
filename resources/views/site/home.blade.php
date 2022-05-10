@@ -383,12 +383,14 @@
                                     </button>
                                 </div>
                                 <div class="modal-body d-flex flex-row text-start">
+
+
+
                                     <!-- <img class="img-fluid rounded" src="assets/img/onama1.jpg" /> -->
                                     <p>
                                         <span class="fw-bold">Projekat “Terapija kulturom“</span> nastao je iz potrebe da se ublaže negativne posledice
                                         pandemije na mentalno zdravlje. Inicirala ga je Aleksandra Miladinović, diplomirana
-                                        psihološkinja i edukantkinja porodične psihoterapije, a realizuje se u saradnji sa drugim
-                                        članicama SKCM-a.
+                                        psihološkinja i Sistemske porodične psihoterapije, a realizuje se u saradnji sa drugim članicama SKCM-a.
                                         <br/> <br/>
 
                                         <span class="text-decoration-underline fw-bold">Biblioterapija predstavlja</span> uticaj književnih dela na psihičko blagostanje. Čitanjem i
@@ -396,20 +398,24 @@
                                         sa događajima i likovima, razgovaraju o osećanjima i dolaze do uvida o sopstvenim postupcima i
                                         emocijama.
                                         <br/>
-                                        Slušajući iskustva i teškoće drugih, korisnici razgovaraju o zajedničkim iskustvima i
-                                        teškoćama, ali i o mogućim rešenjima problema.
+                                        Slušajući iskustva i teškoće drugih, korisnici razgovaraju o zajedničkim iskustvima i teškoćama, ali i o mogućim rešenjima problema.
+                                        Biblioterapijske seanse i radionice namenjene su deci i odraslima, a koriste se u različitim sferama-u obrazovanju, bibliotekarstvu, zdravstvenim ustanovama ili preventivnoj zaštiti.
                                         <br/>
-
+                                        Do sada smo održali devet biblioterapijskih seansi, na kojima smo čitali priče: "Promena", "Šala", "Božićna Priča", "Ko je kriv", "Staro gunđalo i dečak", "Vratimo nedelju", "Čvrsti predmeti", "Čista obijest", i "Ironija".
+<br/>
                                         Biblioterapijske seanse i radionice namenjene
                                         su deci i odraslima, a koriste se u različitim sferama-u obrazovanju, bibliotekarstvu,
                                         zdravstvenim ustanovama ili preventivnoj zaštiti.
 
                                         <br/>  <br/>
 
+
                                         <span class="fw-bold text-decoration-underline">Terapija filmom </span> uključuje projekciju i razgovor o filmu. Nakon pogledanog filma učesnici u
                                         filmoterapiji razgovaraju o sopstvenim doživljajima filma, poredeći ih sa ličnim iskustvima.
-                                        Imaju prilike da međusobno podele kako se osećaju, da te emocije zajedno razumeju i da iz njih
-                                        nešto nauče.
+                                        Imaju prilike da međusobno podele kako se osećaju, da te emocije zajedno razumeju i da iz njih nauče nešto o sebi,
+                                        sopstvenim uverenjima i postupcima i ljudima kojima su okruženi.
+                                        <br/>Od februara, do aprila, organizovane su projekcije i
+                                        razgovori o filmovima: "Dom", "Kako postati heroj" i "Dva dana, jedna noć".
                                         <br/> <br/>
 
 
