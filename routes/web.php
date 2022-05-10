@@ -79,8 +79,8 @@ Route::resource('projects', \App\Http\Controllers\ProjectController::class)->mid
 Route::resource('donors', \App\Http\Controllers\DonorController::class)->middleware('auth');
 //Route::resource('donors', \App\Http\Controllers\DonorController::class);
 
-Route::resource('events', \App\Http\Controllers\EventController::class)->middleware('auth');
-//Route::resource('events', \App\Http\Controllers\EventController::class);
+//Route::resource('events', \App\Http\Controllers\EventController::class)->middleware('auth');
+Route::resource('events', \App\Http\Controllers\EventController::class);
 
 Route::resource('blogs', \App\Http\Controllers\BlogController::class)->middleware('auth');
 //Route::resource('blogs', \App\Http\Controllers\BlogController::class);
@@ -89,10 +89,10 @@ Route::post('/addTag', [\App\Http\Controllers\BlogController::class, "addTag"])-
 //Route::post('/addTag', [\App\Http\Controllers\BlogController::class, "addTag"])->name("addTag");
 
 
-Route::get('/photos/{id}',[\App\Http\Controllers\EventController::class, 'photos'])->name("photos")->middleware('auth');
-//Route::get('/photosShow/{id}',[\App\Http\Controllers\EventController::class, 'photosShow'])->name("photosShow");
+//Route::get('/photos/{id}',[\App\Http\Controllers\EventController::class, 'photos'])->name("photos")->middleware('auth');
+Route::get('/photosShow/{id}',[\App\Http\Controllers\EventController::class, 'photosShow'])->name("photosShow");
 
-Route::get('/photos/{id}',[\App\Http\Controllers\EventController::class, 'photos'])->name("photos")->middleware('auth');
+Route::post('/photos/{id}',[\App\Http\Controllers\EventController::class, 'photos'])->name("photos")->middleware('auth');
 //Route::post('/photos/{id}',[\App\Http\Controllers\EventController::class, 'photos'])->name("photos");
 
 

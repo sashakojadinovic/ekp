@@ -11,7 +11,15 @@ body {
 html {
     scroll-behavior: smooth;
 }
-
+p,h5,h6,h4{
+    text-align: justify;
+}
+p{
+    font-size:17px;
+}
+.card .card-text{
+    font-size:14px;
+}
 .picture{
     /*max-height: 300px;*/
     max-height: 200px;
@@ -111,7 +119,7 @@ li {
     transform: scale(1.02);
 }
 #carouselExampleControls{
-   position: fixed;
+    position: fixed;
     right:0;
     left: 0;
     top:5%;
@@ -119,7 +127,7 @@ li {
     height: 70%;
     z-index: 10000;
     /*background-size: cover;*/
- }
+}
 
 .overlay{
     position: fixed;
@@ -135,8 +143,8 @@ li {
 #vesti .card:hover {
     /* border: hsl(145, 15%, 16%); */
     /*transform: scale(1.001);*/
-    border-bottom: 0.3rem solid rgba(132, 131, 130, 1);
-    ;
+    border-bottom: 0.3rem solid rgb(210, 210, 210);
+
 }
 
 #slajder {
@@ -221,7 +229,8 @@ hr {
 footer {
     height: 100%;
     width: 100%;
-/*background-color: rgba(132, 131, 130, 1)*/
+    /*min-height:40.9vh;*/
+    /*background-color: rgba(132, 131, 130, 1)*/
 }
 
 .animacija {
@@ -234,9 +243,10 @@ footer {
     background-size: cover;
     width: 100%;
     height: 100%;
-    min-height: 700px;
-    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' version='1.1' xmlns:xlink='http://www.w3.org/1999/xlink' xmlns:svgjs='http://svgjs.com/svgjs' width='1440' height='700' preserveAspectRatio='none' viewBox='0 0 1440 700'%3e%3cg mask='url(%26quot%3b%23SvgjsMask1007%26quot%3b)' fill='none'%3e%3cpath d='M 0%2c18 C 96%2c37.8 288%2c107.2 480%2c117 C 672%2c126.8 768%2c67.2 960%2c67 C 1152%2c66.8 1344%2c106.2 1440%2c116L1440 700L0 700z' fill='%23c2cc67'%3e%3c/path%3e%3cpath d='M 0%2c277 C 57.6%2c272.8 172.8%2c257 288%2c256 C 403.2%2c255 460.8%2c284.2 576%2c272 C 691.2%2c259.8 748.8%2c188 864%2c195 C 979.2%2c202 1036.8%2c310.4 1152%2c307 C 1267.2%2c303.6 1382.4%2c203.8 1440%2c178L1440 700L0 700z' fill='rgba(255%2c 255%2c 255%2c 1)'%3e%3c/path%3e%3cpath d='M 0%2c412 C 288%2c433.6 1152%2c498.4 1440%2c520L1440 700L0 700z' fill='rgba(255%2c 255%2c 255%2c 1)'%3e%3c/path%3e%3cpath d='M 0%2c559 C 41.2%2c573.8 123.6%2c638 206%2c633 C 288.4%2c628 329.6%2c525.6 412%2c534 C 494.4%2c542.4 535.6%2c664 618%2c675 C 700.4%2c686 741.6%2c598.4 824%2c589 C 906.4%2c579.6 947.6%2c625 1030%2c628 C 1112.4%2c631 1154%2c591.6 1236%2c604 C 1318%2c616.4 1399.2%2c672.8 1440%2c690L1440 700L0 700z' fill='rgba(132%2c 131%2c 130%2c 1)'%3e%3c/path%3e%3c/g%3e%3cdefs%3e%3cmask id='SvgjsMask1007'%3e%3crect width='1440' height='700' fill='white'%3e%3c/rect%3e%3c/mask%3e%3c/defs%3e%3c/svg%3e");
-    /*background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' version='1.1' xmlns:xlink='http://www.w3.org/1999/xlink' xmlns:svgjs='http://svgjs.com/svgjs' width='1440' height='350' preserveAspectRatio='none' viewBox='0 0 1440 560'%3e%3cg mask='url(%26quot%3b%23SvgjsMask1032%26quot%3b)' fill='none'%3e%3crect width='1440' height='560' x='0' y='0' fill='rgba(205%2c 192%2c 170%2c 1)'%3e%3c/rect%3e%3cpath d='M 0%2c41 C 96%2c78 288%2c219.6 480%2c226 C 672%2c232.4 768%2c76.8 960%2c73 C 1152%2c69.2 1344%2c180.2 1440%2c207L1440 560L0 560z' fill='rgba(252%2c 252%2c 252%2c 1)'%3e%3c/path%3e%3cpath d='M 0%2c476 C 57.6%2c454 172.8%2c368.2 288%2c366 C 403.2%2c363.8 460.8%2c462.4 576%2c465 C 691.2%2c467.6 748.8%2c374 864%2c379 C 979.2%2c384 1036.8%2c506.2 1152%2c490 C 1267.2%2c473.8 1382.4%2c336.4 1440%2c298L1440 560L0 560z' fill='rgba(177%2c 142%2c 117%2c 1)'%3e%3c/path%3e%3c/g%3e%3cdefs%3e%3cmask id='SvgjsMask1032'%3e%3crect width='1440' height='560' fill='white'%3e%3c/rect%3e%3c/mask%3e%3c/defs%3e%3c/svg%3e");*/
+    min-height: 89.9vh;
+    /*background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' version='1.1' xmlns:xlink='http://www.w3.org/1999/xlink' xmlns:svgjs='http://svgjs.com/svgjs' width='1440' height='700' preserveAspectRatio='none' viewBox='0 0 1440 700'%3e%3cg mask='url(%26quot%3b%23SvgjsMask1007%26quot%3b)' fill='none'%3e%3cpath d='M 0%2c18 C 96%2c37.8 288%2c107.2 480%2c117 C 672%2c126.8 768%2c67.2 960%2c67 C 1152%2c66.8 1344%2c106.2 1440%2c116L1440 700L0 700z' fill='%23c2cc67'%3e%3c/path%3e%3cpath d='M 0%2c277 C 57.6%2c272.8 172.8%2c257 288%2c256 C 403.2%2c255 460.8%2c284.2 576%2c272 C 691.2%2c259.8 748.8%2c188 864%2c195 C 979.2%2c202 1036.8%2c310.4 1152%2c307 C 1267.2%2c303.6 1382.4%2c203.8 1440%2c178L1440 700L0 700z' fill='rgba(255%2c 255%2c 255%2c 1)'%3e%3c/path%3e%3cpath d='M 0%2c412 C 288%2c433.6 1152%2c498.4 1440%2c520L1440 700L0 700z' fill='rgba(255%2c 255%2c 255%2c 1)'%3e%3c/path%3e%3cpath d='M 0%2c559 C 41.2%2c573.8 123.6%2c638 206%2c633 C 288.4%2c628 329.6%2c525.6 412%2c534 C 494.4%2c542.4 535.6%2c664 618%2c675 C 700.4%2c686 741.6%2c598.4 824%2c589 C 906.4%2c579.6 947.6%2c625 1030%2c628 C 1112.4%2c631 1154%2c591.6 1236%2c604 C 1318%2c616.4 1399.2%2c672.8 1440%2c690L1440 700L0 700z' fill='rgba(132%2c 131%2c 130%2c 1)'%3e%3c/path%3e%3c/g%3e%3cdefs%3e%3cmask id='SvgjsMask1007'%3e%3crect width='1440' height='700' fill='white'%3e%3c/rect%3e%3c/mask%3e%3c/defs%3e%3c/svg%3e");*/
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' version='1.1' xmlns:xlink='http://www.w3.org/1999/xlink' xmlns:svgjs='http://svgjs.com/svgjs' width='1440' height='700' preserveAspectRatio='none' viewBox='0 0 1440 700'%3e%3cg mask='url(%26quot%3b%23SvgjsMask1007%26quot%3b)' fill='none'%3e%3cpath d='M 0%2c18 C 96%2c37.8 288%2c107.2 480%2c117 C 672%2c126.8 768%2c67.2 960%2c67 C 1152%2c66.8 1344%2c106.2 1440%2c116L1440 700L0 700z' fill='%23c2cc67'%3e%3c/path%3e%3cpath d='M 0%2c277 C 57.6%2c272.8 172.8%2c257 288%2c256 C 403.2%2c255 460.8%2c284.2 576%2c272 C 691.2%2c259.8 748.8%2c188 864%2c195 C 979.2%2c202 1036.8%2c310.4 1152%2c307 C 1267.2%2c303.6 1382.4%2c203.8 1440%2c178L1440 700L0 700z' fill='rgba(210%2c 210%2c 210%2c 1)'%3e%3c/path%3e%3cpath d='M 0%2c412 C 288%2c433.6 1152%2c498.4 1440%2c520L1440 700L0 700z' fill='rgba(255%2c 255%2c 255%2c 1)'%3e%3c/path%3e%3cpath d='M 0%2c559 C 41.2%2c573.8 123.6%2c638 206%2c633 C 288.4%2c628 329.6%2c525.6 412%2c534 C 494.4%2c542.4 535.6%2c664 618%2c675 C 700.4%2c686 741.6%2c598.4 824%2c589 C 906.4%2c579.6 947.6%2c625 1030%2c628 C 1112.4%2c631 1154%2c591.6 1236%2c604 C 1318%2c616.4 1399.2%2c672.8 1440%2c690L1440 700L0 700z' fill='rgba(210%2c 210%2c 210%2c 1)'%3e%3c/path%3e%3c/g%3e%3cdefs%3e%3cmask id='SvgjsMask1007'%3e%3crect width='1440' height='700' fill='white'%3e%3c/rect%3e%3c/mask%3e%3c/defs%3e%3c/svg%3e");
+
 }
 
 .card-header {
