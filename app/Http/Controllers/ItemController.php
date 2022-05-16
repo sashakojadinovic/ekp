@@ -48,17 +48,21 @@ class ItemController extends Controller
      */
     public function store(Request $request)
     {
+        //dd($request);
         $item = new Item;
+        $locations = Location::all();
         $content = $request->validate([
             'signature' => 'required',
             'donator_array' => 'present',
             'available' => 'present',
-            'book_id' => 'required | integer'
+            'book_id' => 'required | integer',
+            'location'=>'required | integer'
         ]);
         $item->signature = $content['signature'];
         $item->available = $content['available'];
         $item->donator()->associate($content['donator_array']);
         $item->book()->associate($content['book_id']);
+        $item->location()->associate($content['location']);
         $item->save();
         $category = $item->book()->first()->categories()->first();
         $category->counter= $category->counter+1;
@@ -68,7 +72,7 @@ class ItemController extends Controller
         /* $next_num_of_books_in_cat = count(Category::find($book->categories()->first())->books()->get())+1;
         $category_short = strtoupper(substr(Category::find($book->categories()->first()->id)->name,0,2)); */
         //return view('item.item-create', ['book'=>$book,'signature'=>$category_short.$next_num_of_books_in_cat]);
-        return view('item.item-create', ['book' => $book,'signature' => $category->prefix . ($category->counter+1)]);
+        return view('item.item-create', ['book' => $book,'signature' => $category->prefix . ($category->counter+1),'locations'=>$locations]);
     }
 
     /**
@@ -90,7 +94,8 @@ class ItemController extends Controller
      */
     public function edit(Item $item)
     {
-        //
+        $locations = Location::all();
+        return view('item.item-edit',['item'=>$item,'locations'=>$locations]);
     }
 
     /**
@@ -102,7 +107,18 @@ class ItemController extends Controller
      */
     public function update(Request $request, Item $item)
     {
-        //
+        $content = $request->validate([
+            'signature'=>'required',
+            'available'=>'present',
+            'location'=>'present | integer'
+        ]);
+        //dd($content);
+        //$item->location()->disassociate();
+        $item->location()->associate($content['location']);
+        $item->update(['signature'=>$content['signature'],'available'=>$content['available']]);
+
+
+        return redirect("/books/".$item->book()->first()->id);
     }
 
     /**

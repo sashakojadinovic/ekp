@@ -16,8 +16,8 @@
                         </div>
                         <div class="modal-footer">
                             <button type="button" data-bs-toggle="modal" data-bs-target="#modalWarning"
-                                class="btn btn-secondary" data-bs-dismiss="modal">Odustani</button>
-                            <button id="confirmBtn" data-borrowing="" onclick="removeBorrowing(JSON.parse(this.dataset.borrowing))" type="button" class="btn btn-dark">Razduži</button>
+                                class="btn btn-secondary rounded-pill" data-bs-dismiss="modal">Odustani</button>
+                            <button id="confirmBtn" data-borrowing="" onclick="removeBorrowing(JSON.parse(this.dataset.borrowing))" type="button" class="btn btn-danger rounded-pill">Razduži</button>
                         </div>
                     </div>
                 </div>

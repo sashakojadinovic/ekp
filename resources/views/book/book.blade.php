@@ -16,8 +16,8 @@
                         </div>
                         <div class="modal-footer">
                             <button type="button" data-bs-toggle="modal" data-bs-target="#deleteModalWarning"
-                                class="btn btn-secondary" data-bs-dismiss="modal">Odustani</button>
-                            <button id="confirmBtn" type="button" class="btn btn-danger">Izbriši</button>
+                                class="btn btn-secondary rounded-pill" data-bs-dismiss="modal">Odustani</button>
+                            <button id="confirmBtn" type="button" class="btn btn-danger rounded-pill">Izbriši</button>
                         </div>
                     </div>
                 </div>
@@ -81,7 +81,6 @@
                                     @endforeach
                                 @endif
 
-                                {{-- {{ $book->authors()->first() ? $book->authors()->first()->name : '' }} --}}
                             </span>
                         </h6>
                         <h6 class="fw-bold">Kategorija:
@@ -90,8 +89,8 @@
                         </h6>
                         <h6 class="fw-bold">Izdavač:
                             @foreach ($book->publishers()->get() as $publisher)
-                                    <a class="py-0 fw-normal text-decoration-none"
-                                        href="/publishers/{{ $publisher->id }}">{{ $loop->first? $publisher->name:", ".$publisher->name }}</a>
+                                <a class="py-0 fw-normal text-decoration-none"
+                                    href="/publishers/{{ $publisher->id }}">{{ $loop->first ? $publisher->name : ', ' . $publisher->name }}</a>
                             @endforeach
                         </h6>
                         <h6 class="fw-bold">Godina izdanja: <span
@@ -121,7 +120,9 @@
                             <th scope="col">Signatura</th>
                             <th>Donator</th>
                             <th scope="col">Status</th>
+                            <th scope="col">Izdavanje</th>
                             <th scope="col">Akcija</th>
+
                         </thead>
                         <tbody>
                             @foreach ($book->items()->get() as $item)
@@ -132,7 +133,8 @@
                                     <td>
                                         @if ($item->borrowing()->exists())
                                             <p class="mb-0 text-danger">Izdato <i class="bi bi-arrow-right"></i>
-                                                <a class="text-danger text-decoration-none" href="/readers/{{ $item->borrowing()->first()->reader()->first()->id }}">
+                                                <a class="text-danger text-decoration-none"
+                                                    href="/readers/{{ $item->borrowing()->first()->reader()->first()->id }}">
                                                     {{ $item->borrowing()->first()->reader()->first()->name }}</a>
                                             </p>
                                         @else
@@ -152,10 +154,14 @@
                                                 </button>
 
                                             </form>
+                                        @else
+                                            <a class="btn btn-dark rounded-pill btn-sm "
+                                                href="/borrowings/create/?id={{ $item->id }}">Izdaj</a>
                                     </td>
-                                @else
-                                    <a class="btn btn-dark rounded-pill btn-sm "
-                                        href="/borrowings/create/?id={{ $item->id }}">Izdaj</a></td>
+                                    <td>
+                                        <a class="btn btn-success rounded-pill btn-sm"
+                                        href="/items/{{ $item->id }}/edit"><i class="bi bi-pencil-square"> </i> Izmeni </a>
+                                    </td>
                             @endif
 
                             </tr>

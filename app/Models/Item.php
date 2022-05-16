@@ -7,6 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Item extends Model
 {
+    protected $fillable = [
+        'signature','available'
+    ];
     use HasFactory;
     public function book(){
         return $this->belongsTo(Book::class);
