@@ -4,7 +4,7 @@
     <div class="wave mt-4">
         <section class="container ">
             <div class="d-flex flex-lg-row flex-column justify-content-around align-items-center ">
-                <h5 class="col-lg-6 col-12 text-lg-start">- 2019. Umetnička grupa <a class="text-center" href="https://www.hop-la.org/">Hop.La!</a>
+                <h5 class="col-lg-6 col-12">- 2019. Umetnička grupa <a class="text-center" href="https://www.hop-la.org/">Hop.La!</a>
                     otpočela je saradnju sa Vojislavom Nikolić i Veroslavom
                     Petrović, naslednicama domaćinstva Nade Babić, koje se nalazi u ulici Nikole Pašića 52
                     <span class="fst-italic">(poznatoj i pod kolokvijalnim nazivom Carigradski drum)</span> u Markovcu. Dramske radionice za
@@ -23,7 +23,7 @@
             <div class="d-flex flex-lg-row flex-column-reverse justify-content-around align-items-center mt-5">
                 <img class="img-fluid rounded col-lg-5 col-12  " src="{{asset("images/podrum.jpg")}}" />
 
-                <h5 class="col-lg-6 col-12 text-lg-end">- 2020. godine adaptiran je stari vinski podrum u ovom domaćinstvu, i u tom prostoru
+                <h5 class="col-lg-6 col-12">- 2020. godine adaptiran je stari vinski podrum u ovom domaćinstvu, i u tom prostoru
                     otvorena je Čitaonica „Ekatarina Petrović“, koja i sada radi, naročito u letnjim mesecima, i
                     kao prostor za držanje i izdavanje knjiga, i kao mesto za održavanje manjih događaja i
                     radionica Dečjeg kluba.
@@ -37,7 +37,7 @@
             </div>
 
             <div class="d-flex flex-lg-row flex-column justify-content-around align-items-center mt-5">
-                <h5 class="col-lg-6 col-12 text-lg-start">- <span class="fw-bold">SKCM</span> se dugoročno zalaže za vraćanje zgrade Doma kulture osnovnoj nameni i neophodnu
+                <h5 class="col-lg-6 col-12">- <span class="fw-bold">SKCM</span> se dugoročno zalaže za vraćanje zgrade Doma kulture osnovnoj nameni i neophodnu
                     rekonstrukciju koja će ovaj prostor spasiti daljeg propadanja. Tome shodno, organizovano je
                     više radnih akcija kojima je očišćena pozornica, donekle sređene instalacije i omogućeno
                     izvođenje nekoliko pozorišnih programa u ovom prostoru, posle duge pauze. Nekoliko
@@ -55,7 +55,7 @@
 
             <div class="d-flex flex-lg-row flex-column-reverse justify-content-around align-items-center mt-5">
                 <img class="img-fluid rounded  col-lg-5 col-12" src="{{asset("images/nova.jpg")}}" />
-                <h5  class="col-lg-6 col-12 text-lg-end">- U međuvremenu, još jedan prostor u privatnom vlasništvu otvorio je svoja vrata za
+                <h5  class="col-lg-6 col-12">- U međuvremenu, još jedan prostor u privatnom vlasništvu otvorio je svoja vrata za
                     aktivnosti SKCM-a: reč je o poslastičarnici Kod baba Gine, u kojoj se povemeno održavaju
                     biblioterapijske sesije i dečje radionice.</h5></div>
         </section>
