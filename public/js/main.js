@@ -128,6 +128,8 @@ function events(events, value){
                             <h5 class="card-title  fw-bold">${e.title}</h5>
                             <p class="card-text">${e.desc}</p>
                            <small class="text-muted">Datum održavanja: </small> <p class="card-text">${e.date}</p>
+                                       <small class="text-decoration-underline">${e.project.name}</small>
+
                         </div>
                     </div>`
     }

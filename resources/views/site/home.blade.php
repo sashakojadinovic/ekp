@@ -4,7 +4,7 @@
     <section id="pocetna" class="h-auto w-auto p-5">
         <div id="" class="container-fluid d-flex p-3 justify-content-around flex-column flex-xl-row">
             <img class="img-fluid glavnaSlika m-auto" src="{{asset("images/posters/"."glavna".$event->coverImg)}}" />
-            <div class="d-flex flex-column justify-content-center ms-5 mt-5 mt-xl-0 align-items-xl-start align-items-center">
+            <div class="d-flex flex-column justify-content-center ms-xl-5 mt-5 mt-xl-0 align-items-xl-start align-items-center">
                 {{--                <h1 class="display-5">Bitan događaj koji sledi</h1>--}}
                 {{--                <strong class="text-left">Naziv knjige: </strong>--}}
                 {{--                <h2 class="text-decoration-underline mb-lg-5 mb-xl-5">{{$event->title}}--}}
@@ -23,7 +23,7 @@
     </section>
 
     <section id="brojevi" class="d-flex align-items-center justify-content-around p-5">
-        <div class="row row-cols-md-4 row-cols-sm-2 row-cols-2 d-flex justify-content-around w-100">
+        <div class="row row-cols-md-4 row-cols-sm-2 row-cols-1 d-flex justify-content-around w-100">
 
             <div class="d-flex flex-column align-items-center text-center justify-content-center">
                 <p class="fw-bold text-decoration-underline">Članstvo biblioteke</p>
@@ -65,7 +65,7 @@
 
 
             <div class="d-flex justify-content-between flex-xl-row flex-lg-row flex-column-reverse">
-                <div class="col-12 col-lg-6 slikaOnama">
+                <div class="col-12 col-lg-6 slikaOnama d-sm-block d-none">
                     <div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel">
                         <div class="carousel-inner senka rounded">
                             @foreach($photos as $p)
@@ -130,9 +130,9 @@
 
         <section id="radionice" class="d-flex flex-row h-100 d-flex justify-content-around mb-5">
 
-            <div class="container row row-cols-sm-2 row-cols-1 row-cols-xs-2 row-cols-md-2 row-cols-lg-2 row-cols-xl-4 g-4">
+            <div class="container row row-cols-1 row-cols-md-2 row-cols-xl-4 g-4">
 
-                <div class="text-center">
+                <div class="text-center d-flex align-items-center flex-column">
                     <caption class=" mb-1">Čitaonica "Ekatarina Pavlović"</caption>
 
                     <!-- Button trigger modal -->
@@ -221,7 +221,7 @@
                     </div>
 
                 </div>{{--@foreach($projects as $p)--}}
-                <div class="text-center">
+                <div class="text-center d-flex align-items-center flex-column">
                     <caption class=" mb-1">Dečji klub</caption>
 
                     <!-- Button trigger modal -->
@@ -294,7 +294,7 @@
                 </div>
 
 
-                <div class="text-center">
+                <div class="text-center d-flex align-items-center flex-column">
                     <caption class=" mb-1">Kamišibaji</caption>
 
                     <!-- Button trigger modal -->
@@ -363,7 +363,7 @@
 
 
 
-                <div class="text-center">
+                <div class="text-center d-flex align-items-center flex-column">
                     <caption class=" mb-1">Terapija kulturom</caption>
 
                     <!-- Button trigger modal -->

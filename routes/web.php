@@ -79,8 +79,8 @@ Route::resource('projects', \App\Http\Controllers\ProjectController::class)->mid
 Route::resource('donors', \App\Http\Controllers\DonorController::class)->middleware('auth');
 //Route::resource('donors', \App\Http\Controllers\DonorController::class);
 
-//Route::resource('events', \App\Http\Controllers\EventController::class)->middleware('auth');
-Route::resource('events', \App\Http\Controllers\EventController::class);
+Route::resource('events', \App\Http\Controllers\EventController::class)->middleware('auth');
+//Route::resource('events', \App\Http\Controllers\EventController::class);
 
 Route::resource('blogs', \App\Http\Controllers\BlogController::class)->middleware('auth');
 //Route::resource('blogs', \App\Http\Controllers\BlogController::class);

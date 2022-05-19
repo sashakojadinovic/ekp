@@ -35,7 +35,7 @@
                             </div>
                         </button>
 
-                        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-bs-parent="#accordion">
+                        <div id="collapseTwo" class="collapse show" aria-labelledby="headingTwo" data-bs-parent="#accordion">
                             <div class="card-body">
                                 {{--                                <p>Neki tekst o zahvalnosti za volontiranja i koliko nam to znaci</p>--}}
                                 <h5>
@@ -88,7 +88,7 @@
                             </div>
                         </button>
 
-                        <div id="collapseFour" class="collapse show" aria-labelledby="headingFour" data-bs-parent="#accordion">
+                        <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-bs-parent="#accordion">
                             <div class="card-body">
                                 <p>
                                     Doniraj novac: <br/>
