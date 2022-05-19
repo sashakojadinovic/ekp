@@ -25,6 +25,7 @@ window.onload = function() {
     if(window.location.href.includes("vesti")) {
             $('#dates').click(dates)
         $('.pag').click(paginacija)
+        $('.kat').change(kat)
 
     }
 
@@ -99,12 +100,13 @@ function prikazi(e){
 function dates(pag){
     let page=1;
     let value=true;
+    let kat=$('.kat').val();
 console.log(pag)
     if($.isNumeric( pag )){
         page=pag
         value=false
     }
-    else{
+    else if(pag!="kat"){
        if($('#filter').val()=="all"){
             $('#filter').val("nearest")
        }
@@ -112,8 +114,11 @@ console.log(pag)
             $('#filter').val("all")
        }
     }
+//     if(pag=="kat"){
+// kat=$('.kat').val()
+//     }
     let date=$("#filter").val();
-        callBackAjax("/vesti", "GET",{"page":page,  "date":date}, function success(data){
+        callBackAjax("/vesti", "GET",{"page":page,  "date":date, "kat":kat}, function success(data){
             console.log(data)
             events(data, value)}, true)
 }
@@ -121,8 +126,14 @@ console.log(pag)
 
 function events(events, value){
     let html=``
-    for(e of events.data){
-        html+=` <div class="card d-flex flex-row flex-lg-nowrap flex-xl-nowrap flex-wrap  shadow">
+    if(events.data.length==0){
+        html="<h1>Za izabranu kategoriju nema rezultata.</h1>"
+        $('#events').html(html)
+
+    }
+    else {
+        for (e of events.data) {
+            html += ` <div class="card d-flex flex-row flex-lg-nowrap flex-xl-nowrap flex-wrap  shadow">
                         <img class="img-fluid galleryOne" src="images/posters/${e.coverImg}" alt="${e.title}">
                         <div class="card-body">
                             <h5 class="card-title  fw-bold">${e.title}</h5>
@@ -132,51 +143,49 @@ function events(events, value){
 
                         </div>
                     </div>`
-    }
-if(value){
-    if($('#filter').val()=="all"){
-        $('#tekst').text("Prikazani su samo događaji koji slede")
-        $('#dates').text("Prikaži sve vesti i sve događaje")
-    }
-    else{
+        }
 
-        $('#tekst').text("Prikazane su sve vesti i svi događaji")
-        $('#dates').text("Prikaži samo događaje koji slede")
-    }
-}
-    $('#events').html(html)
-    let next;
-let prev;
-if(events.current_page+1<=events.last_page){
-     next=events.current_page+1;
-}
-    else{
-        next=events.last_page;
-}
-    if(events.current_page-1>=1){
-        prev=events.current_page-1;
-    }
-    else{
-        prev=1;
-    }
-    html=` <li class="page-item">
+        $('#events').html(html)
+        let next;
+        let prev;
+        if (events.current_page + 1 <= events.last_page) {
+            next = events.current_page + 1;
+        } else {
+            next = events.last_page;
+        }
+        if (events.current_page - 1 >= 1) {
+            prev = events.current_page - 1;
+        } else {
+            prev = 1;
+        }
+        html = ` <li class="page-item">
                         <a class="page-link pag" id="${prev}" href="" aria-label="Previous">
                             <span aria-hidden="true">&laquo;</span>
                             <span class="sr-only">Prethodna</span>
                         </a>
                     </li>`
-    for(let i=1;i<=events.last_page;i++){
-        html+=`<li class="page-item"><a href="#" id="${i}" class="page-link pag">${i}</a></li>
+        for (let i = 1; i <= events.last_page; i++) {
+            html += `<li class="page-item"><a href="#" id="${i}" class="page-link pag">${i}</a></li>
 `
-    }
-    html+=` <li class="page-item">
+        }
+        html += ` <li class="page-item">
                         <a class="page-link pag" id="${next}" href="" aria-label="Next">
                             <span aria-hidden="true">&raquo;</span>
                             <span class="sr-only">Naredna</span>
                         </a>
                     </li>`
 
-    $('#pag').html(html)
+    $('#pag').html(html)}
+    if (value) {
+        if ($('#filter').val() == "all") {
+            $('#tekst').text("Prikazani su samo događaji koji slede")
+            $('#dates').text("Prikaži sve vesti i sve događaje")
+        } else {
+
+            $('#tekst').text("Prikazane su sve vesti i svi događaji")
+            $('#dates').text("Prikaži samo događaje koji slede")
+        }
+    }
     $('.pag').click(paginacija)
 
 }
@@ -231,4 +240,8 @@ function paginacija(e){
     e.preventDefault();
     let id=this.id
     dates(id)
+}
+
+function kat(){
+    dates("kat")
 }

@@ -6,7 +6,15 @@
             <input type="hidden" value="" id="filter">
 
             <h3 id="tekst">Prikazane su sve vesti i svi događaji</h3>
+            <div class="d-flex flex-row justify-content-between">
             <button class="btn btn-site px-2 py-0 fw-bold" id="dates">Prikaži samo događaje koji slede</button>
+            <select class="kat form-select-sm col-3">
+                <option value="0" class="form-control">Sve kategorije</option>
+@foreach($kategorije as $k)
+                    <option value="{{$k->id}}" class="form-control">{{$k->name}}</option>
+
+                @endforeach
+            </select></div>
             <div class="card-deck row gy-4 gx-0 mt-1" id="events">
 
             @foreach($events as $e)
