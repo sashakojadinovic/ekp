@@ -98,6 +98,7 @@ class PublisherController extends Controller
      */
     public function destroy(Publisher $publisher)
     {
+        $publisher->books()->detach();
         $publisher->delete();
         return redirect("/publishers");
     }

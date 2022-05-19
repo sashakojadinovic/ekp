@@ -17,10 +17,12 @@ class CreateBooksTable extends Migration
         Schema::create('books', function (Blueprint $table) {
             $table->id();
             $table->string('title');
+            $table->string('img_url')->nullable();
+            $table->string('year')->nullable();
             //$table->foreignIdFor(Donator::class);
-            $table->string('age');
-            $table->text('description');
-            $table->text('comment');
+            $table->string('age')->nullable();
+            $table->text('info')->nullable();
+            $table->text('comment')->nullable();
             $table->timestamps();
         });
     }

@@ -41,6 +41,16 @@
                                 <label class="form-label mb-3" for="reader-id">Broj članske karte</label>
                                 <input class="form-control bg-white rounded-pill" type="text" name="reader_card"
                                     id="reader-card">
+                                <div class="my-2 position-relative">
+
+                                    <label class="form-label" for="reader">Ime i prezime: </label>
+                                    <div class="tag-container position-relative form-control bg-white rounded-pill  ps-2">
+                                        <input placeholder="Pronađi..." type="text" data-model="Reader" name="reader_name"
+                                            id="reader">
+
+                                    </div>
+                                    <input id="reader-array" type="hidden" name="reader_array">
+                                </div>
                             </div>
 
                         </div>
@@ -63,6 +73,8 @@
     <script src="{{ URL::asset('js/autocomplete.js') }}"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
+            document.getElementById('reader').addEventListener('input', (e) => getData(e.target, e.target.dataset
+                .model));
             if (document.getElementById('signature')) {
                 document.getElementById('signature').addEventListener('input', e => getData(e.target, e.target
                     .dataset

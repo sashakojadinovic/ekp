@@ -69,5 +69,23 @@ textarea.form-control{
 .autocomplete{
     z-index:100;
 }
+.tag-container {
+    input[type=text]{
+        border:none;
+        &:focus-visible{
+        outline:none;
+    }
 
+    }
+}
+
+.form-switch .form-check-input{
+    width:2.5em;
+    height:1.5em;
+    margin-left:-1em;
+}
+.form-check-input:checked {
+    background-color:$gray-900;
+    border-color: $gray-900;
+}
 

@@ -7,6 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Item extends Model
 {
+    protected $fillable = [
+        'signature','available'
+    ];
     use HasFactory;
     public function book(){
         return $this->belongsTo(Book::class);
@@ -16,5 +19,8 @@ class Item extends Model
     }
     public function borrowing(){
         return $this->hasOne(Borrowing::class);
+    }
+    public function location(){
+        return $this->belongsTo(Location::class);
     }
 }

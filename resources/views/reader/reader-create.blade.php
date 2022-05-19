@@ -11,14 +11,23 @@
                 <form action="/readers" method="POST">
                     @csrf
                     <div class="row">
-                        <div class="my-2 col-md-6">
+                        <div class="my-2 col-md-3">
                             <label class="form-label" for="reader-card">Broj članske karte</label>
-                            <input class="form-control bg-white rounded-pill" type="text" name="card_id" id="reader-card">
+                            <input placeholder="automatski dodeljen" class="form-control bg-white rounded-pill" type="text" name="card_id" id="reader-card">
+                        </div>
+                        <div class="my-2 col-md-3">
+                            <label class="form-label" for="reader-name">Pol</label>
+                            <select class="form-select bg-white rounded-pill" name="gender" id="reader-gender">
+                                <option value="-1" selected>Odaberite pol</option>
+                                <option value="0">Ženski</option>
+                                <option value="1">Muški</option>
+                            </select>
                         </div>
                         <div class="my-2 col-md-6">
                             <label class="form-label" for="reader-name">Ime i prezime</label>
                             <input class="form-control bg-white rounded-pill" type="text" name="name" id="reader-name">
                         </div>
+
                     </div>
                     <div class="row">
                         <div class="my-2 col-md-6">
@@ -61,8 +70,8 @@
 
 
                     <div class="d-flex justify-content-end">
-                        <a href="/readers" class="btn btn-outline-dark rounded-pill  mt-2"><i class="bi bi-x-circle"> </i>Odustani </a>
-                        <button type="submit" class="btn btn-outline-dark rounded-pill mt-2 mx-1"><i class="bi bi-cloud-arrow-up"> </i>
+                        <a href="/readers" class="btn btn-secondary rounded-pill  mt-2"><i class="bi bi-x-circle"> </i>Odustani </a>
+                        <button type="submit" class="btn btn-danger rounded-pill mt-2 mx-1"><i class="bi bi-cloud-arrow-up"> </i>
                             Sačuvaj</button>
                     </div>
 

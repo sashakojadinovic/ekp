@@ -1,0 +1,2 @@
+updateExistingPivot - update an existing row in your relationship's intermediate table $book->authors()->updateExistingPivot(2,[book_id=>70])
+allRelatedIds - return a Collection of the related model's ids that appear in the pivot table against the initial model - $book->authors()->allRelatedIds(); returns authors ids

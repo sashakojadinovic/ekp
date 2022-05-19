@@ -100,6 +100,12 @@ class DonatorController extends Controller
      */
     public function destroy(Donator $donator)
     {
+        //$donator->books()->delete();
+        foreach($donator->items()->get() as $item){
+            //$item->donator()->dissociate();
+            $item->donator_id=0;
+            $item->save();
+        }
         $donator->delete();
         return redirect("/donators");
     }

@@ -39,9 +39,11 @@ class CategoryController extends Controller
         $category = new Category;
         $content = $request->validate([
             'name'=>'required',
+            'prefix'=>'required',
             'info'=>'present'
         ]);
         $category->name=$content['name'];
+        $category->prefix=$content['prefix'];
         $category->info=$content['info'];
         $category->save();
         return redirect('/categories');
@@ -82,9 +84,10 @@ class CategoryController extends Controller
     {
         $content = $request->validate([
             'name'=>'required',
+            'prefix'=>'required',
             'info'=>'present'
         ]);
-        $category->update(['name'=>$content['name'],'info'=>$content['info']]);
+        $category->update(['name'=>$content['name'],'prefix'=>$content['prefix'],'info'=>$content['info']]);
         return redirect("/categories/$category->id");
     }
 
@@ -96,6 +99,9 @@ class CategoryController extends Controller
      */
     public function destroy(Category $category)
     {
+        if($category->books()->first()){
+            return back()->withErrors(['notempty'=>'Kategorija ne može biti izbrisana dok postoje izdanja u toj kategoriji']);
+        }
         $category->delete();
         return redirect('/categories');
     }

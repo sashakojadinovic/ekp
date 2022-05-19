@@ -9,8 +9,9 @@ use App\Http\Controllers\PublisherController;
 use App\Http\Controllers\ReaderController;
 use App\Http\Controllers\AutoCompleteController;
 use App\Http\Controllers\BorrowingController;
+use App\Http\Controllers\CsvUploadController;
 use App\Http\Controllers\ItemController;
-use App\Http\Controllers\TestController;
+use App\Http\Controllers\LocationController;
 
 /*
 |--------------------------------------------------------------------------
@@ -49,29 +50,32 @@ Auth::routes([
 ]);
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::resource('categories', CategoryController::class)->except(['index','show'])->middleware('auth');
-Route::resource('categories', CategoryController::class)->only(['index','show']);
+Route::resource('categories', CategoryController::class)->middleware('auth');
+//Route::resource('categories', CategoryController::class)->only(['index','show']);
 
-Route::resource('publishers', PublisherController::class)->except(['index','show'])->middleware('auth');
-Route::resource('publishers', PublisherController::class)->only(['index','show']);
+Route::resource('publishers', PublisherController::class)->middleware('auth');
+//Route::resource('publishers', PublisherController::class)->only(['index','show']);
 
-Route::resource('authors', AuthorController::class)->except(['index','show'])->middleware('auth');
-Route::resource('authors', AuthorController::class)->only(['index','show']);
+Route::resource('authors', AuthorController::class)->middleware('auth');
+//Route::resource('authors', AuthorController::class)->only(['index','show']);
 
-Route::resource('donators', DonatorController::class)->except(['index','show'])->middleware('auth');
-Route::resource('donators', DonatorController::class)->only(['index','show']);
+Route::resource('donators', DonatorController::class)->middleware('auth');
+//Route::resource('donators', DonatorController::class)->only(['index','show']);
 
-Route::resource('books', BookController::class)->except(['index','show'])->middleware('auth');
-Route::resource('books', BookController::class)->only(['index','show']);
+Route::resource('books', BookController::class)->middleware('auth');
+//Route::resource('books', BookController::class)->only(['index','show']);
 
-Route::resource('items', ItemController::class)->except(['index','show'])->middleware('auth');
-Route::resource('items', ItemController::class)->only(['index','show']);
+Route::resource('items', ItemController::class)->middleware('auth');
+//Route::resource('items', ItemController::class)->only(['index','show']);
 
-Route::resource('borrowings', BorrowingController::class)->except(['index','show'])->middleware('auth');
-Route::resource('borrowings', BorrowingController::class)->only(['index','show']);
+Route::resource('borrowings', BorrowingController::class)->middleware('auth');
+//Route::resource('borrowings', BorrowingController::class)->only(['index','show']);
 
-Route::resource('readers', ReaderController::class)->except(['index','show'])->middleware('auth');
-Route::resource('readers', ReaderController::class)->only(['index','show']);
+Route::resource('readers', ReaderController::class)->middleware('auth');
+//Route::resource('readers', ReaderController::class)->only(['index','show']);
+
+
+Route::resource('locations', LocationController::class)->middleware('auth');
 
 Route::resource('projects', \App\Http\Controllers\ProjectController::class)->middleware('auth');
 //Route::resource('projects', \App\Http\Controllers\ProjectController::class);
@@ -100,9 +104,13 @@ Route::post('/photos/{id}',[\App\Http\Controllers\EventController::class, 'photo
 Route::get('/main/{id}',[\App\Http\Controllers\EventController::class, 'main'])->name("main")->middleware('auth');
 //Route::get('/main/{id}',[\App\Http\Controllers\EventController::class, 'main'])->name("main");
 
+
 Route::get('/autocomplete-search',[AutoCompleteController::class, 'searchFor']);
 
-//Route::get('/test', [TestController::class,'index']);
+
+Route::get('/csvupload',[CsvUploadController::class,'index'])->middleware('auth');
+Route::post('/csvupload',[CsvUploadController::class,'uploadCsv'])->middleware('auth');
+
 
 
 

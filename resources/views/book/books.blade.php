@@ -47,7 +47,7 @@
 
 
             <div class="d-flex justify-content-end">
-                <a class="btn btn-outline-dark rounded-pill" href="/books/create"><i class="bi bi-plus-lg"> </i> Dodaj
+                <a class="btn btn-dark rounded-pill" href="/books/create"><i class="bi bi-plus-lg"> </i> Dodaj
                     novo
                     izdanje </a>
 
@@ -64,7 +64,7 @@
                 <tbody>
                     @foreach ($books as $book)
                         <tr>
-                            <td>{{ $book->id }}</td>
+                            <td>{{$book->id}}</td>
                             <td class="text-center">
                                 @if (!$book->img_url)
                                     <a href="/books/{{ $book->id }}"><img height="60" src="/images/default.png"

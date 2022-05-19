@@ -10,8 +10,16 @@
                     @method('PUT')
                     <div class="my-2">
                         <label class="form-label" for="author-name">Ime autora</label>
-                        <input value="{{$author->name}}" class="form-control bg-white" type="text" name="name" id="author-name">
-                    </div class="my-2">
+                        <input value="{{$author->name}}" class="form-control bg-white rounded-pill" type="text" name="name" id="author-name">
+                    </div>
+                    <div class="my-2">
+                        <label class="form-label" for="author-gender">Pol</label>
+                        <select class="form-select bg-white rounded-pill" name="gender" id="author-gender">
+                            <option {{$author->gender===-1?'selected':null}} value="-1">Odaberite pol</option>
+                            <option {{$author->gender===0?'selected':null}} value="0">Ženski</option>
+                            <option {{$author->gender===1?'selected':null}} value="1">Muški</option>
+                        </select>
+                    </div>
                     <div>
                         <label class="form-label" for="author-info">Opis</label>
                         <textarea class="form-control bg-white" name="info" id="author-info" cols="30"
@@ -20,9 +28,9 @@
 
 
                     <div class="d-flex justify-content-end">
-                        <a href="/authors" class="btn btn-outline-dark rounded-pill  mt-2"><i
+                        <a href="/authors" class="btn btn-secondary rounded-pill  mt-2"><i
                                 class="bi bi-x-circle"> </i> Odustani</a>
-                        <button type="submit" class="btn btn-outline-dark rounded-pill mt-2 mx-1"><i class="bi bi-cloud-arrow-up"> </i>
+                        <button type="submit" class="btn btn-danger rounded-pill mt-2 mx-1"><i class="bi bi-cloud-arrow-up"> </i>
                             Sačuvaj</button>
                     </div>
                 </form>

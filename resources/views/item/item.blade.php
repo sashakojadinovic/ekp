@@ -8,7 +8,7 @@
                 aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content">
-                        <div class="modal-header bg-secondary text-white">
+                        <div class="modal-header bg-danger  text-white">
                             <h6 class="modal-title" id="exampleModalLabel">Upozorenje!</h6>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
@@ -54,7 +54,7 @@
 
                     <h6>Opis:</h6>
                     <p>{{ $book->info }}</p>
-                    
+
                 </div>
                 <div class="mt-5">
                     <h6>Primerci ovog izdanja:</h6>

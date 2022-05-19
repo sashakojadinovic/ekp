@@ -50,6 +50,21 @@ class BookController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+    private function saveImage($file,$book,$update){ //proveri ovde da li postoji bolji način umesto prosleđivanja $book kao parametar
+
+        if($update && file_exists($book->img_url)){
+            unlink($book->img_url);
+        }
+        if(!$file){
+            return;
+        }
+        $imgName = time() . '.' . $file->extension();
+        $img = Image::make($file->path());
+        $img->resize(200, 300, function ($constraint) {
+            $constraint->aspectRatio();
+        })->save('images' . '/' . $imgName);
+        $book->img_url = 'images/' . $imgName;
+    }
     public function store(Request $request)
     {
         //dd($request);
@@ -58,29 +73,23 @@ class BookController extends Controller
             [
                 'title' => 'required',
                 'author-array' => 'present',
-                //'image'=>'image|mimes:jpeg,png,jpg,gif|max:2048',
-                'category-array' => 'present',
+                'image'=>'image|mimes:jpeg,png,jpg,gif|max:2048',
+                'category-array' => 'required',
                 'year' => 'present',
                 'age' => 'present',
                 'publisher-array' => 'present',
                 'info' => 'present'
             ]
         );
-        if ($request->file('image')) {
-            $imgName = time() . '.' . $request->file('image')->extension();
-            $img = Image::make($request->file('image')->path());
-            $img->resize(200, 300, function ($constraint) {
-                $constraint->aspectRatio();
-            })->save('images' . '/' . $imgName);
-            $book->img_url = '/images/' . $imgName;
-        }
+        $this->saveImage($request->file('image'),$book, false);
+
 
         $book->title = $content['title'];
         $book->year = $content['year'];
         $book->age = $content['age'];
         $book->info = $content['info'];
         $book->save();
-        $book->authors()->attach($content['author-array']);
+        $book->authors()->attach(explode(",",$content['author-array']));
         $book->categories()->attach($content['category-array']);
         $book->publishers()->attach($content['publisher-array']);
 
@@ -121,18 +130,36 @@ class BookController extends Controller
      */
     public function update(Request $request, Book $book)
     {
+        //dd($request);
         $content = $request->validate(
             [
                 'title' => 'required',
                 'author-array' => 'present',
                 //'image'=>'image|mimes:jpeg,png,jpg,gif|max:2048',
                 'category-array' => 'present',
+                'year' => 'present',
+                'age' => 'present',
                 'publisher-array' => 'present',
+
+
                 'info' => 'present'
             ]
         );
-        $book->update(['title' => $content['title'], 'info' => $content['info']]);
+        //dd($request);
+        if($request->file('image')){
+            $this->saveImage($request->file('image'),$book, true);
+        }
+
+        $book->update(['title' => $content['title'], 'year'=>$content['year'],'age'=>$content['age'], 'info' => $content['info']]);
+        $book->authors()->detach();
+        $book->authors()->attach(explode(",",$content['author-array']));
+        $book->categories()->detach();
+        $book->categories()->attach(explode(",",$content['category-array']));
+        $book->publishers()->detach();
+        $book->publishers()->attach(explode(",",$content['publisher-array']));
         $book->save();
+
+
         return redirect("/books/$book->id");
     }
 
@@ -144,11 +171,15 @@ class BookController extends Controller
      */
     public function destroy(Book $book)
     {
+        if($book->img_url && $book->img_url!=="images/default.png"){
+            unlink($book->img_url);
+        }
         $book->authors()->detach();
         $book->categories()->detach();
         $book->publishers()->detach();
         $book->items()->delete();
         $book->delete();
+
         return redirect('/books');
     }
 }
