@@ -21,46 +21,59 @@ class CsvUploadController extends Controller
     {
         //dd($readers);
         foreach ($readers as $r) {
-            if(Reader::where('card_id','=',$r[0])->first()){
+            if (Reader::where('card_id', '=', $r[0])->first()) {
                 continue;
             }
             $reader = new Reader;
             $reader->card_id = $r[0];
             $reader->name = $r[2] . " " . $r[1];
-            $reader->address = $r[3];
-            $reader->phone_number = $r[4];
-            if ($r[5] === "ž") {
+            $reader->date_of_birth = $r[3]!==''?$r[3]:null;
+            $reader->parents_name = $r[4];
+            $reader->address = $r[5];
+            $reader->phone_number = $r[6];
+            $reader->occupation =$r[7];
+            $reader->email = $r[8];
+            if ($r[9] === "ž") {
                 $reader->gender = 0;
-            } else if ($r[5] === "m") {
+            } else if ($r[9] === "m") {
                 $reader->gender = 1;
             } else {
                 $reader->gender = -1;
             }
+            $reader->city =$r[10];
+            $reader->city_code=$r[11];
+            //dd($reader);
             $reader->save();
         }
     }
     private function saveBooks($books)
     {
         //dd($books);
-        foreach ($books as $b) {
 
+        foreach ($books as $b) {
+            //
+            $authors = explode(';', $b[1]);
             $book = new Book;
             $book->title = $b[0];
             $book->year = $b[3];
             $book->age = $b[4];
             $book->info = $b[5];
-            $author = Author::where('name', '=', $b[1])->first();
+
             $publisher = Publisher::where('name', '=', $b[2])->first();
             $book->save();
             $book->categories()->attach(1);
-            if ($author) {
-                $book->authors()->attach($author->id);
-            } else {
-                $newAuthor = new Author;
-                $newAuthor->name = $b[1];
-                $newAuthor->save();
-                $book->authors()->attach($newAuthor->id);
+            foreach ($authors as $a) {
+                $author = Author::where('name', '=', $a)->first();
+                if ($author) {
+                    $book->authors()->attach($author->id);
+                } else {
+                    $newAuthor = new Author;
+                    $newAuthor->name = $a;
+                    $newAuthor->save();
+                    $book->authors()->attach($newAuthor->id);
+                }
             }
+
             if ($publisher) {
                 $book->publishers()->attach($publisher->id);
             } else {
@@ -103,5 +116,4 @@ class CsvUploadController extends Controller
             return redirect('/books');
         }
     }
-
 }

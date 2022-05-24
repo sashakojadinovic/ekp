@@ -18,6 +18,8 @@ class CreateReadersTable extends Migration
             $table->integer('card_id')->unique()->default(1);
             $table->string('name');
             $table->tinyInteger('gender')->default('-1');
+            $table->date('date_of_birth')->nullable();
+            $table->string('parents_name')->nullable();
             $table->string('email')->nullable();
             $table->string('occupation')->nullable();
             $table->string('address')->nullable();

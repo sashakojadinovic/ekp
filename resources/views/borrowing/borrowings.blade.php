@@ -22,7 +22,7 @@
                     </div>
                 </div>
             </div>
-            <h1 class="mt-3 text-center">Lista iznajmljivanja knjiga</h1>
+            <h1 class="mt-3 text-center">Lista iznajmljenih knjiga</h1>
             <div class="col-md-12">
 {{--                 <div class="d-flex justify-content-end">
                     <a class="btn btn-outline-dark rounded-pill" href="/borrowings/create"><i
@@ -31,7 +31,6 @@
                 </div> --}}
                 <table class="table table-striped">
                     <thead>
-                        <th scope="col">ID</th>
                         <th scope="col">Naslov</th>
                         <th scope="col">Signatura</th>
                         <th scope="col">Čitalac</th>
@@ -40,8 +39,7 @@
                     <tbody>
                         @foreach ($borrowings as $borrowing)
                             <tr>
-                                <td>{{ $borrowing->id }}</td>
-                                <td><a class="btn px-2 py-0"
+                                 <td><a class="btn px-2 py-0"
                                         href="/books/{{ $borrowing->item()->first()->book()->first()->id }}">{{ $borrowing->item()->first()->book()->first()->title }}</a>
                                 </td>
                                 <td>{{ $borrowing->item()->first()->signature }}</td>

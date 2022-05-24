@@ -16,17 +16,21 @@ class BookController extends Controller
      */
     public function index(Request $request)
     {
-        if ($request->filled('title')) {
-            $books = Book::where('title', 'LIKE', '%' . $request->title . '%')->get();
-        } else if ($request->filled('author')) {
-            $books = Book::whereHas('authors', function (Builder $query) use($request) {
-                $query->where('name', 'LIKE', '%' . $request->author . '%');
+        //dd($request->filled('seach_term'));
+        if ($request->search_term !== "" && $request->criteria === "title") {
+
+            $books = Book::where($request->criteria, 'LIKE', '%' . $request->search_term . '%')->get();
+        } else if ($request->search_term !== "" && $request->criteria === "author") {
+
+            $books = Book::whereHas('authors', function (Builder $query) use ($request) {
+                $query->where('name', 'LIKE', '%' . $request->search_term . '%');
             })->get();
-        } else if ($request->filled('publisher')) {
-            $books = Book::whereHas('publishers', function (Builder $query) use($request) {
-                $query->where('name', 'LIKE', '%' . $request->publisher . '%');
+        } else if ($request->search_term !== "" && $request->criteria === "publisher")  {
+            $books = Book::whereHas('publishers', function (Builder $query) use ($request) {
+                $query->where('name', 'LIKE', '%' . $request->search_term . '%');
             })->get();
         } else {
+
             $books = Book::paginate(15);
         }
 
@@ -50,12 +54,13 @@ class BookController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    private function saveImage($file,$book,$update){ //proveri ovde da li postoji bolji način umesto prosleđivanja $book kao parametar
+    private function saveImage($file, $book, $update)
+    { //proveri ovde da li postoji bolji način umesto prosleđivanja $book kao parametar
 
-        if($update && file_exists($book->img_url)){
+        if ($update && file_exists($book->img_url)) {
             unlink($book->img_url);
         }
-        if(!$file){
+        if (!$file) {
             return;
         }
         $imgName = time() . '.' . $file->extension();
@@ -73,7 +78,7 @@ class BookController extends Controller
             [
                 'title' => 'required',
                 'author-array' => 'present',
-                'image'=>'image|mimes:jpeg,png,jpg,gif|max:2048',
+                'image' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
                 'category-array' => 'required',
                 'year' => 'present',
                 'age' => 'present',
@@ -81,7 +86,7 @@ class BookController extends Controller
                 'info' => 'present'
             ]
         );
-        $this->saveImage($request->file('image'),$book, false);
+        $this->saveImage($request->file('image'), $book, false);
 
 
         $book->title = $content['title'];
@@ -89,7 +94,7 @@ class BookController extends Controller
         $book->age = $content['age'];
         $book->info = $content['info'];
         $book->save();
-        $book->authors()->attach(explode(",",$content['author-array']));
+        $book->authors()->attach(explode(",", $content['author-array']));
         $book->categories()->attach($content['category-array']);
         $book->publishers()->attach($content['publisher-array']);
 
@@ -146,17 +151,17 @@ class BookController extends Controller
             ]
         );
         //dd($request);
-        if($request->file('image')){
-            $this->saveImage($request->file('image'),$book, true);
+        if ($request->file('image')) {
+            $this->saveImage($request->file('image'), $book, true);
         }
 
-        $book->update(['title' => $content['title'], 'year'=>$content['year'],'age'=>$content['age'], 'info' => $content['info']]);
+        $book->update(['title' => $content['title'], 'year' => $content['year'], 'age' => $content['age'], 'info' => $content['info']]);
         $book->authors()->detach();
-        $book->authors()->attach(explode(",",$content['author-array']));
+        $book->authors()->attach(explode(",", $content['author-array']));
         $book->categories()->detach();
-        $book->categories()->attach(explode(",",$content['category-array']));
+        $book->categories()->attach(explode(",", $content['category-array']));
         $book->publishers()->detach();
-        $book->publishers()->attach(explode(",",$content['publisher-array']));
+        $book->publishers()->attach(explode(",", $content['publisher-array']));
         $book->save();
 
 
@@ -171,7 +176,7 @@ class BookController extends Controller
      */
     public function destroy(Book $book)
     {
-        if($book->img_url && $book->img_url!=="images/default.png"){
+        if ($book->img_url && $book->img_url !== "images/default.png") {
             unlink($book->img_url);
         }
         $book->authors()->detach();
