@@ -108,12 +108,14 @@ class ItemController extends Controller
     public function update(Request $request, Item $item)
     {
         $content = $request->validate([
-            'signature'=>'required',
-            'available'=>'present',
-            'location'=>'present | integer'
+            'signature' => 'required',
+            'donator_array' => 'present',
+            'available' => 'present',
+            'location'=>'required | integer'
         ]);
         //dd($content);
         //$item->location()->disassociate();
+        $item->donator()->associate($content['donator_array']);
         $item->location()->associate($content['location']);
         $item->update(['signature'=>$content['signature'],'available'=>$content['available']]);
 

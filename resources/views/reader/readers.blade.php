@@ -56,7 +56,7 @@
                         @endforeach
                     </tbody>
                 </table>
-                {{$readers->links()}}
+                {{ method_exists($readers,'links')?$readers->links():'' }}
 
             </div>
         </div>

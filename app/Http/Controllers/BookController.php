@@ -25,13 +25,13 @@ class BookController extends Controller
             $books = Book::whereHas('authors', function (Builder $query) use ($request) {
                 $query->where('name', 'LIKE', '%' . $request->search_term . '%');
             })->get();
-        } else if ($request->search_term !== "" && $request->criteria === "publisher")  {
+        } else if ($request->search_term !== "" && $request->criteria === "publisher") {
             $books = Book::whereHas('publishers', function (Builder $query) use ($request) {
                 $query->where('name', 'LIKE', '%' . $request->search_term . '%');
             })->get();
         } else {
 
-            $books = Book::paginate(15);
+            $books = Book::simplePaginate(20);
         }
 
         //$books->appends(['sort'=>'title']);
@@ -143,7 +143,7 @@ class BookController extends Controller
                 //'image'=>'image|mimes:jpeg,png,jpg,gif|max:2048',
                 'category-array' => 'present',
                 'year' => 'present',
-                'age' => 'present',
+                'age' => 'nullable|integer',
                 'publisher-array' => 'present',
 
 
@@ -157,11 +157,18 @@ class BookController extends Controller
 
         $book->update(['title' => $content['title'], 'year' => $content['year'], 'age' => $content['age'], 'info' => $content['info']]);
         $book->authors()->detach();
-        $book->authors()->attach(explode(",", $content['author-array']));
+        if ($content['author-array']) {
+            $book->authors()->attach(explode(",", $content['author-array']));
+        }
+
+
         $book->categories()->detach();
         $book->categories()->attach(explode(",", $content['category-array']));
         $book->publishers()->detach();
-        $book->publishers()->attach(explode(",", $content['publisher-array']));
+        if ($content['publisher-array']) {
+            $book->publishers()->attach(explode(",", $content['publisher-array']));
+        }
+
         $book->save();
 
 

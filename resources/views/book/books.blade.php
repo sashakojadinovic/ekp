@@ -85,9 +85,9 @@
                 @endforeach
             </tbody>
         </table>
-
+        {{ method_exists($books,'links')?$books->links():'' }}
     </div>
-    {{-- {{ $books->links() }} --}}
+
     </div>
     </div>
 @endsection

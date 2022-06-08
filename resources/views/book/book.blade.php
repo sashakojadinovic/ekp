@@ -77,7 +77,7 @@
                         <h6 class="fw-bold">Autor: <span class="fw-normal">
                                 @if ($book->authors()->first())
                                     @foreach ($book->authors()->get() as $author)
-                                        {{ $author->name }}
+                                        <a class="btn px-2 py-0" href="/authors/{{$author->id}}">{{ $author->name }}</a>
                                     @endforeach
                                 @endif
 
@@ -96,7 +96,7 @@
                         <h6 class="fw-bold">Godina izdanja: <span
                                 class="fw-normal">{{ $book->year ? $book->year . '.' : '' }}</span></h6>
                         <h6 class="fw-bold">Uzrast: <span
-                                class="fw-normal">{{ $book->age ? $book->age : '' }}</span></h6>
+                                class="fw-normal">{{ $book->age ? $book->age.'+' : '' }}</span></h6>
 
 
                         <h6 class="fw-bold">Opis:</h6>
@@ -129,7 +129,7 @@
                                 <tr>
                                     <td>{{ $item->id }}</td>
                                     <td>{{ $item->signature }}</td>
-                                    <td>{{ $item->donator()->first()->name ?? '' }}</td>
+                                    <td><a class="btn rounded-pill" href="/donators/{{ $item->donator()->first()->id ?? '' }}">{{ $item->donator()->first()->name ?? '' }}</a></td>
                                     <td>
                                         @if ($item->borrowing()->exists())
                                             <p class="mb-0 text-danger">Izdato <i class="bi bi-arrow-right"></i>

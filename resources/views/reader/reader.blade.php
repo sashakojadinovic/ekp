@@ -83,7 +83,7 @@
                         <th scope="col">Naziv</th>
                         <th scope="col">Signatura</th>
                         <th scope="col">Vreme izdavanja</th>
-                        <th scope="col">Akcija</th>
+                        <th scope="col"></th>
                     </thead>
                     <tbody>
 
@@ -96,6 +96,9 @@
                                 <td>{{ $borrowing->signature }}</td>
                                 <td>{{ $borrowing->date }}</td>
                                 <td>
+                                    @if($borrowing->return_date)
+                                    <p>Vraćeno {{$borrowing->return_date}}</p>
+                                    @else
                                     <form class="d-inline-block" id="returnForm"
                                         action="/borrowings/{{ $borrowing->id }}" method="POST">
                                         @csrf
@@ -105,6 +108,7 @@
                                         </button>
 
                                     </form>
+                                    @endif
                                 </td>
 
                             </tr>

@@ -100,11 +100,14 @@ class ReaderController extends Controller
     public function show(Reader $reader)
     {
         $borrowing_list = [];
-        $borrowings = $reader->borrowing()->get();
+        //$borrowings = $reader->borrowing()->get();
+        $borrowings = $reader->borrowing()->withTrashed()->get();
         foreach($borrowings as $b){
             $book = $b->item()->first()->book()->first();
             $signature = $b->item()->first()->signature;
-            array_push($borrowing_list,(object)['id'=>$b->id,'book'=>$book,'signature'=>$signature, 'date'=>date_format($b->created_at,"d.m.Y. H:i")]);
+            $returned = $b->deleted_at?:null;
+            array_push($borrowing_list,(object)['id'=>$b->id,'book'=>$book,'signature'=>$signature,
+             'date'=>date_format($b->created_at,"d.m.Y. H:i"), 'return_date'=>$b->deleted_at?date_format($b->deleted_at,"d.m.Y. H:i"):null]);
         }
 
         return view('reader.reader',['reader'=>$reader,'borrowings'=>$borrowing_list]);
