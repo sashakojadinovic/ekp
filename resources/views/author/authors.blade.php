@@ -18,7 +18,7 @@
                         <div class="col-md-4">
                             <button class="form-control btn btn-default rounded-pill">Filtriraj po zadatom kriterijumu</button>
                         </div><div class="col-md-2">
-                            <a href="/readers" class="form-control btn btn-default rounded-pill">Resetuj filter</a>
+                            <a href="/authors" class="form-control btn btn-default rounded-pill">Resetuj filter</a>
                         </div>
 
                     </div>

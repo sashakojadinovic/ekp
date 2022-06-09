@@ -79,17 +79,17 @@
                 </div>
                 <table class="table table-striped">
                     <thead>
-                        <th scope="col">ID</th>
+                        <th scope="col">#</th>
                         <th scope="col">Naziv</th>
                         <th scope="col">Signatura</th>
                         <th scope="col">Vreme izdavanja</th>
-                        <th scope="col"></th>
+                        <th scope="col">Vreme vraćanja</th>
                     </thead>
                     <tbody>
 
                         @foreach ($borrowings as $borrowing)
                             <tr>
-                                <td>{{ $borrowing->id }}</td>
+                                <td>{{ $loop->index+1}}</td>
                                 <td><a class="btn px-2 py-0"
                                         href="/books/{{ $borrowing->book->id }}">{{ $borrowing->book->title }}</a>
                                 </td>
