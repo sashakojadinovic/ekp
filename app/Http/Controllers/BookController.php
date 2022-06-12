@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Book;
+use App\Models\Category;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 use Intervention\Image\Facades\Image;
@@ -45,7 +46,7 @@ class BookController extends Controller
      */
     public function create()
     {
-        return view('book.book-create');
+        return view('book.book-create',['categories'=>Category::all()]);
     }
 
     /**
@@ -123,7 +124,7 @@ class BookController extends Controller
      */
     public function edit(Book $book)
     {
-        return view('book.book-edit', ['book' => $book]);
+        return view('book.book-edit', ['book' => $book,'categories'=>Category::all()]);
     }
 
     /**

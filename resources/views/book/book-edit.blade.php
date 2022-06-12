@@ -67,15 +67,17 @@
                             </div>
                             <div class="row">
                                 <div class="my-2 position-relative">
-                                    <label class="form-label" for="category">Kategorije: </label>
-                                    <div class="tag-container position-relative form-control bg-white rounded-pill  ps-2">
-                                        <input placeholder="Pronađi..." type="text" data-model="Category" name="category"
-                                            id="category">
-                                        <button class="btn position-absolute top-0 end-0 rounded-pill adhoc" type="button"
-                                            data-bs-toggle="tooltip" data-bs-placement="top" title="Upiši novu kategoriju">
-                                            <i class="bi bi-capslock text-secondary"></i>
-                                    </div>
-                                    <input id="category-array" type="hidden" name="category-array" value="1">
+                                    <label class="form-label" for="category">Kategorija: </label>
+
+                                    <select class=" form-control bg-white rounded-pill  ps-2" name="category-array"
+                                        id="category">
+                                        <option value="0">Izaberi kategoriju</option>
+                                        @foreach ($categories as $category )
+                                            <option {{$book->categories()->first()->id===$category->id? 'selected':''}} value="{{$category->id}}">{{$category->name}}</option>
+                                        @endforeach
+                                    </select>
+
+
                                 </div>
                             </div>
 
@@ -108,8 +110,8 @@
                     <a href="/books/{{ $book->id }}" class="btn btn-secondary rounded-pill  mt-2"><i
                             class="bi bi-x-circle"> </i>
                         Odustani</a>
-                    <button type="submit" class="btn btn-danger rounded-pill mt-2 mx-1"><i
-                            class="bi bi-cloud-arrow-up"> </i>
+                    <button type="submit" class="btn btn-danger rounded-pill mt-2 mx-1"><i class="bi bi-cloud-arrow-up">
+                        </i>
                         Sačuvaj izmene</button>
                 </div>
             </div>
@@ -123,13 +125,15 @@
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             @foreach ($book->authors()->get() as $author)
-                createBadge("{{ $author->name }}","{{ $author->id }}",document.getElementById('author'));
+                createBadge("{{ $author->name }}", "{{ $author->id }}", document.getElementById('author'));
             @endforeach
             @foreach ($book->categories()->get() as $category)
-                createBadge("{{ $category->name }}","{{ $category->id }}",document.getElementById('category'));
+                createBadge("{{ $category->name }}", "{{ $category->id }}", document.getElementById(
+                    'category'));
             @endforeach
             @foreach ($book->publishers()->get() as $publisher)
-                createBadge("{{ $publisher->name }}","{{ $publisher->id }}",document.getElementById('publisher'));
+                createBadge("{{ $publisher->name }}", "{{ $publisher->id }}", document.getElementById(
+                    'publisher'));
             @endforeach
             document.getElementById('author').addEventListener('input', (e) => getData(e.target, e.target.dataset
                 .model));
