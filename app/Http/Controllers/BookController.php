@@ -32,7 +32,8 @@ class BookController extends Controller
             })->get();
         } else {
 
-            $books = Book::simplePaginate(20);
+            //$books = Book::simplePaginate(20)->sortByDesc('created_at');
+            $books = Book::orderByDesc('created_at')->simplePaginate(20);
         }
 
         //$books->appends(['sort'=>'title']);

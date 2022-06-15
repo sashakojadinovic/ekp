@@ -72,7 +72,8 @@ class ItemController extends Controller
         /* $next_num_of_books_in_cat = count(Category::find($book->categories()->first())->books()->get())+1;
         $category_short = strtoupper(substr(Category::find($book->categories()->first()->id)->name,0,2)); */
         //return view('item.item-create', ['book'=>$book,'signature'=>$category_short.$next_num_of_books_in_cat]);
-        return view('item.item-create', ['book' => $book,'signature' => $category->prefix . ($category->counter+1),'locations'=>$locations]);
+        //return view('item.item-create', ['book' => $book,'signature' => $category->prefix . ($category->counter+1),'locations'=>$locations]);
+        return redirect("/books/$book->id");
     }
 
     /**

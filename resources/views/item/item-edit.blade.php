@@ -56,7 +56,8 @@
 
                         <input type="hidden" name="book_id" value="">
                         <div class="d-flex justify-content-end">
-                            <button id="submitBtn" class="btn btn-danger rounded-pill">Sačuvaj primerak</button>
+                            <a href="/books/{{$item->book()->first()->id}}" class="btn btn-secondary rounded-pill">Odustani</a>
+                            <button id="submitBtn" class="btn btn-danger rounded-pill ms-2">Sačuvaj primerak</button>
                         </div>
 
                     </div>

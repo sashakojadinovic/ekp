@@ -73,7 +73,6 @@
 
                                     <select class=" form-control bg-white rounded-pill  ps-2" name="category-array"
                                         id="category">
-                                        <option value="0">Izaberi kategoriju</option>
                                         @foreach ($categories as $category )
                                             <option value="{{$category->id}}">{{$category->name}}</option>
                                         @endforeach

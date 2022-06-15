@@ -15,12 +15,7 @@
         <div class="row justify-content-center">
             <div class="col-md-12">
                 <h1 class="mt-3 text-center">Dodaj primerak izdanja "{{ $book->title }}" </h1>
-                <div id="saved-items">
-                    {{-- {{dd($book->items()->get())}} --}}
-                    @foreach ($book->items()->get() as $item)
-                        <p>{{ $book->name }} {{ $item->signature }}</p>
-                    @endforeach
-                </div>
+
 
                 <form action="/items" method="POST">
                     @csrf
@@ -62,7 +57,8 @@
 
                         <input type="hidden" name="book_id" value="{{ $book->id }}">
                         <div class="d-flex justify-content-end">
-                            <button id="submitBtn" class="btn btn-danger rounded-pill">Sačuvaj primerak</button>
+                            <a href="/books/{{$book->id}}" class="btn btn-secondary rounded-pill">Odustani</a>
+                            <button id="submitBtn" class="ms-2 btn btn-danger rounded-pill">Sačuvaj primerak</button>
                         </div>
 
                     </div>
