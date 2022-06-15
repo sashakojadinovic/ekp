@@ -31,6 +31,7 @@
                 </div> --}}
                 <table class="table table-striped">
                     <thead>
+                        <th scope="col">Vreme</th>
                         <th scope="col">Naslov</th>
                         <th scope="col">Signatura</th>
                         <th scope="col">Čitalac</th>
@@ -39,6 +40,7 @@
                     <tbody>
                         @foreach ($borrowings as $borrowing)
                             <tr>
+                                <td>{{date_format($borrowing->created_at,"d.m.Y. H:i")}}</td>
                                  <td><a class="btn px-2 py-0"
                                         href="/books/{{ $borrowing->item()->first()->book()->first()->id }}">{{ $borrowing->item()->first()->book()->first()->title }}</a>
                                 </td>

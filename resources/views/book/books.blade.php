@@ -66,7 +66,7 @@
                         </td>
 
 
-                        <td class="align-middle"><a class="btn px-2 py-0 fw-bolder "
+                        <td class="align-middle"><a class="btn px-2 py-0"
                                 href="/books/{{ $book->id }}">{{ $book->title }}</a>
                         </td>
                         <td class="align-middle">

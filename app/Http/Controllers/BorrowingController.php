@@ -16,7 +16,7 @@ class BorrowingController extends Controller
      */
     public function index()
     {
-        $borrowings = Borrowing::all();
+        $borrowings = Borrowing::all()->sortByDesc('created_at');
         return view('borrowing.borrowings',['borrowings'=>$borrowings]);
     }
 
