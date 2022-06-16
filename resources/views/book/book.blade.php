@@ -131,7 +131,10 @@
                     <div class="d-flex justify-content-between">
                         <h6>Primerci ovog izdanja:</h6>
                         <a class="btn btn-dark rounded-pill"
-                            href="/items/create?id={{ $book->id }}&cat={{ $book->categories()->first()->id }}"><i
+                        @if ($book->categories()->first())
+                             href="/items/create?id={{ $book->id }}&cat={{ $book->categories()->first()->id }}"
+                        @endif
+                           ><i
                                 class="bi bi-plus-lg"> </i>
                             Dodaj primerak naslova </a>
 

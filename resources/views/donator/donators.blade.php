@@ -23,6 +23,7 @@
                         @endforeach
                     </tbody>
                 </table>
+                {{ method_exists($donators,'links')?$donators->links():'' }}
             </div>
         </div>
     </div>

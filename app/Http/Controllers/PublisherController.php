@@ -14,7 +14,7 @@ class PublisherController extends Controller
      */
     public function index()
     {
-        $publishers = Publisher::all();
+        $publishers = Publisher::orderBy('name')->simplePaginate(50);
         return view('publisher.publishers',['publishers'=>$publishers]);
     }
 

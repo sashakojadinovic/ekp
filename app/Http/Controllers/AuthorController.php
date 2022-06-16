@@ -15,10 +15,10 @@ class AuthorController extends Controller
     public function index(Request $request)
     {
         if($request->filled('search_term')){
-            $authors = Author::where('name','LIKE','%'.$request->search_term.'%')->simplePaginate(100);
+            $authors = Author::where('name','LIKE','%'.$request->search_term.'%')->simplePaginate(50);
         }
         else{
-            $authors = Author::simplePaginate(100);
+            $authors = Author::orderBy('name')->simplePaginate(50);
         }
         return view('author.authors',['authors'=>$authors]);
     }

@@ -14,7 +14,8 @@ class DonatorController extends Controller
      */
     public function index()
     {
-        $donators = Donator::all();
+        //$donators = Donator::all();
+        $donators = Donator::orderBy('name')->simplePaginate(50);
         return view('donator.donators',['donators'=>$donators]);
     }
 
