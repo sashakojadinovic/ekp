@@ -127,10 +127,7 @@
             @foreach ($book->authors()->get() as $author)
                 createBadge("{{ $author->name }}", "{{ $author->id }}", document.getElementById('author'));
             @endforeach
-            @foreach ($book->categories()->get() as $category)
-                createBadge("{{ $category->name }}", "{{ $category->id }}", document.getElementById(
-                    'category'));
-            @endforeach
+
             @foreach ($book->publishers()->get() as $publisher)
                 createBadge("{{ $publisher->name }}", "{{ $publisher->id }}", document.getElementById(
                     'publisher'));
