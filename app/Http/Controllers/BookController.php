@@ -88,6 +88,7 @@ class BookController extends Controller
                 'info' => 'present'
             ]
         );
+        //dd($content);
         $this->saveImage($request->file('image'), $book, false);
 
 
@@ -96,9 +97,15 @@ class BookController extends Controller
         $book->age = $content['age'];
         $book->info = $content['info'];
         $book->save();
-        $book->authors()->attach(explode(",", $content['author-array']));
+        if($content['author-array']){
+            $book->authors()->attach(explode(",", $content['author-array']));
+        }
+
         $book->categories()->attach($content['category-array']);
-        $book->publishers()->attach($content['publisher-array']);
+        if($content['publisher-array']){
+            $book->publishers()->attach($content['publisher-array']);
+        }
+
 
         return redirect()->route('items.create', ['id' => $book->id]);
         //return view('item.item-create',['book'=>$book]);

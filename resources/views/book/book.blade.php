@@ -60,7 +60,7 @@
                      <div class="modal-footer">
                          <button type="button" data-bs-toggle="modal" data-bs-target="#deleteItemModalWarning"
                              class="btn btn-secondary rounded-pill" data-bs-dismiss="modal">Odustani</button>
-                         <button id="confirmBtn3" type="button" class="btn btn-danger rounded-pill">Vrati</button>
+                         <button id="confirmBtn3" type="button" class="btn btn-danger rounded-pill">Izbriši</button>
                      </div>
                  </div>
              </div>
