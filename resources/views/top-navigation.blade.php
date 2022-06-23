@@ -1,6 +1,6 @@
     <nav class="navbar navbar-expand-xl navbar-light bg-white shadow-sm">
     <div class="container-fluid">
-        <a class="navbar-brand" href="{{ url('/') }}">
+        <a class="navbar-brand" href="{{ url('/katalog') }}">
             {{ config('app.name', 'EKP') }}
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse"

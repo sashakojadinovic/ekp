@@ -23,7 +23,7 @@
                         <div class="row">
                             <div class="my-2 col-md-6">
                                 <label class="form-label" for="signature">Automatski generisana signatura:</label>
-                                <input readonly value="{{ $signature ?? '' }}" class="form-control bg-white rounded-pill"
+                                <input value="{{ $signature ?? '' }}" class="form-control bg-white rounded-pill"
                                     type="text" name="signature" id="signature">
                             </div>
                             <div class="my-2 col-md-6 position-relative">

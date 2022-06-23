@@ -2,7 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Borrowing;
 use Illuminate\Http\Request;
+use App\Models\Donator;
+use App\Models\Item;
+use App\Models\Reader;
 
 class HomeController extends Controller
 {
@@ -23,6 +27,11 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $donators_count = Donator::all()->count();
+        $items_count = Item::all()->count();
+        $readers_count = Reader::all()->count();
+        $borrowings_count = Borrowing::all()->count();
+        return view('home',['donators_count'=>$donators_count,'items_count'=>$items_count,
+        'readers_count'=>$readers_count,'borrowings_count'=>$borrowings_count]);
     }
 }

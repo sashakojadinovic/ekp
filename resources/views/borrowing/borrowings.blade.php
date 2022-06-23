@@ -29,6 +29,7 @@
                             class="bi bi-plus-lg"> </i>
                         Izdaj knjigu </a>
                 </div> --}}
+                <h5>Broj iznajmljenih knjiga: {{count($borrowings)}}</h5>
                 <table class="table table-striped">
                     <thead>
                         <th scope="col">Vreme</th>

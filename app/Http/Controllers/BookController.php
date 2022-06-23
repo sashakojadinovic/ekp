@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Book;
+use App\Models\Item;
 use App\Models\Category;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
@@ -30,7 +31,16 @@ class BookController extends Controller
             $books = Book::whereHas('publishers', function (Builder $query) use ($request) {
                 $query->where('name', 'LIKE', '%' . $request->search_term . '%');
             })->get();
-        } else {
+        }
+        else if ($request->search_term !== "" && $request->criteria === "signature") {
+            $signature = Item::where($request->criteria, '=', $request->search_term )->first();
+            //dd($signature);
+
+            $books = $signature?$signature->book()->get():[];
+
+
+        }
+        else {
 
             //$books = Book::simplePaginate(20)->sortByDesc('created_at');
             $books = Book::orderByDesc('created_at')->simplePaginate(20);
@@ -121,7 +131,20 @@ class BookController extends Controller
      */
     public function show(Book $book)
     {
-        return view('book.book', ['book' => $book]);
+        $items = $book->items()->get()->all();
+        $borrowings =[];
+        foreach($items as $item){
+            $borrs = $item->borrowing()->withTrashed()->get()->sortByDesc('created_at');
+            if(count($borrs)>0){
+                foreach($borrs as $borr){
+                    array_push($borrowings,$borr);
+                }
+
+            }
+
+        }
+        //dd($borrowings);
+        return view('book.book', ['book' => $book,'borrowings'=>$borrowings]);
     }
 
     /**

@@ -17,6 +17,7 @@
                                 <option value="title">u naslovu</option>
                                 <option value="author">u imenu autora</option>
                                 <option value="publisher">u nazivu izdavača</option>
+                                <option value="signature">u signaturi</option>
                             </select>
                         </div>
                         <div class="col-md-4">
@@ -66,7 +67,7 @@
                         </td>
 
 
-                        <td class="align-middle"><a class="btn px-2 py-0"
+                        <td class="align-middle"><a class="btn px-2 py-0 text-start"
                                 href="/books/{{ $book->id }}">{{ $book->title }}</a>
                         </td>
                         <td class="align-middle">

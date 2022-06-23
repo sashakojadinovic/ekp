@@ -129,7 +129,7 @@
 
                 <div class="mt-5">
                     <div class="d-flex justify-content-between">
-                        <h6>Primerci ovog izdanja:</h6>
+                        <h3>Primerci ovog izdanja:</h3>
                         <a class="btn btn-dark rounded-pill"
                         @if ($book->categories()->first())
                              href="/items/create?id={{ $book->id }}&cat={{ $book->categories()->first()->id }}"
@@ -201,6 +201,29 @@
                             @endif
 
                             </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
+                <div class="mt-5">
+                    <h5>Ukupan broj pozajmljivanja: {{count($borrowings)}}</h5>
+                    <h3>Istorija pozajmljivanja</h3>
+
+                    <table class="table table-striped">
+                        <thead>
+                            <th scope="col">Datum pozajmljivanja</th>
+                            <th scope="col">Datum vraćanja</th>
+                            <th scope="col">Primerak</th>
+                            <th scope="col">Pozajmio/pozajmila</th>
+                        </thead>
+                        <tbody>
+                            @foreach ($borrowings as $borrowing)
+                                <tr>
+                                    <td>{{date_format($borrowing->created_at,"d.m.Y.")}}</td>
+                                    <td>{{$borrowing->deleted_at?date_format($borrowing->deleted_at,"d.m.Y."):'nije vraćeno'}}</td>
+                                    <td>{{$borrowing->item()->first()->signature}}</td>
+                                    <td><a class="btn px-2 py-0" href="/readers/{{$borrowing->reader()->first()->id}}">{{$borrowing->reader()->first()->name}}</a></td>
+                                </tr>
                             @endforeach
                         </tbody>
                     </table>
