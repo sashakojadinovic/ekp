@@ -72,7 +72,8 @@ class ItemController extends Controller
         /* $next_num_of_books_in_cat = count(Category::find($book->categories()->first())->books()->get())+1;
         $category_short = strtoupper(substr(Category::find($book->categories()->first()->id)->name,0,2)); */
         //return view('item.item-create', ['book'=>$book,'signature'=>$category_short.$next_num_of_books_in_cat]);
-        return view('item.item-create', ['book' => $book,'signature' => $category->prefix . ($category->counter+1),'locations'=>$locations]);
+        //return view('item.item-create', ['book' => $book,'signature' => $category->prefix . ($category->counter+1),'locations'=>$locations]);
+        return redirect("/books/$book->id");
     }
 
     /**
@@ -108,12 +109,14 @@ class ItemController extends Controller
     public function update(Request $request, Item $item)
     {
         $content = $request->validate([
-            'signature'=>'required',
-            'available'=>'present',
-            'location'=>'present | integer'
+            'signature' => 'required',
+            'donator_array' => 'present',
+            'available' => 'present',
+            'location'=>'required | integer'
         ]);
         //dd($content);
         //$item->location()->disassociate();
+        $item->donator()->associate($content['donator_array']);
         $item->location()->associate($content['location']);
         $item->update(['signature'=>$content['signature'],'available'=>$content['available']]);
 
@@ -129,6 +132,7 @@ class ItemController extends Controller
      */
     public function destroy(Item $item)
     {
-        //
+        $item->delete();
+        return redirect('/books/'.$item->book()->first()->id);
     }
 }

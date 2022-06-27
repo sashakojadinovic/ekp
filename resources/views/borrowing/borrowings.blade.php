@@ -22,16 +22,17 @@
                     </div>
                 </div>
             </div>
-            <h1 class="mt-3 text-center">Lista iznajmljivanja knjiga</h1>
+            <h1 class="mt-3 text-center">Lista iznajmljenih knjiga</h1>
             <div class="col-md-12">
 {{--                 <div class="d-flex justify-content-end">
                     <a class="btn btn-outline-dark rounded-pill" href="/borrowings/create"><i
                             class="bi bi-plus-lg"> </i>
                         Izdaj knjigu </a>
                 </div> --}}
+                <h5>Broj iznajmljenih knjiga: {{count($borrowings)}}</h5>
                 <table class="table table-striped">
                     <thead>
-                        <th scope="col">ID</th>
+                        <th scope="col">Vreme</th>
                         <th scope="col">Naslov</th>
                         <th scope="col">Signatura</th>
                         <th scope="col">Čitalac</th>
@@ -40,8 +41,8 @@
                     <tbody>
                         @foreach ($borrowings as $borrowing)
                             <tr>
-                                <td>{{ $borrowing->id }}</td>
-                                <td><a class="btn px-2 py-0"
+                                <td>{{date_format($borrowing->created_at,"d.m.Y. H:i")}}</td>
+                                 <td><a class="btn px-2 py-0"
                                         href="/books/{{ $borrowing->item()->first()->book()->first()->id }}">{{ $borrowing->item()->first()->book()->first()->title }}</a>
                                 </td>
                                 <td>{{ $borrowing->item()->first()->signature }}</td>

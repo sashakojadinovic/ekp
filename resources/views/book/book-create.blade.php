@@ -69,15 +69,16 @@
                             </div>
                             <div class="row">
                                 <div class="my-2 position-relative">
-                                    <label class="form-label" for="category">Kategorije: </label>
-                                    <div class="tag-container position-relative form-control bg-white rounded-pill  ps-2">
-                                        <input placeholder="Pronađi..." type="text" data-model="Category" name="category"
-                                            id="category">
-                                        <button class="btn position-absolute top-0 end-0 rounded-pill adhoc" type="button"
-                                            data-bs-toggle="tooltip" data-bs-placement="top" title="Upiši novu kategoriju">
-                                            <i class="bi bi-capslock text-secondary"></i></button>
-                                    </div>
-                                    <input id="category-array" type="hidden" name="category-array" value="1">
+                                    <label class="form-label" for="category">Kategorija: </label>
+
+                                    <select class=" form-control bg-white rounded-pill  ps-2" name="category-array"
+                                        id="category">
+                                        @foreach ($categories as $category )
+                                            <option value="{{$category->id}}">{{$category->name}}</option>
+                                        @endforeach
+                                    </select>
+
+
                                 </div>
                             </div>
                             <div class="row">

@@ -24,12 +24,12 @@
             </div>
 
             <!-- Modal 2 -->
-            <div class="modal fade" id="returnModalWarning" tabindex="-1" aria-labelledby="exampleModalLabel"
+            <div class="modal fade" id="returnModalWarning" tabindex="-1" aria-labelledby="exampleModalLabel2"
                 aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header bg-danger  text-white">
-                            <h6 class="modal-title" id="exampleModalLabel">Upozorenje!</h6>
+                            <h6 class="modal-title" id="exampleModalLabel2">Upozorenje!</h6>
                             <button type="button" class="btn-close" data-bs-dismiss="modal"
                                 aria-label="Close"></button>
                         </div>
@@ -44,6 +44,27 @@
                     </div>
                 </div>
             </div>
+             <!-- Modal 3 -->
+             <div class="modal fade" id="deleteItemModalWarning" tabindex="-1" aria-labelledby="exampleModalLabel3"
+             aria-hidden="true">
+             <div class="modal-dialog">
+                 <div class="modal-content">
+                     <div class="modal-header bg-danger  text-white">
+                         <h6 class="modal-title" id="exampleModalLabel3">Upozorenje!</h6>
+                         <button type="button" class="btn-close" data-bs-dismiss="modal"
+                             aria-label="Close"></button>
+                     </div>
+                     <div class="modal-body">
+                         <p>Da li ste sigurni da želite da izbrišete primerak izdanja?</p>
+                     </div>
+                     <div class="modal-footer">
+                         <button type="button" data-bs-toggle="modal" data-bs-target="#deleteItemModalWarning"
+                             class="btn btn-secondary rounded-pill" data-bs-dismiss="modal">Odustani</button>
+                         <button id="confirmBtn3" type="button" class="btn btn-danger rounded-pill">Izbriši</button>
+                     </div>
+                 </div>
+             </div>
+         </div>
 
             <h1 class="mt-3 text-center">{{ $book->title }}</h1>
             <div class="col-md-12">
@@ -77,7 +98,8 @@
                         <h6 class="fw-bold">Autor: <span class="fw-normal">
                                 @if ($book->authors()->first())
                                     @foreach ($book->authors()->get() as $author)
-                                        {{ $author->name }}
+                                        <a class="btn px-2 py-0"
+                                            href="/authors/{{ $author->id }}">{{ $author->name }}</a>
                                     @endforeach
                                 @endif
 
@@ -96,7 +118,7 @@
                         <h6 class="fw-bold">Godina izdanja: <span
                                 class="fw-normal">{{ $book->year ? $book->year . '.' : '' }}</span></h6>
                         <h6 class="fw-bold">Uzrast: <span
-                                class="fw-normal">{{ $book->age ? $book->age : '' }}</span></h6>
+                                class="fw-normal">{{ $book->age ? $book->age . '+' : '' }}</span></h6>
 
 
                         <h6 class="fw-bold">Opis:</h6>
@@ -107,9 +129,12 @@
 
                 <div class="mt-5">
                     <div class="d-flex justify-content-between">
-                        <h6>Primerci ovog izdanja:</h6>
+                        <h3>Primerci ovog izdanja:</h3>
                         <a class="btn btn-dark rounded-pill"
-                            href="/items/create?id={{ $book->id }}&cat={{ $book->categories()->first()->id }}"><i
+                        @if ($book->categories()->first())
+                             href="/items/create?id={{ $book->id }}&cat={{ $book->categories()->first()->id }}"
+                        @endif
+                           ><i
                                 class="bi bi-plus-lg"> </i>
                             Dodaj primerak naslova </a>
 
@@ -121,7 +146,8 @@
                             <th>Donator</th>
                             <th scope="col">Status</th>
                             <th scope="col">Izdavanje</th>
-                            <th scope="col">Akcija</th>
+                            <th scope="col">Izmene</th>
+                            <th scope="col">Brisanje</th>
 
                         </thead>
                         <tbody>
@@ -129,7 +155,9 @@
                                 <tr>
                                     <td>{{ $item->id }}</td>
                                     <td>{{ $item->signature }}</td>
-                                    <td>{{ $item->donator()->first()->name ?? '' }}</td>
+                                    <td><a class="btn rounded-pill"
+                                            href="/donators/{{ $item->donator()->first()->id ?? '' }}">{{ $item->donator()->first()->name ?? '' }}</a>
+                                    </td>
                                     <td>
                                         @if ($item->borrowing()->exists())
                                             <p class="mb-0 text-danger">Izdato <i class="bi bi-arrow-right"></i>
@@ -160,11 +188,42 @@
                                     </td>
                                     <td>
                                         <a class="btn btn-success rounded-pill btn-sm"
-                                        href="/items/{{ $item->id }}/edit"><i class="bi bi-pencil-square"> </i> Izmeni </a>
+                                            href="/items/{{ $item->id }}/edit"><i class="bi bi-pencil-square"> </i>
+                                            Izmeni </a>
+                                    </td>
+                                    <td>
+                                        <form id="deleteItemForm" action="/items/{{ $item->id }}" method="POST">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button id="deleteItem" data-bs-toggle="modal" data-bs-target="#deleteItemModalWarning" class="btn btn-danger btn-sm rounded-pill">Izbriši</button>
+                                        </form>
                                     </td>
                             @endif
 
                             </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
+                <div class="mt-5">
+                    <h5>Ukupan broj pozajmljivanja: {{count($borrowings)}}</h5>
+                    <h3>Istorija pozajmljivanja</h3>
+
+                    <table class="table table-striped">
+                        <thead>
+                            <th scope="col">Datum pozajmljivanja</th>
+                            <th scope="col">Datum vraćanja</th>
+                            <th scope="col">Primerak</th>
+                            <th scope="col">Pozajmio/pozajmila</th>
+                        </thead>
+                        <tbody>
+                            @foreach ($borrowings as $borrowing)
+                                <tr>
+                                    <td>{{date_format($borrowing->created_at,"d.m.Y.")}}</td>
+                                    <td>{{$borrowing->deleted_at?date_format($borrowing->deleted_at,"d.m.Y."):'nije vraćeno'}}</td>
+                                    <td>{{$borrowing->item()->first()->signature}}</td>
+                                    <td><a class="btn px-2 py-0" href="/readers/{{$borrowing->reader()->first()->id}}">{{$borrowing->reader()->first()->name}}</a></td>
+                                </tr>
                             @endforeach
                         </tbody>
                     </table>
@@ -187,5 +246,10 @@
             returnBtn.addEventListener('click', e => e.preventDefault());
             confBtn2.addEventListener('click', e => returnForm.submit());
         }
+        const deleteForm3 = document.getElementById('deleteItemForm');
+        const delItemBtn = document.getElementById('deleteItem');
+        delItemBtn.addEventListener('click', e=>e.preventDefault());
+        const confBtn3 = document.getElementById('confirmBtn3');
+        confBtn3.addEventListener('click', e => deleteForm3.submit());
     </script>
 @endsection

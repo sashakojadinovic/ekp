@@ -45,45 +45,70 @@
                 <div id="reader" class="mt-5">
                     <p>Broj članske karte: <span>{{ $reader->card_id }}</span> </p>
                     <p>Ime i prezime: <span>{{ $reader->name }}</span> </p>
-                    @if ($reader->gender===0)
+                    @if ($reader->gender === 0)
                         <p>Pol: <span>ženski</span> </p>
-                    @elseif (($reader->gender===1))
-                    <p>Pol: <span>muški</span> </p>
+                    @elseif ($reader->gender === 1)
+                        <p>Pol: <span>muški</span> </p>
+                    @endif
+                    @if ($reader->date_of_birth)
+                    <p>Datum rođenja: <span>{{ date('d.m.Y.',strtotime($reader->date_of_birth)) }}</span> </p>
+                    @endif
+                    @if ($reader->parents_name)
+                        <p>Ime roditelja: <span>{{ $reader->parents_name }}</span> </p>
+                    @endif
+                    @if ($reader->email)
+                       <p>E-mail: <span>{{ $reader->email }}</span> </p>
                     @endif
 
-                    <p>E-mail: <span>{{ $reader->email }}</span> </p>
-                    <p>Zanimanje: <span>{{ $reader->occupation }}</span> </p>
-                    <p>Adresa: <span>{{ $reader->address }}, {{ $reader->city }} {{ $reader->city_code }}</span> </p>
-                    <p>Broj telefona: <span>{{ $reader->phone_number }}</span> </p>
-                    <p>Komentar: <span>{{ $reader->comment }}</span></p>
+                    @if ($reader->occupation)
+                        <p>Zanimanje: <span>{{ $reader->occupation }}</span> </p>
+                    @endif
+
+                    @if ($reader->address || $reader->city)
+                        <p>Adresa: <span>{{ $reader->address }} {{ $reader->city }} {{ $reader->city_code }}</span>
+                        </p>
+                    @endif
+                    @if ($reader->phone_number)
+                        <p>Broj telefona: <span>{{ $reader->phone_number }}</span> </p>
+                    @endif
+
+                    @if ($reader->comment)
+                        <p>Komentar: <span>{{ $reader->comment }}</span></p>
+                    @endif
+
                 </div>
                 <table class="table table-striped">
                     <thead>
-                        <th scope="col">ID</th>
+                        <th scope="col">#</th>
                         <th scope="col">Naziv</th>
                         <th scope="col">Signatura</th>
                         <th scope="col">Vreme izdavanja</th>
-                        <th scope="col">Akcija</th>
+                        <th scope="col">Vreme vraćanja</th>
                     </thead>
                     <tbody>
 
                         @foreach ($borrowings as $borrowing)
                             <tr>
-                                <td>{{ $borrowing->id }}</td>
-                                <td><a class="btn px-2 py-0" href="/books/{{$borrowing->book->id}}">{{$borrowing->book->title}}</a></td>
-                                <td>{{$borrowing->signature}}</td>
+                                <td>{{ $loop->index+1}}</td>
+                                <td><a class="btn px-2 py-0"
+                                        href="/books/{{ $borrowing->book->id }}">{{ $borrowing->book->title }}</a>
+                                </td>
+                                <td>{{ $borrowing->signature }}</td>
                                 <td>{{ $borrowing->date }}</td>
                                 <td>
+                                    @if($borrowing->return_date)
+                                    <p>Vraćeno {{$borrowing->return_date}}</p>
+                                    @else
                                     <form class="d-inline-block" id="returnForm"
-                                                action="/borrowings/{{ $borrowing->id }}" method="POST">
-                                                @csrf
-                                                @method('DELETE')
-                                                <button id="returnBook" data-bs-toggle="modal"
-                                                    data-bs-target="#returnModalWarning"
-                                                    class="btn btn-sm btn-danger rounded-pill"> Vrati
-                                                </button>
+                                        action="/borrowings/{{ $borrowing->id }}" method="POST">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button id="returnBook" data-bs-toggle="modal" data-bs-target="#returnModalWarning"
+                                            class="btn btn-sm btn-danger rounded-pill"> Vrati
+                                        </button>
 
-                                            </form>
+                                    </form>
+                                    @endif
                                 </td>
 
                             </tr>

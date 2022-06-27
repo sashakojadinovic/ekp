@@ -11,13 +11,13 @@ document.addEventListener('click', e => {
         document.querySelector('.autocomplete').remove();
     }
 });
-document.getElementById('author').addEventListener('keydown', e => {
+/* document.getElementById('author').addEventListener('keydown', e => {
     if (e.key === "ArrowDown") {
         const drop = document.querySelector('.autocomplete');
         console.log(drop.firstChild);
         drop.firstChild.focus();
     }
-});
+}); */
 function showList(elm, data) {
     if (document.querySelector('.autocomplete')) {
         document.querySelector('.autocomplete').remove();
@@ -51,7 +51,10 @@ function showList(elm, data) {
 
 }
 function createBadge(name, id, elm) {  //name - name in DB, id - ID in DB, elm - target element (author, category or publisher)
-    console.log(elm.id);
+    console.log(name);
+    if(name==='' || id===''){
+        return;
+    }
     if (!hiddens[elm.id]) {
         hiddens[elm.id] = [];
     }

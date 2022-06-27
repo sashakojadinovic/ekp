@@ -12,10 +12,18 @@ class ReaderController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //$readers = Reader::all();
-        $readers = Reader::simplePaginate(100);
+        if($request->search_term!=="" && $request->criteria==="card_id"){
+            $readers = Reader::where('card_id','=',$request->search_term)->simplePaginate(100);
+        }
+        else if($request->filled('search_term')){
+            $readers = Reader::where($request->criteria,'LIKE','%'.$request->search_term.'%')->simplePaginate(100);
+        }
+        else{
+            $readers = Reader::simplePaginate(100);
+        }
+
         return view('reader.readers',['readers'=>$readers]);
     }
 
@@ -37,11 +45,14 @@ class ReaderController extends Controller
      */
     public function store(Request $request)
     {
+        //dd($request);
         $reader = new Reader;
         $content = $request->validate([
             'card_id'=>'present',
             'name'=>'required',
             'gender'=>'present',
+            'date_of_birth'=>'nullable|date',
+            'parents_name'=>'present',
             'email'=>'present',
             'occupation'=>'present',
             'address'=>'present',
@@ -49,9 +60,8 @@ class ReaderController extends Controller
             'city_code'=>'present',
             'phone_number'=>'present',
             'comment'=>'present',
-
-
         ]);
+        //dd($content);
         //Ovo može bolje i elegantnije, ali sad nemam vremena da se bavim time
         if($content['card_id']){
             if(!Reader::where('card_id','=',$content['card_id'])->first()){
@@ -90,12 +100,16 @@ class ReaderController extends Controller
     public function show(Reader $reader)
     {
         $borrowing_list = [];
-        $borrowings = $reader->borrowing()->get();
+        //$borrowings = $reader->borrowing()->get();
+        $borrowings = $reader->borrowing()->withTrashed()->get();
         foreach($borrowings as $b){
             $book = $b->item()->first()->book()->first();
             $signature = $b->item()->first()->signature;
-            array_push($borrowing_list,(object)['id'=>$b->id,'book'=>$book,'signature'=>$signature, 'date'=>date_format($b->created_at,"d.m.Y. H:i")]);
+            $returned = $b->deleted_at?:null;
+            array_push($borrowing_list,(object)['id'=>$b->id,'book'=>$book,'signature'=>$signature,
+             'date'=>date_format($b->created_at,"d.m.Y. H:i"), 'return_date'=>$b->deleted_at?date_format($b->deleted_at,"d.m.Y. H:i"):null]);
         }
+
         return view('reader.reader',['reader'=>$reader,'borrowings'=>$borrowing_list]);
     }
 
@@ -123,6 +137,8 @@ class ReaderController extends Controller
             'card_id'=>'required',
             'name'=>'required',
             'gender'=>'present',
+            'date_of_birth'=>'nullable|date',
+            'parents_name'=>'present',
             'email'=>'present',
             'occupation'=>'present',
             'address'=>'present',
@@ -135,8 +151,10 @@ class ReaderController extends Controller
         ]);
         $reader->update([
             'card_id'=>$content['card_id'],
-            'gender'=>$content['gender'],
             'name'=>$content['name'],
+            'gender'=>$content['gender'],
+            'date_of_birth'=>$content['date_of_birth'],
+            'parents_name'=>$content['parents_name'],
             'email'=>$content['email'],
             'occupation'=>$content['occupation'],
             'address'=>$content['address'],

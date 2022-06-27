@@ -12,9 +12,14 @@ class AuthorController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $authors = Author::all();
+        if($request->filled('search_term')){
+            $authors = Author::where('name','LIKE','%'.$request->search_term.'%')->simplePaginate(50);
+        }
+        else{
+            $authors = Author::orderBy('name')->simplePaginate(50);
+        }
         return view('author.authors',['authors'=>$authors]);
     }
 

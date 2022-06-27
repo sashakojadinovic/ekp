@@ -30,13 +30,17 @@
 
                     </div>
                     <div class="row">
-                        <div class="my-2 col-md-6">
+                        <div class="my-2 col-md-3">
                             <label class="form-label" for="reader-email">E-mail</label>
                             <input class="form-control bg-white rounded-pill" type="text" name="email" id="reader-email">
                         </div>
+                        <div class="my-2 col-md-3">
+                            <label class="form-label" for="date-of-birth">Datum rođenja</label>
+                            <input class="form-control bg-white rounded-pill" type="date" name="date_of_birth" id="date-of-birth">
+                        </div>
                         <div class="my-2 col-md-6">
-                            <label class="form-label" for="reader-occupation">Zanimanje</label>
-                            <input class="form-control bg-white rounded-pill" type="text" name="occupation" id="reader-occupation">
+                            <label class="form-label" for="parents-name">Ime roditelja (za decu)</label>
+                            <input class="form-control bg-white rounded-pill" type="text" name="parents_name" id="parents-name">
                         </div>
                     </div>
                     <div class="row">
@@ -44,15 +48,19 @@
                             <label class="form-label" for="reader-address">Ulica i broj</label>
                             <input class="form-control bg-white rounded-pill" type="text" name="address" id="reader-address">
                         </div>
-                        <div class="my-2 col-md-6">
+                        <div class="my-2 col-md-3">
                             <label class="form-label" for="reader-city">Mesto</label>
                             <input class="form-control bg-white rounded-pill" type="text" name="city" id="reader-city">
+                        </div>
+                        <div class="my-2 col-md-3">
+                        <label class="form-label" for="reader-city-code">Poštanski broj</label>
+                            <input class="form-control bg-white rounded-pill" type="text" name="city_code" id="reader-city-code">
                         </div>
                     </div>
                     <div class="row">
                         <div class="my-2 col-md-6">
-                            <label class="form-label" for="reader-city-code">Poštanski broj</label>
-                            <input class="form-control bg-white rounded-pill" type="text" name="city_code" id="reader-city-code">
+                            <label class="form-label" for="reader-occupation">Zanimanje</label>
+                            <input class="form-control bg-white rounded-pill" type="text" name="occupation" id="reader-occupation">
                         </div>
                         <div class="my-2 col-md-6">
                             <label class="form-label" for="reader-phone">Broj telefona</label>

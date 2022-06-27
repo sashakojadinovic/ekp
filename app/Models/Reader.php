@@ -11,6 +11,8 @@ class Reader extends Model
         'card_id',
             'name',
             'gender',
+            'date_of_birth',
+            'parents_name',
             'email',
             'occupation',
             'address',

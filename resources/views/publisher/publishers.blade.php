@@ -23,6 +23,7 @@
                         @endforeach
                     </tbody>
                 </table>
+                {{ method_exists($publisher,'links')?$publisher->links():'' }}
             </div>
         </div>
     </div>

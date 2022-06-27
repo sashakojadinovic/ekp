@@ -27,9 +27,11 @@
                             </div>
                             <div class="my-2 col-md-6 position-relative">
                             <label class="form-label" for="donator">Donator: </label>
-                            <input class="form-control bg-white rounded-pill" type="text" data-single=true data-model="Donator" name="donator"
+                            <div class="tag-container position-relative form-control bg-white rounded-pill  ps-2">
+                            <input  type="text" data-single=true data-model="Donator" name="donator"
                                 id="donator">
-                                <input id="donator-array" type="hidden" name="donator_array" value="">
+                                   <input id="donator-array" type="hidden" name="donator_array" value="">
+                            </div>
                             </div>
                         </div>
                         <div class="row">
@@ -54,7 +56,8 @@
 
                         <input type="hidden" name="book_id" value="">
                         <div class="d-flex justify-content-end">
-                            <button id="submitBtn" class="btn btn-danger rounded-pill">Sačuvaj primerak</button>
+                            <a href="/books/{{$item->book()->first()->id}}" class="btn btn-secondary rounded-pill">Odustani</a>
+                            <button id="submitBtn" class="btn btn-danger rounded-pill ms-2">Sačuvaj primerak</button>
                         </div>
 
                     </div>
@@ -68,6 +71,7 @@
 
         document.addEventListener('DOMContentLoaded', function() {
         document.getElementById('donator').addEventListener('input', (e) => getData(e.target, e.target.dataset.model));
+        createBadge("{{$item->donator()->first()?$item->donator()->first()->name:'' }}","{{$item->donator()->first()?$item->donator()->first()->id:'' }}",document.getElementById('donator'));
         });
 
     </script>
