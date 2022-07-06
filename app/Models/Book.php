@@ -24,6 +24,11 @@ class Book extends Model
         return $this->hasMany(Item::class);
     }
 
+    public function  borrows(){
+        return $this->hasManyThrough(Borrowing::class, Item::class);
+
+    }
+
 
 
 }

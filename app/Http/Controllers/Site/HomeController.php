@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Site;
 
 use App\Http\Controllers\Controller;
 use App\Models\Book;
+use App\Models\Item;
 use App\Models\Reader;
 use App\Models\Site\Event;
 use App\Models\Site\Photo;
@@ -23,7 +24,7 @@ public function index(){
 
 public function count(){
     $events=Event::all()->count();
-    $books=Book::all()->count();
+    $books=Item::all()->count();
     $readers=Reader::all()->count();
     return json_encode(["events"=>$events, "readers"=>$readers, "books"=>$books]);
 }

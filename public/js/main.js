@@ -1,34 +1,35 @@
 window.onload = function() {
     if (this.innerHeight > 10) {
         $('header').addClass('scroll');
-        // $('a').hover(function() {
-        //         $(this).css('color', '#cdc0aa')
-        //     },
-        //     function() {
-        //         $(this).css('color', '#232f28')
-        //     }
 
-        // )
     }
 
     //show more
     $('#showMore').click(prikazi)
     //za galeriju
-                if(window.location.href.includes("galerija")){
-                $('.picture').click(allImages)
-                    $('.overlay').click(removeOverlay)
-                    $(window).keyup(function (e){
-                        if(e.key=="Escape" && $('#carouselExampleControls').hasClass("d-block"))
-                        removeOverlay()
-                    });
-                }
+    if(window.location.href.includes("galerija")){
+        $('.picture').click(allImages)
+        $('.overlay').click(removeOverlay)
+        $(window).keyup(function (e){
+            if(e.key=="Escape" && $('#carouselExampleControls').hasClass("d-block"))
+                removeOverlay()
+        });
+    }
     if(window.location.href.includes("vesti")) {
-            $('#dates').click(dates)
+        $('#dates').click(paginacija)
         $('.pag').click(paginacija)
         $('.kat').change(kat)
 
-    }
 
+    }
+    if(window.location.href.includes("knjige")) {
+        $('.search').keyup(filter)
+        $('.searchAuthor').keyup(filter)
+        $('.available').change(filter)
+        $('.category').change(filter)
+        $('.pag').click(paginacija)
+
+    }
 
     $(window).scroll(function() {
         // if(window.location.href(includes()))
@@ -43,11 +44,14 @@ window.onload = function() {
                         i++
                     })
                 }
-                // tajmer($(".citalac").text(),data.readers, ".citalac")
-                tajmer($(".citalac").text(),360, ".citalac")
-                // tajmer($(".knjige").text(), data.books, ".knjige")
-                tajmer($(".knjige").text(),2560, ".knjige")
-                tajmer($(".desavanja").text(),data.events , ".desavanja")
+                tajmer($(".citalac").text(),data.readers, ".citalac")
+                // tajmer($(".citalac").text(),360, ".citalac")
+                tajmer($(".knjige").text(), data.books, ".knjige")
+                // tajmer($(".knjige").text(),2560, ".knjige")
+                // tajmer($(".desavanja").text(),data.events , ".desavanja")
+
+                tajmer($(".desavanja").text(), 90 , ".desavanja")
+
                 tajmer($(".deca").text(), 60, ".deca")
 
 
@@ -60,24 +64,24 @@ window.onload = function() {
 
         if (this.scrollY < 10) {
             $('header').removeClass("scroll");
-        //     $('a').hover(function() {
-        //         $(this).css('color', '#b18e75')
-        //     }, function() {
-        //         $(this).css('color', '#232f28')
-        //     })
-        //
+            //     $('a').hover(function() {
+            //         $(this).css('color', '#b18e75')
+            //     }, function() {
+            //         $(this).css('color', '#232f28')
+            //     })
+            //
         } else {
             $('header').addClass('scroll')
-        //     $('a').hover(function() {
-        //             $(this).css('color', '#cdc0aa')
-        //         },
-        //         function() {
-        //             $(this).css('color', '#232f28')
-        //         }
-        //
-        //     )
-        //
-        //
+            //     $('a').hover(function() {
+            //             $(this).css('color', '#cdc0aa')
+            //         },
+            //         function() {
+            //             $(this).css('color', '#232f28')
+            //         }
+            //
+            //     )
+            //
+            //
         }
     })
 }
@@ -101,26 +105,23 @@ function dates(pag){
     let page=1;
     let value=true;
     let kat=$('.kat').val();
-console.log(pag)
+    console.log(pag)
     if($.isNumeric( pag )){
         page=pag
         value=false
     }
     else if(pag!="kat"){
-       if($('#filter').val()=="all"){
+        if($('#filter').val()=="all"){
             $('#filter').val("nearest")
-       }
+        }
         else{
             $('#filter').val("all")
-       }
+        }
     }
-//     if(pag=="kat"){
-// kat=$('.kat').val()
-//     }
     let date=$("#filter").val();
-        callBackAjax("/vesti", "GET",{"page":page,  "date":date, "kat":kat}, function success(data){
-            console.log(data)
-            events(data, value)}, true)
+    callBackAjax("/vesti", "GET",{"page":page,  "date":date, "kat":kat}, function success(data){
+        console.log(data)
+        events(data, value)}, true)
 }
 
 
@@ -129,6 +130,8 @@ function events(events, value){
     if(events.data.length==0){
         html="<h1>Za izabranu kategoriju nema rezultata.</h1>"
         $('#events').html(html)
+        paginationPrevNext(events)
+
 
     }
     else {
@@ -146,36 +149,9 @@ function events(events, value){
         }
 
         $('#events').html(html)
-        let next;
-        let prev;
-        if (events.current_page + 1 <= events.last_page) {
-            next = events.current_page + 1;
-        } else {
-            next = events.last_page;
-        }
-        if (events.current_page - 1 >= 1) {
-            prev = events.current_page - 1;
-        } else {
-            prev = 1;
-        }
-        html = ` <li class="page-item">
-                        <a class="page-link pag" id="${prev}" href="" aria-label="Previous">
-                            <span aria-hidden="true">&laquo;</span>
-                            <span class="sr-only">Prethodna</span>
-                        </a>
-                    </li>`
-        for (let i = 1; i <= events.last_page; i++) {
-            html += `<li class="page-item"><a href="#" id="${i}" class="page-link pag">${i}</a></li>
-`
-        }
-        html += ` <li class="page-item">
-                        <a class="page-link pag" id="${next}" href="" aria-label="Next">
-                            <span aria-hidden="true">&raquo;</span>
-                            <span class="sr-only">Naredna</span>
-                        </a>
-                    </li>`
+        paginationPrevNext(events)
 
-    $('#pag').html(html)}
+    }
     if (value) {
         if ($('#filter').val() == "all") {
             $('#tekst').text("Prikazani su samo događaji koji slede")
@@ -186,15 +162,14 @@ function events(events, value){
             $('#dates').text("Prikaži samo događaje koji slede")
         }
     }
-    $('.pag').click(paginacija)
 
 }
 
 function removeOverlay(){
-        $('.overlay').css("display", "none")
-        $('#carouselExampleControls').removeClass("d-block")
-        $('#carouselExampleControls').addClass("d-none")
-        $('.carousel-item').removeClass("active")
+    $('.overlay').css("display", "none")
+    $('#carouselExampleControls').removeClass("d-block")
+    $('#carouselExampleControls').addClass("d-none")
+    $('.carousel-item').removeClass("active")
 }
 
 
@@ -239,9 +214,101 @@ function callBackAjax(url, method, data, success, forImage) {
 function paginacija(e){
     e.preventDefault();
     let id=this.id
+    console.log(id)
     dates(id)
 }
-
 function kat(){
     dates("kat")
+}
+
+function filter(pag){
+    let page=1;
+    if($.isNumeric( pag )){
+        page=pag
+    }
+
+    let value=$(".search").val();
+    let valueAuthor=$(".searchAuthor").val();
+    let category=$(".category").val();
+    let available=$("#gridCheck").is(':checked');
+    console.log(value)
+    console.log(valueAuthor)
+    console.log(category)
+    console.log(available)
+    callBackAjax("/filterBooks", "GET",{"page":page, "value":value, "valueAuthor":valueAuthor, "category":category, "available":available}, function success(data){
+        console.log(data)
+        books(data)
+    })
+}
+
+function books(books){
+    console.log(books.data)
+    let html=``
+    if(books.data.length==0){
+        console.log("Ti")
+        html="<h1>Nema rezultata.</h1>"
+        $('#books').html(html)
+
+    }
+    else {
+        for (b of books.data) {
+            html += `  <div class="col">
+            <div class="card h-100">
+                <img src="${b.img_url}" class="card-img-top" alt="${b.title}">
+                <div class="card-body">
+                    <h5 class="card-title">${b.title}</h5>
+                    <h6 class="card-title">`
+            for(a of b.authors) {
+                html+=`${a.name}`
+            }
+            html+=`</h6>
+                    <p class="card-text">${b.info}</p>
+                </div>
+                <div class="card-footer">
+                    <small class="text-muted">Broj dostupnih primeraka u čitaonici: </small> <span>${b.items_count-b.borrows_count}</span>
+                </div>
+            </div>
+        </div>`
+        }
+
+        $('#books').html(html)
+        paginationPrevNext(books)
+
+
+    }}
+
+function paginationPrevNext(table){
+    let next;
+    let prev;
+    if (table.current_page + 1 <= table.last_page) {
+        next = table.current_page + 1;
+    } else {
+        next = table.last_page;
+    }
+    if (table.current_page - 1 >= 1) {
+        prev = table.current_page - 1;
+    } else {
+        prev = 1;
+    }
+    html = ` <li class="page-item">
+                        <a class="page-link pag" id="${prev}" href="#" aria-label="Previous">
+                            <span aria-hidden="true">&laquo;</span>
+                            <span class="sr-only">Prethodna</span>
+                        </a>
+                    </li>`
+    for (let i = 1; i <= table.last_page; i++) {
+        html += `<li class="page-item"><a href="#" id="${i}" class="page-link pag">${i}</a></li>
+`
+    }
+    html += ` <li class="page-item">
+                        <a class="page-link pag" id="${next}" href="#" aria-label="Next">
+                            <span aria-hidden="true">&raquo;</span>
+                            <span class="sr-only">Naredna</span>
+                        </a>
+                    </li>`
+
+    $('#pag').html(html)
+    $('.pag').click(paginacija)
+
+
 }

@@ -7,27 +7,27 @@
 
             <h3 id="tekst">Prikazane su sve vesti i svi događaji</h3>
             <div class="d-flex flex-row justify-content-between">
-            <button class="btn btn-site px-2 py-0 fw-bold" id="dates">Prikaži samo događaje koji slede</button>
-            <select class="kat form-select-sm col-3">
-                <option value="0" class="form-control">Sve kategorije</option>
-@foreach($kategorije as $k)
-                    <option value="{{$k->id}}" class="form-control">{{$k->name}}</option>
+                <button class="btn btn-site px-2 py-0 fw-bold" id="dates">Prikaži samo događaje koji slede</button>
+                <select class="kat form-select-sm col-3">
+                    <option value="0" class="form-control">Sve kategorije</option>
+                    @foreach($kategorije as $k)
+                        <option value="{{$k->id}}" class="form-control">{{$k->name}}</option>
 
-                @endforeach
-            </select></div>
+                    @endforeach
+                </select></div>
             <div class="card-deck row gy-4 gx-0 mt-1" id="events">
 
-            @foreach($events as $e)
+                @foreach($events as $e)
                     <div class="card d-flex flex-row flex-lg-nowrap flex-xl-nowrap flex-wrap  shadow">
                         <img class="img-fluid galleryOne" src="{{asset("images/posters/".$e->coverImg)}}" alt="{{$e->title}}">
                         <div class="card-body">
                             <h5 class="card-title fw-bold">{{$e->title}}</h5>
                             <p class="card-text">{{$e->desc}}</p>
-                           <small class="text-muted">Datum: </small> <p class="card-text"> {{$e->date}}</p>
+                            <small class="text-muted">Datum: </small> <p class="card-text"> {{$e->date}}</p>
                             <small class="text-decoration-underline">{{$e->project->name}}</small>
                         </div>
                     </div>
-    @endforeach
+                @endforeach
             </div>
             <nav aria-label="Page navigation example">
                 <ul class="pagination mt-5" id="pag">
@@ -38,7 +38,7 @@
                         </a>
                     </li>
                     @for($i=1;$i<=$events->lastPage();$i++)
-                    <li class="page-item"><a class="page-link" class="pag" href="{{$events->url($i)}}">{{$i}}</a></li>
+                        <li class="page-item"><a class="page-link" href="{{$events->url($i)}}">{{$i}}</a></li>
                     @endfor
                     <li class="page-item">
                         <a class="page-link" href="{{$events->nextPageUrl()}}" aria-label="Next">
@@ -50,4 +50,4 @@
             </nav>
         </section>
 
-    @endsection
+@endsection

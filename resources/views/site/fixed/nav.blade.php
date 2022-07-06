@@ -22,6 +22,9 @@
                         <a href="{{route("galerija")}}" class="navA">Galerija</a>
                     </li>
                     <li class="">
+                        <a href="{{route("knjige")}}" class="navA">Katalog</a>
+                    </li>
+                    <li class="">
                         <a href="{{route("prostor")}}" class="navA">Prostori</a>
                     </li>
                     <li class="">

@@ -38,6 +38,8 @@ Route::get("/donatori",[\App\Http\Controllers\Site\FrontController::class, "dono
 Route::get("/zajednica",[\App\Http\Controllers\Site\FrontController::class, "community"])->name("zajednica");
 //Route::get("/kontakt",[\App\Http\Controllers\Site\FrontController::class, "contact"])->name("kontakt");
 Route::get("/prostor",[\App\Http\Controllers\Site\FrontController::class, "prostor"])->name("prostor");
+Route::get("/knjige",[\App\Http\Controllers\Site\CatalogController::class, "index"])->name("knjige");
+Route::get("/filterBooks",[\App\Http\Controllers\Site\CatalogController::class, "filterBooks"])->name("filterBooks");
 Route::post("/sentMail",[\App\Http\Controllers\Site\FrontController::class, "sentMail"])->name("sentMail");
 Route::get("/galerija",[\App\Http\Controllers\Site\GalleryController::class, "index"])->name("galerija");
 Route::get("/blog",[\App\Http\Controllers\Site\FrontController::class, "blog"])->name("blog");
@@ -50,7 +52,8 @@ Auth::routes([
 ]);
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::resource('categories', CategoryController::class)->middleware('auth');
+//Route::resource('categories', CategoryController::class)->middleware('auth');
+Route::resource('categories', CategoryController::class);
 //Route::resource('categories', CategoryController::class)->only(['index','show']);
 
 Route::resource('publishers', PublisherController::class)->middleware('auth');
@@ -75,7 +78,8 @@ Route::resource('readers', ReaderController::class)->middleware('auth');
 //Route::resource('readers', ReaderController::class)->only(['index','show']);
 
 
-Route::resource('locations', LocationController::class)->middleware('auth');
+//Route::resource('locations', LocationController::class)->middleware('auth');
+Route::resource('locations', LocationController::class);
 
 Route::resource('projects', \App\Http\Controllers\ProjectController::class)->middleware('auth');
 //Route::resource('projects', \App\Http\Controllers\ProjectController::class);
@@ -93,7 +97,7 @@ Route::post('/addTag', [\App\Http\Controllers\BlogController::class, "addTag"])-
 //Route::post('/addTag', [\App\Http\Controllers\BlogController::class, "addTag"])->name("addTag");
 
 
-//Route::get('/photos/{id}',[\App\Http\Controllers\EventController::class, 'photos'])->name("photos")->middleware('auth');
+//Route::get('/photosShow/{id}',[\App\Http\Controllers\EventController::class, 'photosShow'])->name("photosShow")->middleware('auth');
 Route::get('/photosShow/{id}',[\App\Http\Controllers\EventController::class, 'photosShow'])->name("photosShow");
 
 Route::post('/photos/{id}',[\App\Http\Controllers\EventController::class, 'photos'])->name("photos")->middleware('auth');

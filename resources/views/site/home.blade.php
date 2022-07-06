@@ -390,7 +390,7 @@
                                     <p>
                                         <span class="fw-bold">Projekat “Terapija kulturom“</span> nastao je iz potrebe da se ublaže negativne posledice
                                         pandemije na mentalno zdravlje. Inicirala ga je Aleksandra Miladinović, diplomirana
-                                        psihološkinja i Sistemske porodične psihoterapije, a realizuje se u saradnji sa drugim članicama SKCM-a.
+                                        psihološkinja i edukantkinja sistemske porodične psihoterapije, a realizuje se u saradnji sa drugim članicama SKCM-a.
                                         <br/> <br/>
 
                                         <span class="text-decoration-underline fw-bold">Biblioterapija predstavlja</span> uticaj književnih dela na psihičko blagostanje. Čitanjem i
