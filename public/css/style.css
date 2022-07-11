@@ -224,8 +224,8 @@ hr {
 }
 
 .btn-site{
-    background-color:rgba(132, 131, 130, 1);
-    color:white;
+    background-color:rgba(132, 131, 130, 1) !important;
+    color:white !important;
 }
 footer {
     height: 100%;
@@ -254,4 +254,6 @@ footer {
     border-bottom: none !important;
     background-color: rgba(0, 0, 0, 0);
 }
+
+
 

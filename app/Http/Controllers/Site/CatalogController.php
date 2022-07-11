@@ -14,18 +14,22 @@ class CatalogController extends Controller
 {
     public function index(){
         $categories=Category::all();
-        $books=Book::with("items", "authors")->withCount("borrows", "items")
+        $books=Book::with("items", "authors", "publishers", "categories")->withCount("borrows", "items")
             ->paginate(15);
         return view("site.katalog", ["books"=>$books, "categories"=>$categories]);
 }
 
 public function filterBooks(Request $request){
-    $books=Book::with("items", "authors");
+    $books=Book::with("items", "authors", "publishers", "categories");
     if($request->has("value")){
         $books ->where("title", "LIKE", "%".$request->input("value")."%");
     }
     if($request->input("valueAuthor")!=""){
-        $books ->whereHas("authors", function ($i) use ($request) {
+        $object=$books->get();
+        $books->whereHas("authors", function ($i) use ($request,$object) {
+          $object->map(function ($obj){
+
+          });
             return $i->where("name", "LIKE", "%".$request->input("valueAuthor")."%");
     });}
 
@@ -48,7 +52,8 @@ public function filterBooks(Request $request){
         $books=$books->whereIn("id",$array);
     }
     $books=$books->paginate(15);
-
-    return json_encode($books);
+//$books=$books->get();
+    return view('site.pagination', compact('books'));
+//    return json_encode($books);
 }
 }

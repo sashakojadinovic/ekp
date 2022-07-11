@@ -23,11 +23,16 @@ window.onload = function() {
 
     }
     if(window.location.href.includes("knjige")) {
-        $('.search').keyup(filter)
-        $('.searchAuthor').keyup(filter)
-        $('.available').change(filter)
-        $('.category').change(filter)
-        $('.pag').click(paginacija)
+        $('.search').keyup(fetch_data)
+        $('.searchAuthor').keyup(fetch_data)
+        $('.available').change(fetch_data)
+        $('.category').change(fetch_data)
+       // $('.pag').click(paginacija)
+        $(document).on('click', '.page-link', function(event){
+            event.preventDefault();
+            var page = $(this).attr('href').split('page=')[1];
+            fetch_data(page);
+        });
 
     }
 
@@ -64,24 +69,8 @@ window.onload = function() {
 
         if (this.scrollY < 10) {
             $('header').removeClass("scroll");
-            //     $('a').hover(function() {
-            //         $(this).css('color', '#b18e75')
-            //     }, function() {
-            //         $(this).css('color', '#232f28')
-            //     })
-            //
         } else {
             $('header').addClass('scroll')
-            //     $('a').hover(function() {
-            //             $(this).css('color', '#cdc0aa')
-            //         },
-            //         function() {
-            //             $(this).css('color', '#232f28')
-            //         }
-            //
-            //     )
-            //
-            //
         }
     })
 }
@@ -226,6 +215,7 @@ function filter(pag){
     if($.isNumeric( pag )){
         page=pag
     }
+    var _token = $("input[name=_token]").val();
 
     let value=$(".search").val();
     let valueAuthor=$(".searchAuthor").val();
@@ -235,9 +225,19 @@ function filter(pag){
     console.log(valueAuthor)
     console.log(category)
     console.log(available)
-    callBackAjax("/filterBooks", "GET",{"page":page, "value":value, "valueAuthor":valueAuthor, "category":category, "available":available}, function success(data){
+    // $.ajax({
+    //     url:"/filterBooks",
+    //     method:"GET",
+    //     data:{_token:_token, page:page},
+    //     success:function(data)
+    //     {
+    //         console.log(data)
+    //         $('#main').html(data);
+    //     }
+    callBackAjax("/filterBooks", "GET",{_token:_token, "page":page, "value":value, "valueAuthor":valueAuthor, "category":category, "available":available}, function success(data){
         console.log(data)
-        books(data)
+        $('#main').html(data);
+
     })
 }
 
@@ -258,11 +258,16 @@ function books(books){
                 <div class="card-body">
                     <h5 class="card-title">${b.title}</h5>
                     <h6 class="card-title">`
+            let br=0;
             for(a of b.authors) {
                 html+=`${a.name}`
+                br++;
+                if(b.authors.length==br){
+                    continue;
+                }
+                html+=` i `
             }
             html+=`</h6>
-                    <p class="card-text">${b.info}</p>
                 </div>
                 <div class="card-footer">
                     <small class="text-muted">Broj dostupnih primeraka u čitaonici: </small> <span>${b.items_count-b.borrows_count}</span>
@@ -272,7 +277,9 @@ function books(books){
         }
 
         $('#books').html(html)
-        paginationPrevNext(books)
+
+
+        //paginationPrevNext(books)
 
 
     }}
@@ -312,3 +319,29 @@ function paginationPrevNext(table){
 
 
 }
+
+function fetch_data(pag)
+{
+    let page=1;
+    if($.isNumeric( pag )){
+        page=pag
+    }
+
+    let value=$(".search").val();
+    let valueAuthor=$(".searchAuthor").val();
+    let category=$(".category").val();
+    let available=$("#gridCheck").is(':checked');
+    console.log(value)
+    console.log(valueAuthor)
+    console.log(category)
+    console.log(available)
+    $.ajax({
+        url:"/filterBooks",
+        method:"GET",
+        data:{_token:token, "page":page, "value":value, "valueAuthor":valueAuthor, "category":category, "available":available},
+        success:function(data)
+        {
+            console.log(data)
+            $('#main').html(data);
+        }
+    });}
