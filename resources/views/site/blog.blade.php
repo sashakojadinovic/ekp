@@ -16,7 +16,7 @@
                             <div class="col-sm-7">
                                 <div class="card-body">
                                     <h5 class="card-title"><a href="/blogOne/{{$b->id}}">{{$b->title}}</a></h5>
-                                    <p class="card-text ">{{$b->short_desc}} Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis ipsum rem, delectus deserunt consectetur saepe? Expedita sapiente rerum nostrum fuga non iure minima sunt inventore.</p>
+                                    <p class="card-text ">{{$b->short_desc}}</p>
                                     <small>Tagovi:</small> @foreach($b->tags as $t) <small class="text-decoration-underline">{{$t->name}} @if(!$loop->last),@endif</small> @endforeach
                                     <br/>
 
