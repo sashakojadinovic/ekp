@@ -39,7 +39,7 @@
                                 <label for="location">Lokacija:</label>
                                 <select class="form-select rounded-pill bg-white" name="location" id="location">
                                     @foreach ($locations as $location )
-                                        <option {{$item->location_id===$location->id?'selected':''}} value="{{$location->id}}">{{$location->name}}</option>
+                                        <option {{$item->location_id==$location->id?'selected':''}} value="{{$location->id}}">{{$location->name}}</option>
                                     @endforeach
 
                                 </select>

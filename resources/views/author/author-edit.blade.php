@@ -16,8 +16,8 @@
                         <label class="form-label" for="author-gender">Pol</label>
                         <select class="form-select bg-white rounded-pill" name="gender" id="author-gender">
                             <option {{$author->gender===-1?'selected':null}} value="-1">Odaberite pol</option>
-                            <option {{$author->gender===0?'selected':null}} value="0">Ženski</option>
-                            <option {{$author->gender===1?'selected':null}} value="1">Muški</option>
+                            <option {{$author->gender==0?'selected':null}} value="0">Ženski</option>
+                            <option {{$author->gender==1?'selected':null}} value="1">Muški</option>
                         </select>
                     </div>
                     <div>
